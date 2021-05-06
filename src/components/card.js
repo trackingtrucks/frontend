@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import {Card} from 'react-bootstrap'
 
-export class Card extends Component {
+export class card extends Component {
     render () {
         return (
             <div>
@@ -22,4 +22,4 @@ export class Card extends Component {
     }
 }
 
-export default Card
+export default card
