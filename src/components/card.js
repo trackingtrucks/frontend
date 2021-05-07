@@ -6,9 +6,13 @@ export class card extends Component {
         return (
             <div>
                 <CardColumns>
-                    <Card bg="success">
+                    <Card border="success">
+                        <Card.Header>
+                            <big className="">
+                            Vehículo 1
+                            </big>
+                        </Card.Header>
                         <Card.Body>
-                            <Card.Title>Vehículo 1</Card.Title>
                             <Card.Text>
                                 Mendoza - Buenos aires
                             </Card.Text>
@@ -66,7 +70,9 @@ export class card extends Component {
                         <Card.Body>
                             <Card.Title>Vehículo 8</Card.Title>
                             <Card.Text>
-                                Tierra del fuego - Buenos aires
+                                <small className="Text-mutted">
+                                    Tierra del fuego - Buenos aires
+                                </small>
                             </Card.Text>
                         </Card.Body>
                     </Card>
