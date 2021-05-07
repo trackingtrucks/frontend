@@ -1,21 +1,76 @@
 import React, { Component } from 'react'
-import {Card} from 'react-bootstrap'
+import {CardColumns, Card} from 'react-bootstrap'
 
 export class card extends Component {
     render () {
         return (
             <div>
-                <Card style={{ width: '18rem' }}>
-                <Card.Body>
-                <Card.Title>Vehículo X</Card.Title>
-                <Card.Subtitle className="mb-2 text-muted">Buenos Aires - Mendoza</Card.Subtitle>
-                <Card.Text>
-                    Maneja juan.
-                </Card.Text>
-                <Card.Link href="#">Vehículo X en el mapa.</Card.Link>
-                <Card.Link href="#">tucson</Card.Link>
-            </Card.Body>
-            </Card>
+                <CardColumns>
+                    <Card bg="success">
+                        <Card.Body>
+                            <Card.Title>Vehículo 1</Card.Title>
+                            <Card.Text>
+                                Mendoza - Buenos aires
+                            </Card.Text>
+                        </Card.Body>
+                    </Card>
+                    <Card bg="warning">
+                        <Card.Body>
+                            <Card.Title>Vehículo 2</Card.Title>
+                            <Card.Text>
+                                la plata - Buenos aires
+                            </Card.Text>
+                        </Card.Body>
+                    </Card>
+                    <Card bg="danger">
+                        <Card.Body>
+                            <Card.Title>Vehículo 3</Card.Title>
+                            <Card.Text>
+                                La Rioja - Jujuy
+                            </Card.Text>
+                        </Card.Body>
+                    </Card>
+                    <Card bg="primary">
+                        <Card.Body>
+                            <Card.Title>Vehículo 4</Card.Title>
+                            <Card.Text>
+                                Rio negro - Chubut
+                            </Card.Text>
+                        </Card.Body>
+                    </Card>
+                    <Card bg="secondary">
+                        <Card.Body>
+                            <Card.Title>Vehículo 5</Card.Title>
+                            <Card.Text>
+                                La pampa - San luis
+                            </Card.Text>
+                        </Card.Body>
+                    </Card>
+                    <Card bg="info">
+                        <Card.Body>
+                            <Card.Title>Vehículo 6</Card.Title>
+                            <Card.Text>
+                                Misiones - Corrientes
+                            </Card.Text>
+                        </Card.Body>
+                    </Card>
+                    <Card bg="light">
+                        <Card.Body>
+                            <Card.Title>Vehículo 7</Card.Title>
+                            <Card.Text>
+                                Buenos aires - Tierra del fuego
+                            </Card.Text>
+                        </Card.Body>
+                    </Card>
+                    <Card bg="dark">
+                        <Card.Body>
+                            <Card.Title>Vehículo 8</Card.Title>
+                            <Card.Text>
+                                Tierra del fuego - Buenos aires
+                            </Card.Text>
+                        </Card.Body>
+                    </Card>
+                </CardColumns>
             </div>
             
         )
