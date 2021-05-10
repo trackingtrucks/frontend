@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import Navbar from './Navbar.js'
 import Card from './card.js'
-import { Row } from 'react-bootstrap'
 
 export class Home extends Component {
     render() {

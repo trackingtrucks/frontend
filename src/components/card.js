@@ -8,7 +8,7 @@ export class card extends Component {
                 <CardColumns>
                     <Card border="success">
                         <Card.Header>
-                            <big className="">
+                            <big>
                             Vehículo 1
                             </big>
                         </Card.Header>
@@ -18,7 +18,7 @@ export class card extends Component {
                             </Card.Text>
                         </Card.Body>
                     </Card>
-                    <Card bg="warning">
+                    <Card border="warning">
                         <Card.Body>
                             <Card.Title>Vehículo 2</Card.Title>
                             <Card.Text>
@@ -26,7 +26,7 @@ export class card extends Component {
                             </Card.Text>
                         </Card.Body>
                     </Card>
-                    <Card bg="danger">
+                    <Card border="danger">
                         <Card.Body>
                             <Card.Title>Vehículo 3</Card.Title>
                             <Card.Text>
@@ -34,7 +34,7 @@ export class card extends Component {
                             </Card.Text>
                         </Card.Body>
                     </Card>
-                    <Card bg="primary">
+                    <Card border="primary">
                         <Card.Body>
                             <Card.Title>Vehículo 4</Card.Title>
                             <Card.Text>
@@ -42,7 +42,7 @@ export class card extends Component {
                             </Card.Text>
                         </Card.Body>
                     </Card>
-                    <Card bg="secondary">
+                    <Card border="secondary">
                         <Card.Body>
                             <Card.Title>Vehículo 5</Card.Title>
                             <Card.Text>
@@ -50,7 +50,7 @@ export class card extends Component {
                             </Card.Text>
                         </Card.Body>
                     </Card>
-                    <Card bg="info">
+                    <Card border="info">
                         <Card.Body>
                             <Card.Title>Vehículo 6</Card.Title>
                             <Card.Text>
@@ -58,7 +58,7 @@ export class card extends Component {
                             </Card.Text>
                         </Card.Body>
                     </Card>
-                    <Card bg="light">
+                    <Card border="light">
                         <Card.Body>
                             <Card.Title>Vehículo 7</Card.Title>
                             <Card.Text>
@@ -66,7 +66,7 @@ export class card extends Component {
                             </Card.Text>
                         </Card.Body>
                     </Card>
-                    <Card bg="dark">
+                    <Card border="dark">
                         <Card.Body>
                             <Card.Title>Vehículo 8</Card.Title>
                             <Card.Text>
