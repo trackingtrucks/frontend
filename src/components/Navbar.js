@@ -11,7 +11,7 @@ export class NavBar extends Component {
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="mr-auto">
                             <Nav.Link href="#home">Home</Nav.Link>
-                            <Nav.Link href="#link">Mapa</Nav.Link>
+                            <Nav.Link href="/Map">Mapa</Nav.Link>
                             <Nav.Link href="#link">Vehículos</Nav.Link>
                         </Nav>
                     </Navbar.Collapse>
