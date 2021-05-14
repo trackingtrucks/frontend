@@ -8,9 +8,7 @@ export class card extends Component {
                 <CardColumns>
                     <Card border="success">
                         <Card.Header>
-                            <big>
-                            Vehículo 1
-                            </big>
+                            <Card.Title>Vehículo 1</Card.Title>
                         </Card.Header>
                         <Card.Body>
                             <Card.Text>

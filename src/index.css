@@ -23,3 +23,14 @@ code {
   min-width: 250px;
   min-height: 500px;
 }
+
+.in-flex2 {
+  flex: 1;
+  padding: 1%;
+  min-width: 250px;
+  min-height: 1000px;
+}
+
+.card {
+  padding: 20px;
+}
