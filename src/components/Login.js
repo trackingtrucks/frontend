@@ -1,36 +1,39 @@
 import React, { Component } from 'react'
-import {Form, Button, Jumbotron, Container} from 'react-bootstrap'
+import { Form, Button, Jumbotron, Container } from 'react-bootstrap'
 
 export class Login extends Component {
-    state = {email: "", password: ""}
-
-    handleChange(event) {
-        this.setState({[event.target.id]: event.target.value});
+    state = {
+        password: '',
+        email: '',
     }
-    
-    handleSubmit(event) {
-        event.preventDefault();
-        console.log(this.state);
+
+    Change = (e) => {
+        this.setState({
+            [e.target.id]: e.target.value,
+        })
+    }
+
+    Submit = async (e) => {
+        e.preventDefault();
     }
 
     render() {
-        return(
+        return (
             <>
-                
                 <Jumbotron fluid>
                     <Container>
-                        <Form onSubmit={this.handleSubmit}>
-                            <Form.Group controlId="formBasicEmail">
+                        <Form onSubmit={this.Submit}>
+                            <Form.Group controlId="email">
                                 <Form.Label>Email</Form.Label>
-                                <Form.Control id="email" value={this.state.email} type="email" placeholder="Ejemplo@TrackingTrucks.com.ar" />
+                                <Form.Control value={this.state.email} onChange={this.Change} type="email" placeholder="ejemplo@trackingtrucks.com.ar" />
                                 <Form.Text className="text-muted">
                                     We'll never share your email with anyone else.
                                 </Form.Text>
                             </Form.Group>
 
-                            <Form.Group controlId="formBasicPassword">
+                            <Form.Group controlId="password">
                                 <Form.Label>Password</Form.Label>
-                                <Form.Control type="password" placeholder="Password" />
+                                <Form.Control value={this.state.password} onChange={this.Change} type="password" placeholder="Password" />
                             </Form.Group>
                             <Button variant="primary" type="submit">
                                 Enviar
