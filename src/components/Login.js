@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { Form, Button, Jumbotron, Container } from 'react-bootstrap'
+import axios from 'axios'
+import Config from '../Config'
 
 export class Login extends Component {
     state = {
@@ -15,6 +17,21 @@ export class Login extends Component {
 
     Submit = async (e) => {
         e.preventDefault();
+        try {   
+            const res = await axios.post(Config.API_URL + '/auth/login', {
+                password: this.state.password,
+                email: this.state.email,
+            })
+            localStorage.setItem('accessToken', res.data.accessToken)
+            localStorage.setItem('refreshToken', res.data.refreshToken)
+            localStorage.setItem('ATexpire', res.data.ATExpiresIn)
+            localStorage.setItem('RTexpire', res.data.RTExpiresIn)
+            localStorage.setItem('profile', JSON.stringify(res.data.response))
+            
+            console.log(res)
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     render() {
@@ -26,9 +43,6 @@ export class Login extends Component {
                             <Form.Group controlId="email">
                                 <Form.Label>Email</Form.Label>
                                 <Form.Control value={this.state.email} onChange={this.Change} type="email" placeholder="ejemplo@trackingtrucks.com.ar" />
-                                <Form.Text className="text-muted">
-                                    We'll never share your email with anyone else.
-                                </Form.Text>
                             </Form.Group>
 
                             <Form.Group controlId="password">
