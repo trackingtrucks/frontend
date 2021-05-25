@@ -4,11 +4,11 @@ import queryString from 'query-string'
 
 export class Registro extends Component {
     state={
-        email: '',
+        email: queryString.parse(this.props.location.search).email || '',
         password: '',
         nombre: '',
         apellido: '',
-        codigo: '',
+        codigo: queryString.parse(this.props.location.search).codigo ||'',
     }
 
     Change = (e) => {
@@ -25,13 +25,6 @@ export class Registro extends Component {
             console.log(error)
         }
     }
-
-    componentDidMount=() => {
-        const { email, codigo } = queryString.parse(this.props.location.search)
-        this.setState({
-            email, codigo
-        })
-    }
     render() {
         return(
             <>
@@ -41,27 +34,27 @@ export class Registro extends Component {
                         <Form onSubmit={this.Submit} autoComplete='off'>
                             <Form.Group controlId="email">
                                 <Form.Label>Email</Form.Label>
-                                <Form.Control required value={this.state.email} onChange={this.Change} type="email" placeholder="Ejemplo@TrackingTrucks.com.ar" />
+                                <Form.Control required value={this.state.email} onChange={this.Change} type="email" placeholder="ejemplo@gmail.com" />
                             </Form.Group>
                             <Form.Group controlId="password">
                                 <Form.Label>Password</Form.Label>
-                                <Form.Control required value={this.state.password} onChange={this.Change} type="password" placeholder="Password" />
+                                <Form.Control required value={this.state.password} onChange={this.Change} type="password" placeholder="**********" />
                             </Form.Group>
                             <Form.Group>
                                 <Row>
                                     <Col>
                                         <Form.Label>Nombre</Form.Label>
-                                        <Form.Control required id="nombre" value={this.state.nombre} onChange={this.Change} placeholder="Nombre" />
+                                        <Form.Control required id="nombre" value={this.state.nombre} onChange={this.Change} placeholder="Juan" />
                                     </Col>
                                     <Col>
                                         <Form.Label>Apellido</Form.Label>
-                                        <Form.Control required id="apellido" value={this.state.apellido} onChange={this.Change} placeholder="Apellido" />
+                                        <Form.Control required id="apellido" value={this.state.apellido} onChange={this.Change} placeholder="Pérez" />
                                     </Col>
                                 </Row>
                             </Form.Group>
                             <Form.Group controlId="codigo">
-                                <Form.Label>Token</Form.Label>
-                                <Form.Control required value={this.state.codigo} onChange={this.Change} placeholder="" />
+                                <Form.Label>Codigo de verificación</Form.Label>
+                                <Form.Control required value={this.state.codigo} onChange={this.Change} placeholder="xxxxxxxxxxxxx" />
                             </Form.Group>
                             <Button variant="primary" type="submit">
                                 Enviar

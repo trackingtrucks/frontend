@@ -27,9 +27,12 @@ export class Login extends Component {
             localStorage.setItem('ATexpire', res.data.ATExpiresIn)
             localStorage.setItem('RTexpire', res.data.RTExpiresIn)
             localStorage.setItem('profile', JSON.stringify(res.data.response))
-            
+            alert("Bienvenido "+ res.data.response.nombre + " " + res.data.response.apellido)
+            //redirigir a la dashboard
             console.log(res)
         } catch (error) {
+            //usar sweetalert2
+            alert(error.response.data.message || error.message)
             console.log(error)
         }
     }
@@ -42,12 +45,12 @@ export class Login extends Component {
                         <Form onSubmit={this.Submit}>
                             <Form.Group controlId="email">
                                 <Form.Label>Email</Form.Label>
-                                <Form.Control value={this.state.email} onChange={this.Change} type="email" placeholder="ejemplo@trackingtrucks.com.ar" />
+                                <Form.Control required value={this.state.email} onChange={this.Change} type="email" placeholder="ejemplo@gmail.com" />
                             </Form.Group>
 
                             <Form.Group controlId="password">
                                 <Form.Label>Password</Form.Label>
-                                <Form.Control value={this.state.password} onChange={this.Change} type="password" placeholder="Password" />
+                                <Form.Control required value={this.state.password} onChange={this.Change} type="password" placeholder="*********" />
                             </Form.Group>
                             <Button variant="primary" type="submit">
                                 Enviar
