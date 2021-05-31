@@ -1,14 +1,17 @@
 import React, { Component } from 'react'
-import {Form, Button, Jumbotron, Container, Row, Col} from 'react-bootstrap'
+import { Form, Button, Jumbotron, Container, Row, Col } from 'react-bootstrap'
 import queryString from 'query-string'
+import axios from 'axios'
+import Config from '../Config'
+import makeToast from './Objects/Toast'
 
 export class Registro extends Component {
-    state={
+    state = {
         email: queryString.parse(this.props.location.search).email || '',
         password: '',
         nombre: '',
         apellido: '',
-        codigo: queryString.parse(this.props.location.search).codigo ||'',
+        codigo: queryString.parse(this.props.location.search).codigo || '',
     }
 
     Change = (e) => {
@@ -19,16 +22,55 @@ export class Registro extends Component {
 
     Submit = async (e) => {
         e.preventDefault();
-        try {   
-            console.log(this.state)
+        try {
+            const res = await axios.post(Config.API_URL + '/auth/register/gestor', {
+                password: this.state.password,
+                email: this.state.email,
+                nombre: this.state.nombre,
+                apellido: this.state.apellido,
+                codigo: this.state.codigo,
+            })
+
+            localStorage.setItem('accessToken', res.data.accessToken)
+            localStorage.setItem('refreshToken', res.data.refreshToken)
+            localStorage.setItem('ATexpire', res.data.ATExpiresIn)
+            localStorage.setItem('RTexpire', res.data.RTExpiresIn)
+            localStorage.setItem('profile', JSON.stringify(res.data.response))
+
+            //makeToast('success', "Bienvenido " + res.data.response.nombre + " " + res.data.response.apellido)
+            //alert("Bienvenido "+ res.data.response.nombre + " " + res.data.response.apellido)
+            //redirigir a la dashboard
+            console.log(res)
+            this.props.history.push('/')
+            
         } catch (error) {
-            console.log(error)
+            try {
+                const res = await axios.post(Config.API_URL + '/auth/register/conductor', {
+                    password: this.state.password,
+                    email: this.state.email,
+                    nombre: this.state.nombre,
+                    apellido: this.state.apellido,
+                    codigo: this.state.codigo,
+                })
+
+                
+
+                //makeToast('success', "Bienvenido " + res.data.response.nombre + " " + res.data.response.apellido)
+                //alert("Bienvenido "+ res.data.response.nombre + " " + res.data.response.apellido)
+                //redirigir a la dashboard
+                console.log(res)
+            } catch (error) {
+                //usar sweetalert2
+                makeToast('error', error.response.data.message || error.message)
+                //alert(error.response.data.message || error.message)
+                console.log(error)
+            }
         }
     }
     render() {
-        return(
+        return (
             <>
-                
+
                 <Jumbotron fluid>
                     <Container>
                         <Form onSubmit={this.Submit} autoComplete='off'>
@@ -67,4 +109,4 @@ export class Registro extends Component {
     }
 }
 
-export default Registro 
+export default Registro

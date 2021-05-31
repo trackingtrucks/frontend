@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Form, Button, Jumbotron, Container } from 'react-bootstrap'
 import axios from 'axios'
 import Config from '../Config'
+import makeToast from './Objects/Toast'
 
 export class Login extends Component {
     state = {
@@ -27,12 +28,16 @@ export class Login extends Component {
             localStorage.setItem('ATexpire', res.data.ATExpiresIn)
             localStorage.setItem('RTexpire', res.data.RTExpiresIn)
             localStorage.setItem('profile', JSON.stringify(res.data.response))
-            alert("Bienvenido "+ res.data.response.nombre + " " + res.data.response.apellido)
+
+            makeToast('success', "Bienvenido "+ res.data.response.nombre + " " + res.data.response.apellido)
+            //alert("Bienvenido "+ res.data.response.nombre + " " + res.data.response.apellido)
             //redirigir a la dashboard
+            this.props.history.push('/')
             console.log(res)
         } catch (error) {
             //usar sweetalert2
-            alert(error.response.data.message || error.message)
+            makeToast('error', error.response.data.message || error.message)
+            //alert(error.response.data.message || error.message)
             console.log(error)
         }
     }
