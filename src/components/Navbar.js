@@ -3,6 +3,7 @@ import {Navbar, Nav} from 'react-bootstrap'
 import {Link, NavLink} from 'react-router-dom'
 
 export class NavBar extends Component {
+
     render() {
         return (
             <div>
@@ -16,6 +17,9 @@ export class NavBar extends Component {
                             <NavLink className="nav-link" to="/info">Vehículos</NavLink>
                         </Nav>
                     </Navbar.Collapse>
+                    <Navbar.Text>
+                        Hola {localStorage.getItem('accessToken')}
+                    </Navbar.Text>
                     <Link  className="btn btn-outline-light" to="/login">Log In</Link>
                     <Link  className="btn btn-outline-light" to="/registro">Registrarse</Link>
                 </Navbar>
