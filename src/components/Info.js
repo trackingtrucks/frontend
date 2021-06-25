@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Card from './card.js'
+import Card from './Objects/card.js'
 
 export class Info extends Component {
     render() {

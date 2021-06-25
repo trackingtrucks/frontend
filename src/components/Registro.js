@@ -23,49 +23,33 @@ export class Registro extends Component {
     Submit = async (e) => {
         e.preventDefault();
         try {
-            const res = await axios.post(Config.API_URL + '/auth/register/gestor', {
+            const res = await axios.post(Config.API_URL + '/auth/register/', {
                 password: this.state.password,
                 email: this.state.email,
                 nombre: this.state.nombre,
                 apellido: this.state.apellido,
                 codigo: this.state.codigo,
             })
+            if(res?.data?.perfil?.rol === 'gestor') {
+                localStorage.setItem('accessToken', res.data.accessToken)
+                localStorage.setItem('refreshToken', res.data.refreshToken)
+                localStorage.setItem('ATexpire', res.data.ATExpiresIn)
+                localStorage.setItem('RTexpire', res.data.RTExpiresIn)
+                localStorage.setItem('perfil', JSON.stringify(res.data.perfil))
 
-            localStorage.setItem('accessToken', res.data.accessToken)
-            localStorage.setItem('refreshToken', res.data.refreshToken)
-            localStorage.setItem('ATexpire', res.data.ATExpiresIn)
-            localStorage.setItem('RTexpire', res.data.RTExpiresIn)
-            localStorage.setItem('profile', JSON.stringify(res.data.response))
-
-            //makeToast('success', "Bienvenido " + res.data.response.nombre + " " + res.data.response.apellido)
-            //alert("Bienvenido "+ res.data.response.nombre + " " + res.data.response.apellido)
-            //redirigir a la dashboard
-            console.log(res)
-            this.props.history.push('/')
+                makeToast('success', "Bienvenido " + res.data.perfil.nombre + " " + res.data.perfil.apellido)
+                this.props.history.push('/')
+            }else if(res.data.perfil.rol === 'conductor'){
+                makeToast('success', "Bienvenido " + res.data.perfil.nombre + " " + res.data.perfil.apellido)
+                this.props.history.push('/descargar')
+            }
             
-        } catch (error) {
-            try {
-                const res = await axios.post(Config.API_URL + '/auth/register/conductor', {
-                    password: this.state.password,
-                    email: this.state.email,
-                    nombre: this.state.nombre,
-                    apellido: this.state.apellido,
-                    codigo: this.state.codigo,
-                })
-
-                
-
-                //makeToast('success', "Bienvenido " + res.data.response.nombre + " " + res.data.response.apellido)
-                //alert("Bienvenido "+ res.data.response.nombre + " " + res.data.response.apellido)
-                //redirigir a la dashboard
-                console.log(res)
             } catch (error) {
                 //usar sweetalert2
                 makeToast('error', error.response.data.message || error.message)
                 //alert(error.response.data.message || error.message)
                 console.log(error)
             }
-        }
     }
     render() {
         return (
