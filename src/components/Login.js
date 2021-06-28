@@ -27,7 +27,8 @@ export class Login extends Component {
             localStorage.setItem('refreshToken', res.data.refreshToken)
             localStorage.setItem('ATexpire', res.data.ATExpiresIn)
             localStorage.setItem('RTexpire', res.data.RTExpiresIn)
-            localStorage.setItem('perfil', JSON.stringify(res.data.perfil))
+            localStorage.setItem('nombre', JSON.stringify(res.data.perfil.nombre))
+            localStorage.setItem('apellido', JSON.stringify(res.data.perfil.apellido))
 
             makeToast('success', "Bienvenido "+ res.data.perfil.nombre + " " + res.data.perfil.apellido)
             //alert("Bienvenido "+ res.data.response.nombre + " " + res.data.response.apellido)

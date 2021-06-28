@@ -8,7 +8,7 @@ export class card extends Component {
                 <CardColumns>
                     <Card border="success">
                         <Card.Header>
-                            <Card.Title>Vehículo 1</Card.Title>
+                            <Card.Title>{localStorage()}</Card.Title>
                         </Card.Header>
                         <Card.Body>
                             <Card.Text>

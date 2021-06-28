@@ -18,7 +18,7 @@ export class NavBar extends Component {
                         </Nav>
                     </Navbar.Collapse>
                     <Navbar.Text>
-                        Hola {localStorage.getItem('accessToken')}
+                        Hola {localStorage.getItem('nombre')}
                     </Navbar.Text>
                     <Link  className="btn btn-outline-light" to="/login">Log In</Link>
                     <Link  className="btn btn-outline-light" to="/registro">Registrarse</Link>
