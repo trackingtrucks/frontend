@@ -33,7 +33,7 @@ export class Login extends Component {
             makeToast('success', "Bienvenido "+ res.data.perfil.nombre + " " + res.data.perfil.apellido)
             //alert("Bienvenido "+ res.data.response.nombre + " " + res.data.response.apellido)
             //redirigir a la dashboard
-            this.props.history.push('/')
+            this.props.history.push('/home')
             console.log(res)
         } catch (error) {
             //usar sweetalert2

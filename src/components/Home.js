@@ -21,6 +21,7 @@ export class Home extends Component {
         console.log(perfil.data)
         localStorage.setItem("vehiculos", perfil.data.vehiculos)
     }
+
     render() {
         
         return (

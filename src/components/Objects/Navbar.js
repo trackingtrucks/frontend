@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import {Navbar, Nav} from 'react-bootstrap'
 import {Link, NavLink} from 'react-router-dom'
-var str = localStorage.getItem('nombre')
+var str = ""
 
 export class NavBar extends Component {
 
@@ -9,11 +9,11 @@ export class NavBar extends Component {
         return (
             <div>
                 <Navbar bg="primary" variant="dark" expand="lg">
-                    <NavLink className="navbar-brand" to="/">Tracking Trucks</NavLink>
+                    <NavLink className="navbar-brand" to="/landing">Tracking Trucks</NavLink>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="mr-auto">
-                            <NavLink className="nav-link" to="/">Home</NavLink>
+                            <NavLink className="nav-link" to="/home">Home</NavLink>
                             <NavLink className="nav-link" to="/map">Mapa</NavLink>
                             <NavLink className="nav-link" to="/info">Vehículos</NavLink>
                         </Nav>
