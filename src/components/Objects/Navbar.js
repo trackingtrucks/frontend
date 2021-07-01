@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import {Navbar, Nav} from 'react-bootstrap'
 import {Link, NavLink} from 'react-router-dom'
+var str = localStorage.getItem('nombre')
 
 export class NavBar extends Component {
 
@@ -18,7 +19,7 @@ export class NavBar extends Component {
                         </Nav>
                     </Navbar.Collapse>
                     <Navbar.Text>
-                        Hola {localStorage.getItem('nombre')}
+                        Hola {str.replace(/^"(.+(?="$))"$/, '$1')}
                     </Navbar.Text>
                     <Link  className="btn btn-outline-light" to="/login">Log In</Link>
                     <Link  className="btn btn-outline-light" to="/registro">Registrarse</Link>

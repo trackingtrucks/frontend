@@ -15,7 +15,7 @@ export default function Router() {
                 <Route exact path="/login" component={Login}/>
                 <Route exact path="/map" component={Map}/>
                 <Route exact path="/registro" component={Registro}/>
-                <Route exact path="/" component={Home}/>
+                <Route exact path="/home" component={Home}/>
             </Switch>
         </BrowserRouter>
     )
