@@ -3,8 +3,9 @@ import Navbar from './components/Objects/Navbar'
 import Home from './components/Home'
 import Map from './components/Objects/Map'
 import Info from './components/Info'
-import Login from './components/Login'
-import Registro from './components/Registro'
+import Login from './components/Functions/Login'
+import Landing from './components/Landing'
+import Registro from './components/Functions/Registro'
 
 export default function Router() {
     return (
@@ -16,6 +17,7 @@ export default function Router() {
                 <Route exact path="/map" component={Map}/>
                 <Route exact path="/registro" component={Registro}/>
                 <Route exact path="/home" component={Home}/>
+                <Route exact path="/landing" component={Landing}/>
             </Switch>
         </BrowserRouter>
     )

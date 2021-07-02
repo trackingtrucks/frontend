@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import { Form, Button, Jumbotron, Container, Row, Col } from 'react-bootstrap'
 import queryString from 'query-string'
 import axios from 'axios'
-import Config from '../Config'
-import makeToast from './Objects/Toast'
+import Config from '../../Config'
+import makeToast from './Toast'
 
 export class Registro extends Component {
     state = {

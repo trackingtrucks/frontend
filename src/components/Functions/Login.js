@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { Form, Button, Jumbotron, Container } from 'react-bootstrap'
 import axios from 'axios'
-import Config from '../Config'
-import makeToast from './Objects/Toast'
+import Config from '../../Config'
+import makeToast from './Toast'
 
 export class Login extends Component {
     
@@ -35,6 +35,7 @@ export class Login extends Component {
             //alert("Bienvenido "+ res.data.response.nombre + " " + res.data.response.apellido)
             //redirigir a la dashboard
             this.props.history.push('/home')
+            window.location.reload();
             console.log(res)
         } catch (error) {
             //usar sweetalert2
