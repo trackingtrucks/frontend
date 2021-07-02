@@ -5,6 +5,7 @@ import Config from '../Config'
 import makeToast from './Objects/Toast'
 
 export class Login extends Component {
+    
     state = {
         password: '',
         email: '',

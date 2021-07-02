@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import {Navbar, Nav} from 'react-bootstrap'
 import {Link, NavLink} from 'react-router-dom'
-var str = ""
+//var str = ""
 
 export class NavBar extends Component {
 
@@ -18,9 +18,9 @@ export class NavBar extends Component {
                             <NavLink className="nav-link" to="/info">Vehículos</NavLink>
                         </Nav>
                     </Navbar.Collapse>
-                    <Navbar.Text>
+                    {/* <Navbar.Text>
                         Hola {str.replace(/^"(.+(?="$))"$/, '$1')}
-                    </Navbar.Text>
+                    </Navbar.Text> */}
                     <Link  className="btn btn-outline-light" to="/login">Log In</Link>
                     <Link  className="btn btn-outline-light" to="/registro">Registrarse</Link>
                 </Navbar>
