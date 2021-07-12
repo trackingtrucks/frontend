@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Navbar, Nav, Button } from 'react-bootstrap'
+import { Navbar, Nav, Button, Form } from 'react-bootstrap'
 import { Link, NavLink } from 'react-router-dom'
 import axios from 'axios';
 import Config from '../../Config'
@@ -48,13 +48,15 @@ export class NavBar extends Component {
                             <NavLink className="nav-link" to="/info">Vehículos</NavLink>
                         </Nav>
                     </Navbar.Collapse>
-                    {/* <Navbar.Text>
-                        Hola {str.replace(/^"(.+(?="$))"$/, '$1')}
-                    </Navbar.Text> */}
-                    <Link className="btn btn-outline-light" to="/login">Log In</Link>
-                    <Link className="btn btn-outline-light" to="/registro">Registrarse</Link>
-                    <Button className="btn btn-outline-light" onClick={() => this.logout()}>Cerrar Sesion</Button>
-                    {/* <Link  className="btn btn-outline-light" >Log Out</Link> */}
+                    <Form inline>
+                        {/* <Navbar.Text>
+                            Hola {str.replace(/^"(.+(?="$))"$/, '$1')}
+                        </Navbar.Text> */}
+                        <Link className="btn btn-outline-light" to="/login">Log In</Link>
+                        <Link className="btn btn-outline-light" to="/registro">Registrarse</Link>
+                        <Button className="btn btn-outline-light" onClick={() => this.logout()}>Cerrar Sesion</Button>
+                        {/* <Link  className="btn btn-outline-light" >Log Out</Link> */}
+                    </Form>
                 </Navbar>
             </div>
         )
