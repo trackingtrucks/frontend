@@ -9,24 +9,36 @@ let refreshToken = localStorage.getItem("refreshToken");
 
 export class NavBar extends Component {
     logout = async () => {
-        await axios.delete(
-            Config.API_URL + "/auth/token/", {
-            headers: {
-                "x-refresh-token": refreshToken,
-                "x-access-token": token
+        try {
+            await axios.delete(
+                Config.API_URL + "/auth/token/", {
+                headers: {
+                    "x-refresh-token": refreshToken,
+                    "x-access-token": token
+                }
             }
+    
+            )
+            localStorage.clear();
+            window.location.href = "/landing";
+            window.location.reload();
+            makeToast('success', "Secion Cerrarda")    
+        } catch (error) {
+            console.log(error.response.data.message);
         }
-
-        )
-        localStorage.clear();
-        window.location.href = "/landing";
-        window.location.reload();
-        makeToast('success', "Secion Cerrarda")
+        
     }
     render() {
         return (
             <div>
-                <Navbar bg="primary" variant="dark" expand="lg">
+                <Navbar variant="light" expand="lg">
+                <img
+                    src="/TTrLogo.png"
+                    width="30"
+                    height="30"
+                    className="d-inline-block align-top"
+                    alt="React Bootstrap logo"
+                 />
                     <NavLink className="navbar-brand" to="/landing">Tracking Trucks</NavLink>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
