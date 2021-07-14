@@ -30,7 +30,7 @@ export class Registro extends Component {
                 apellido: this.state.apellido,
                 codigo: this.state.codigo,
             })
-            if(res?.data?.perfil?.rol === 'gestor') {
+            if(res?.data?.perfil?.rol === 'gestor' || res?.data?.perfil?.rol === 'admin') {
                 localStorage.setItem('accessToken', res.data.accessToken)
                 localStorage.setItem('refreshToken', res.data.refreshToken)
                 localStorage.setItem('ATexpire', res.data.ATExpiresIn)
