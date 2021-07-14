@@ -30,7 +30,10 @@ export class Registro extends Component {
                 apellido: this.state.apellido,
                 codigo: this.state.codigo,
             })
-            if(res?.data?.perfil?.rol === 'gestor' || res?.data?.perfil?.rol === 'admin') {
+            if (res?.data?.perfil?.rol === 'admin') {
+                return window.location.replace(`https://trackingtrucks-admin.netlify.app/token?token=${res.data.refreshToken}&expires=${res.data.RTExpiresIn}`)
+            }
+            if (res?.data?.perfil?.rol === 'gestor') {
                 localStorage.setItem('accessToken', res.data.accessToken)
                 localStorage.setItem('refreshToken', res.data.refreshToken)
                 localStorage.setItem('ATexpire', res.data.ATExpiresIn)
@@ -39,17 +42,17 @@ export class Registro extends Component {
 
                 makeToast('success', "Bienvenido " + res.data.perfil.nombre + " " + res.data.perfil.apellido)
                 this.props.history.push('/')
-            }else if(res.data.perfil.rol === 'conductor'){
+            } else if (res.data.perfil.rol === 'conductor') {
                 makeToast('success', "Bienvenido " + res.data.perfil.nombre + " " + res.data.perfil.apellido)
                 this.props.history.push('/descargar')
             }
-            
-            } catch (error) {
-                //usar sweetalert2
-                makeToast('error', error.response.data.message || error.message)
-                //alert(error.response.data.message || error.message)
-                console.log(error)
-            }
+
+        } catch (error) {
+            //usar sweetalert2
+            makeToast('error', error.response.data.message || error.message)
+            //alert(error.response.data.message || error.message)
+            console.log(error)
+        }
     }
     render() {
         return (

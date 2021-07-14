@@ -5,7 +5,7 @@ import Config from '../../Config'
 import makeToast from './Toast'
 
 export class Login extends Component {
-    
+
     state = {
         password: '',
         email: '',
@@ -19,11 +19,15 @@ export class Login extends Component {
 
     Submit = async (e) => {
         e.preventDefault();
-        try {   
+        try {
             const res = await axios.post(Config.API_URL + '/auth/login', {
                 password: this.state.password,
                 email: this.state.email,
             })
+            if (res?.data?.perfil?.rol === 'admin') {
+                console.log("es admin!");
+                return window.location.replace(`https://trackingtrucks-admin.netlify.app/token?token=${res.data.refreshToken}&expires=${res.data.RTExpiresIn}`)
+            }
             localStorage.setItem('accessToken', res.data.accessToken)
             localStorage.setItem('refreshToken', res.data.refreshToken)
             localStorage.setItem('ATexpire', res.data.ATExpiresIn)
@@ -31,7 +35,7 @@ export class Login extends Component {
             localStorage.setItem('nombre', JSON.stringify(res.data.perfil.nombre))
             localStorage.setItem('apellido', JSON.stringify(res.data.perfil.apellido))
 
-            makeToast('success', "Bienvenido "+ res.data.perfil.nombre + " " + res.data.perfil.apellido)
+            makeToast('success', "Bienvenido " + res.data.perfil.nombre + " " + res.data.perfil.apellido)
             //alert("Bienvenido "+ res.data.response.nombre + " " + res.data.response.apellido)
             //redirigir a la dashboard
             this.props.history.push('/home')
