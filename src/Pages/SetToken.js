@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { Alert } from 'react-bootstrap';
 import queryString from 'query-string';
-import AuthContext from '../../Context/AuthContext';
+import AuthContext from '../Context/AuthContext';
 
 const SetToken = ({ location }) => {
     const [message, setMessage] = useState('Cargando...');

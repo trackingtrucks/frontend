@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { Form, Button, Container, Card, InputGroup, OverlayTrigger, Tooltip } from "react-bootstrap";
 import AuthContext from '../../Context/AuthContext'
-import makeToast from '../Functions/Toast'
+import makeToast from '../../Components/Toast'
 import * as Api from '../../Api/index'
 function Login() {
     const [email, setEmail] = useState('');

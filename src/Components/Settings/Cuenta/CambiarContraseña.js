@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { Modal, Form, Row, Col, Button, InputGroup, Tooltip, OverlayTrigger } from 'react-bootstrap';
 import * as Api from '../../../Api';
-import makeToast from '../../Functions/Toast'
+import makeToast from '../../Toast'
 function CambiarContraseña({ perfil, AuthContext }) {
     const [contraseñaActual, setContraseñaActual] = useState('');
     const [contraseñaNueva, setContraseñaNueva] = useState('');
