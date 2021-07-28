@@ -1,9 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './components/Styles/index.css';
-import App from './App';
-
+import Router from './Router';
+import { AuthContextProvider } from "./Context/AuthContext";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './Styles/index.css'
+import './Styles/login.css'
 ReactDOM.render(
-    <App />,
+    <AuthContextProvider>
+      <Router />
+    </AuthContextProvider>,
   document.getElementById('root')
 );

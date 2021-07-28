@@ -1,25 +1,34 @@
-import { BrowserRouter, Switch, Route } from 'react-router-dom'
-import Navbar from './components/Objects/Navbar'
-import Home from './components/Home'
-import Map from './components/Objects/Map'
-import Info from './components/Info'
-import Login from './components/Functions/Login'
-import Landing from './components/Landing'
-import Registro from './components/Functions/Registro'
-import Contacto from './components/Contacto'
+import React, { useContext } from 'react'
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
+import Login from './Components/Pages/Login';
+import Dashboard from './Components/Pages/Dashboard';
+import SetToken from './Components/Pages/SetToken';
+import AuthContext from './Context/AuthContext'
+
 
 export default function Router() {
+    const { loggedIn } = useContext(AuthContext);
+
     return (
         <BrowserRouter>
-            <Navbar/>
             <Switch>
-                <Route exact path="/info" component={Info}/>
-                <Route exact path="/login" component={Login}/>
-                <Route exact path="/map" component={Map}/>
-                <Route exact path="/registro" component={Registro}/>
-                <Route exact path="/home" component={Home}/>
-                <Route exact path="/landing" component={Landing}/>
-                <Route exact path="/contacto" component={Contacto}/>
+                <Route exact path="/token" component={SetToken} />
+                {loggedIn === false && (
+                    <>
+                        <Route exact path="/" component={Login} />
+                        <Redirect to="/" />
+
+                    </>
+                    //En el futuro agregar una pagina de 404
+                )}
+                {loggedIn === true && (
+                    <>
+                        <Route exact path="/" component={Dashboard} />
+                        <Redirect to="/" />
+
+                    </>
+                    //En el futuro agregar una pagina de 404
+                )}
             </Switch>
         </BrowserRouter>
     )
