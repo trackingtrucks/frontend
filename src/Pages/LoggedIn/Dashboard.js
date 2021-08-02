@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import AuthContext from '../../Context/AuthContext';
 // import Chart from '../../Components/Chart/Chart.js';
 import Navbar from '../../Components/Navbar';
+import VehicleContainer from '../../Components/Vehiculos/VehicleContainer'
 
 import { Container, Tabs, Tab } from 'react-bootstrap';
 import SettingsContainers from '../../Components/Settings/SettingsContainer';
@@ -27,7 +28,7 @@ function Dashboard() {
           </Tab>
           <Tab eventKey="vehiculos" title="Vehiculos">
             <Container>
-                Lista de vehiculos!
+              <VehicleContainer></VehicleContainer>
             </Container>
           </Tab>
           <Tab eventKey="turnos" title="Turnos">
