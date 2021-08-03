@@ -2,23 +2,23 @@ import * as Api from '../../Api';
 import React, { useState, useContext, useEffect } from 'react'
 import {Row} from 'react-bootstrap';
 import AuthContext from '../../Context/AuthContext';
-import VehicleCard from './VehicleCard'
+import ConductoresCard from './ConductoresCard'
 
 function VehicleContainer() {
-    const [Vehiculos, setCarros] = useState([]);
+    const [Conductores, setConductores] = useState([]);
     const { get } = useContext(AuthContext);
     const getCompanydata = async () => {
         const {data} = await Api.getCompanydata({ accessToken: get('at')})
-        setCarros(data.vehiculos);
+        setConductores(data.conductores);
     }
     useEffect(() => {
         getCompanydata();
     }, [])
     return (
             <Row xs={1} md={2} className="g-4">
-            {Vehiculos.length > 0 && Vehiculos.map((vehiculo) => {
+            {Conductores.length > 0 && Conductores.map((conductor) => {
                 return (
-                    <VehicleCard vehiculo={vehiculo} key={vehiculo._id} api={Api} accessToken={get('at')} getCompanydata={getCompanydata} />)
+                    <ConductoresCard conductor={conductor} key={conductor._id} api={Api} accessToken={get('at')} getCompanydata={getCompanydata} />)
             })}
         </Row>
     )

@@ -1,19 +1,19 @@
 import React, { useState } from 'react'
 import { Col, Card } from 'react-bootstrap';
 
-function VehicleList({vehiculo, accessToken, api, getCarros}) {
-    console.log(vehiculo)
+function ConductoresList({conductor, accessToken, api, getCarros}) {
+    console.log(conductor)
     return(
         <div>
             <Col>
                 <Card>
                     <Card.Body>
-                        <Card.Title>{vehiculo.patente}</Card.Title>
-                        <Card.Text>{JSON.stringify(vehiculo.conductorActual)}</Card.Text>
+                        <Card.Title>{conductor.nombre} {conductor.apellido}</Card.Title>
+                        <Card.Text>{conductor.rol}</Card.Text>
                     </Card.Body>
                 </Card>
             </Col>
         </div>
     )
 }
-export default VehicleList
+export default ConductoresList

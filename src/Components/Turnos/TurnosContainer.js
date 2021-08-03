@@ -2,25 +2,25 @@ import * as Api from '../../Api';
 import React, { useState, useContext, useEffect } from 'react'
 import {Row} from 'react-bootstrap';
 import AuthContext from '../../Context/AuthContext';
-import VehicleCard from './VehicleCard'
+import TurnosCard from './TurnosCard'
 
-function VehicleContainer() {
-    const [Vehiculos, setCarros] = useState([]);
+function TurnosContainer() {
+    const [Turnos, setTurnos] = useState([]);
     const { get } = useContext(AuthContext);
     const getCompanydata = async () => {
         const {data} = await Api.getCompanydata({ accessToken: get('at')})
-        setCarros(data.vehiculos);
+        setTurnos(data.turnos);
     }
     useEffect(() => {
         getCompanydata();
     }, [])
     return (
             <Row xs={1} md={2} className="g-4">
-            {Vehiculos.length > 0 && Vehiculos.map((vehiculo) => {
+            {Turnos.length > 0 && Turnos.map((turno) => {
                 return (
-                    <VehicleCard vehiculo={vehiculo} key={vehiculo._id} api={Api} accessToken={get('at')} getCompanydata={getCompanydata} />)
+                    <TurnosCard turno={turno} key={turno._id} api={Api} accessToken={get('at')} getCompanydata={getCompanydata} />)
             })}
         </Row>
     )
 }
-export default VehicleContainer
+export default TurnosContainer

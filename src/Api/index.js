@@ -155,7 +155,7 @@ export const cerrarTodasSesiones = async ({ accessToken, password }) => {
     return response;
 }
 
-export const getCarros = async ({ accessToken }) => {
+export const getCompanydata = async ({ accessToken }) => {
     const response = await API.get('/company', {
         headers: {
             "x-access-token": accessToken
