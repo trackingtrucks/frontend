@@ -13,6 +13,7 @@ function TurnosContainer() {
     }
     useEffect(() => {
         getCompanydata();
+        // eslint-disable-next-line
     }, [])
     return (
             <Row xs={1} md={2} className="g-4">
