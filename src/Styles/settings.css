@@ -22,12 +22,12 @@
     cursor:not-allowed;
 }
 
-/* .settings-container .nav-pills .nav-link.active, .settings-container .nav-pills .show>.nav-link{
+.settings-container .nav-pills .nav-link.active, .settings-container .nav-pills .show>.nav-link{
     background-color: #830000;
-} */
+}
 .settings-container .nav-link{
     color: #000;
 }
-.settings-container .nav-link:focus, .settings-container .nav-link:hover{
+.settings-container .nav-link:hover{
     color: #930000;
 }
