@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react'
-import { Button, Form, Row, Col, Modal } from 'react-bootstrap'
+import { Button, Form, Row, Col, Modal, Spinner } from 'react-bootstrap'
 import * as Api from '../../../Api'
 import makeToast from '../../Toast';
 function CerrarSesionAllDevices({ AuthContext }) {
@@ -46,7 +46,14 @@ function CerrarSesionAllDevices({ AuthContext }) {
                         Cerrar
                     </Button>
                     <Button variant="danger" type="submit" onClick={(e) => { submitForm(e) }} disabled={disabled}>
-                        Eliminar
+                    {!disabled && "Eliminar" }  
+                        {disabled && <Spinner
+                            as="span"
+                            animation="border"
+                            size="sm"
+                            role="status"
+                            aria-hidden="true"
+                        />}
                     </Button>
                 </Modal.Footer>
             </Modal>

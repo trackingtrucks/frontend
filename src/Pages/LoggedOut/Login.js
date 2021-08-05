@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Form, Button, Container, Card, InputGroup, OverlayTrigger, Tooltip } from "react-bootstrap";
+import { Form, Button, Container, Card, InputGroup, OverlayTrigger, Tooltip, Spinner } from "react-bootstrap";
 import AuthContext from '../../Context/AuthContext'
 import makeToast from '../../Components/Toast'
 import * as Api from '../../Api/index'
@@ -63,7 +63,14 @@ function Login() {
                         </InputGroup>
                     </Form.Group>
                     <Button variant="primary" type="submit" disabled={disabled}>
-                        Entrar
+                        {!disabled && "Entrar" }  
+                        {disabled && <Spinner
+                            as="span"
+                            animation="border"
+                            size="sm"
+                            role="status"
+                            aria-hidden="true"
+                        />}
                     </Button>
                 </Form>
             </Card>

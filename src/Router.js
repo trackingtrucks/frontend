@@ -11,15 +11,17 @@ import Home from './Pages/LoggedOut/Home'
 //Logged in
 import Dashboard from './Pages/LoggedIn/Dashboard';
 
+//Loading
+import Loading from './Pages/Loading';
 
 export default function Router() {
-    const { loggedIn } = useContext(AuthContext);
-
+    const { loggedIn, loading } = useContext(AuthContext);
+    console.log(loading);
     return (
         <BrowserRouter>
             <Switch>
                 <Route exact path="/token" component={SetToken} />
-                {loggedIn === false && (
+                {loggedIn === false && loading === false && (
                     <>
                         <Route exact path="/" component={Home} />
                         <Route exact path="/login" component={Login} />
@@ -30,13 +32,18 @@ export default function Router() {
                     </>
                     //En el futuro agregar una pagina de 404
                 )}
-                {loggedIn === true && (
+                {loggedIn === true && loading === false && (
                     <>
                         <Route exact path="/" component={Dashboard} />
                         <Redirect to="/" />
 
                     </>
                     //En el futuro agregar una pagina de 404
+                )}
+                {loading === true && (
+                    <>
+                        <Route path="/" component={Loading} />
+                    </>
                 )}
             </Switch>
         </BrowserRouter>

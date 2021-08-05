@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Button, Form, Col, Row, Modal } from 'react-bootstrap'
+import { Button, Form, Col, Row, Modal, Spinner } from 'react-bootstrap'
 import makeToast from '../Toast';
 
 function ModalUsuario({ Api, get }) {
@@ -84,7 +84,14 @@ function ModalUsuario({ Api, get }) {
                 </Form>
                 <Modal.Footer>
                     <Button variant="primary" type="submit" onClick={enviarForm} disabled={disabled}>
-                        Enviar
+                    {!disabled && "Enviar" }  
+                        {disabled && <Spinner
+                            as="span"
+                            animation="border"
+                            size="sm"
+                            role="status"
+                            aria-hidden="true"
+                        />}
                     </Button>
                 </Modal.Footer>
             </Modal>

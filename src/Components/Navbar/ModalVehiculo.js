@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Modal, Button, Row, Col, Form } from 'react-bootstrap'
+import { Modal, Button, Row, Col, Form ,Spinner } from 'react-bootstrap'
 
 export class ModalVehiculo extends Component {
     state = {
@@ -44,7 +44,14 @@ export class ModalVehiculo extends Component {
                     </Form>
                     <Modal.Footer>
                         <Button variant="primary" type="submit" onClick={() => this.enviarForm()} disabled={this.state.disabled}>
-                            Enviar
+                        {!this.state.disabled && "Enviar" }  
+                        {this.state.disabled && <Spinner
+                            as="span"
+                            animation="border"
+                            size="sm"
+                            role="status"
+                            aria-hidden="true"
+                        />}
                         </Button>
                     </Modal.Footer>
                 </Modal>

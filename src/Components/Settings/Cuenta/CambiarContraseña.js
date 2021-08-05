@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react'
-import { Modal, Form, Row, Col, Button, InputGroup, Tooltip, OverlayTrigger } from 'react-bootstrap';
+import { Modal, Form, Row, Col, Button, InputGroup, Tooltip, OverlayTrigger, Spinner } from 'react-bootstrap';
 import * as Api from '../../../Api';
 import makeToast from '../../Toast'
 function CambiarContraseña({ perfil, AuthContext }) {
@@ -138,7 +138,14 @@ function CambiarContraseña({ perfil, AuthContext }) {
                             Cerrar
                         </Button>
                         <Button variant="danger" type="submit" onClick={(e) => { submit(e) }} disabled={disabled}>
-                            Confirmar
+                        {!disabled && "Confirmar" }  
+                        {disabled && <Spinner
+                            as="span"
+                            animation="border"
+                            size="sm"
+                            role="status"
+                            aria-hidden="true"
+                        />}
                         </Button>
                     </Modal.Footer>
                 </Form>

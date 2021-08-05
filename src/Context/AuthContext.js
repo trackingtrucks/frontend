@@ -10,7 +10,7 @@ function AuthContextProvider(props) {
     const [ATExpire, setATExpire] = useState(null)
     const [RTExpire, setRTExpire] = useState(null);
     const [perfil, setPerfil] = useState(JSON.parse(localStorage.getItem('perfil')) || null);
-
+    const [loading, setLoading] = useState(true);
     async function saveLocalStorage() {
         localStorage.setItem('refreshToken', refreshToken);
         localStorage.setItem('perfil', JSON.stringify(perfil));
@@ -59,16 +59,19 @@ function AuthContextProvider(props) {
                 setATExpire(data.ATExpiresIn)
                 setRTExpire(data.RTExpiresIn)
                 setLoggedIn(true);
+                setLoading(false);
             } else {
                 if (localStorage.getItem('refreshToken')) {
                     return;
                 }
                 setLoggedIn(false);
+                setLoading(false);
                 clearLocalStorage();
             }
         } catch (error) {
             console.error(error?.response?.data?.message || error.message);
             setLoggedIn(false);
+            setLoading(false);
             clearLocalStorage();
         }
     }
@@ -88,7 +91,7 @@ function AuthContextProvider(props) {
         // eslint-disable-next-line
     }, []);
 
-    return <AuthContext.Provider value={{ loggedIn, saveLocalStorage, clearLocalStorage, set, get, getAccessToken, perfil }}>
+    return <AuthContext.Provider value={{ loading, loggedIn, saveLocalStorage, clearLocalStorage, set, get, getAccessToken, perfil }}>
         {props.children}
     </AuthContext.Provider>
 }
