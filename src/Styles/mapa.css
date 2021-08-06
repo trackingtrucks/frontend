@@ -1,4 +1,6 @@
 .map-container {
-    height: 600px;
-    width: 1200px;
+    flex: 1;
+    min-width: 250px;
+    min-height: 500px;
+    margin: 1%;
 }

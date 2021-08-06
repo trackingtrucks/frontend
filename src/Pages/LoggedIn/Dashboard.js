@@ -6,8 +6,9 @@ import VehicleContainer from '../../Components/Vehiculos/VehicleContainer'
 import ConductoresContainer from '../../Components/Conductores/ConductoresContainer'
 import TurnosContainer from '../../Components/Turnos/TurnosContainer'
 import Mapa from '../../Components/Mapa/Mapa'
+import '../../Styles/mapa.css'
 
-import { Container, Tabs, Tab } from 'react-bootstrap';
+import { Container, Tabs, Tab, Col, Row } from 'react-bootstrap';
 import SettingsContainers from '../../Components/Settings/SettingsContainer';
 
 function Dashboard() {
@@ -26,7 +27,18 @@ function Dashboard() {
         <Tabs id="tabs" activeKey={key} onSelect={(k) => setKey(k)} className="mb-3">
           <Tab eventKey="main" title="Home">
             <Container>
-              Home de gestor!
+              <Row>
+                <Col>
+                  <Container>
+                    <VehicleContainer></VehicleContainer>
+                  </Container>
+                </Col>
+                <Col>
+                  <Container>
+                    <Mapa></Mapa>
+                  </Container>
+                </Col>
+              </Row>
             </Container>
           </Tab>
           <Tab eventKey="vehiculos" title="Vehiculos">
@@ -46,7 +58,7 @@ function Dashboard() {
           </Tab>
           <Tab eventKey="mapa" title="Mapa">
             <Container>
-                <Mapa></Mapa>
+                <Mapa className="map-container"></Mapa>
             </Container>
           </Tab>
           <Tab eventKey="settings" title="Configuracion">
