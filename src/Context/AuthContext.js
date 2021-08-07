@@ -84,7 +84,7 @@ function AuthContextProvider(props) {
             getAccessToken();
         }, falta - 15000);
         // eslint-disable-next-line
-    }, [ATExpire, RTExpire]);
+    }, [ATExpire]);
 
     useEffect(() => {
         getAccessToken();
