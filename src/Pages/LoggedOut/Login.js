@@ -14,8 +14,7 @@ function Login() {
         e.preventDefault();
         try {
             setDisabled(true);
-            const response = await Api.login({ email, password, set })
-            console.log(response);
+            await Api.login({ email, password, set })
             // if (response.data.perfil.rol !== "admin") return makeToast(6000, 'error', "Aplicacion solo disponible para Administradores!")
             setDisabled(false);
         } catch (error) {

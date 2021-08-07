@@ -2,7 +2,6 @@ import React from 'react'
 import { Col, Card } from 'react-bootstrap';
 
 function ConductoresList({conductor, accessToken, api, getCarros}) {
-    console.log(conductor)
     return(
         <div>
             <Col>

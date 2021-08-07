@@ -2,7 +2,6 @@ import React from 'react'
 import { Col, Card } from 'react-bootstrap';
 
 function TurnosList({Turno, accessToken, api, getCarros}) {
-    console.log(Turno)
     return(
         <div>
             <Col>

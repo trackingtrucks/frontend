@@ -1,27 +1,15 @@
 import * as Api from '../../Api';
-import React, { useState, useContext, useEffect } from 'react'
 import {Row} from 'react-bootstrap';
-import AuthContext from '../../Context/AuthContext';
 import ConductoresCard from './ConductoresCard'
 
-function VehicleContainer() {
-    const [Conductores, setConductores] = useState([]);
-    const { get } = useContext(AuthContext);
-    const getCompanydata = async () => {
-        const {data} = await Api.getCompanydata({ accessToken: get('at')})
-        setConductores(data.conductores);
-    }
-    useEffect(() => {
-        getCompanydata();
-        // eslint-disable-next-line
-    }, [])
+function ConductorContainer({conductores}) {
     return (
             <Row xs={1} md={2} className="g-4">
-            {Conductores.length > 0 && Conductores.map((conductor) => {
+            {conductores && conductores.map((conductor) => {
                 return (
-                    <ConductoresCard conductor={conductor} key={conductor._id} api={Api} accessToken={get('at')} getCompanydata={getCompanydata} />)
+                    <ConductoresCard conductor={conductor} key={conductor._id} api={Api}/>)
             })}
         </Row>
     )
 }
-export default VehicleContainer
+export default ConductorContainer

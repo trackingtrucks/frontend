@@ -5,7 +5,6 @@ import '../../Styles/mapa.css';
 
 
 function Mapa() {
-    <link href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet' />
     mapboxgl.accessToken = 'pk.eyJ1IjoiZmVkZWhpbHNlbiIsImEiOiJja3I0dzRkZTEyenhzMm9vOGs0YmdsM2ozIn0.jTC_nHxqAkIF_DODrdBgPA';
     const mapContainer = useRef(null);
     const map = useRef(null);

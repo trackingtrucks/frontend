@@ -125,7 +125,6 @@ export const getAllUsers = async ({ accessToken }) => {
 }
 
 export const restablecerContraseña = async ({ email }) => {
-    console.log(email);
     const response = await API.post(`/user/restablecer`, {
         email
     });

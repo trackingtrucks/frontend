@@ -16,7 +16,6 @@ import Loading from './Pages/Loading';
 
 export default function Router() {
     const { loggedIn, loading } = useContext(AuthContext);
-    console.log(loading);
     return (
         <BrowserRouter>
             <Switch>
