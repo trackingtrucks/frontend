@@ -7,9 +7,9 @@ import logo from './Assets/logo.png'
 import ModalUsuario from './Navbar/ModalUsuario'
 import ModalVehiculo from './Navbar/ModalVehiculo'
 function NavbarComponent() {
-    const { get, clearLocalStorage, perfil } = useContext(AuthContext);
+    const { clearLocalStorage, perfil } = useContext(AuthContext);
     const cerrarSesion = async () => {
-        await Api.cerrarSesion({ accessToken: get('at'), refreshToken: get('rt') })
+        await Api.cerrarSesion()
         clearLocalStorage();
         window.location.reload();
     }
@@ -31,8 +31,8 @@ function NavbarComponent() {
                 <Nav className="mr-auto">
                 </Nav>
                 <Navbar.Collapse className="justify-content-end">
-                    <ModalUsuario Api={Api} get={get} />
-                    <ModalVehiculo Api={Api} get={get} />
+                    <ModalUsuario Api={Api} />
+                    <ModalVehiculo Api={Api} />
                     <Button variant="outline-primary" style={{ marginRigth: '10px', marginLeft: '10px', marginBottom: '5px' }} onClick={() => cerrarSesion()}>Cerrar sesión</Button>
                     <Navbar.Text style={{ marginLeft: '10px', marginRight: '10px' }}>
                         {perfil && <OverlayTrigger

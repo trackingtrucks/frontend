@@ -3,7 +3,7 @@ import { Button, Form, Row, Col, Modal, Spinner } from 'react-bootstrap'
 import * as Api from '../../../Api'
 import makeToast from '../../Toast';
 function CerrarSesionAllDevices({ AuthContext }) {
-    const { get, clearLocalStorage } = useContext(AuthContext)
+    const { clearLocalStorage } = useContext(AuthContext)
     const [show, setShow] = useState(false)
     const [disabled, setDisabled] = useState(false)
     const [password, setPassword] = useState('')
@@ -13,7 +13,7 @@ function CerrarSesionAllDevices({ AuthContext }) {
         e.preventDefault();
         setDisabled(true);
         try {
-            await Api.cerrarTodasSesiones({ accessToken: get('at'), password });
+            await Api.cerrarTodasSesiones({ password });
             setDisabled(false);
             clearLocalStorage();
             window.location.reload();
@@ -46,7 +46,7 @@ function CerrarSesionAllDevices({ AuthContext }) {
                         Cerrar
                     </Button>
                     <Button variant="danger" type="submit" onClick={(e) => { submitForm(e) }} disabled={disabled}>
-                    {!disabled && "Eliminar" }  
+                        {!disabled && "Eliminar"}
                         {disabled && <Spinner
                             as="span"
                             animation="border"

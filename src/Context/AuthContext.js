@@ -2,13 +2,12 @@ import React, { createContext, useEffect, useState } from 'react'
 import axios from 'axios'
 import { Config } from '../Config'
 const AuthContext = createContext();
-
+let accessToken;
+let rToken;
 function AuthContextProvider(props) {
     const [loggedIn, setLoggedIn] = useState(undefined);
     const [refreshToken, setRefreshToken] = useState(localStorage.getItem('refreshToken') || '');
-    const [accessToken, setAccessToken] = useState('')
     const [ATExpire, setATExpire] = useState(null)
-    // const [RTExpire, setRTExpire] = useState(null);
     const [perfil, setPerfil] = useState(JSON.parse(localStorage.getItem('perfil')) || null);
     const [loading, setLoading] = useState(true);
     async function saveLocalStorage() {
@@ -23,28 +22,17 @@ function AuthContextProvider(props) {
             LoggedIn: false,
             refreshToken: '',
             ATExpire: null,
-            // RTExpire: null,
-            profile: null
+            profile: null,
+            tab: 'main'
         })
     }
 
-    function set({ accessToken, refreshToken, ATExpire, RTExpire, LoggedIn, profile }) {
+    function set({ accessToken: token, refreshToken, ATExpire, LoggedIn, profile }) {
         if (profile) { setPerfil(profile) }
-        if (accessToken) { setAccessToken(accessToken) }
-        if (refreshToken) { setRefreshToken(refreshToken) }
+        if (token) { accessToken = token; }
+        if (refreshToken) { setRefreshToken(refreshToken); rToken = refreshToken; }
         if (ATExpire) { setATExpire(ATExpire) }
-        // if (RTExpire) { setRTExpire(RTExpire) }
         if (LoggedIn) { setLoggedIn(LoggedIn) }
-    }
-    function get(string) {
-        switch (string) {
-            case "at":
-                return (accessToken)
-            case "rt":
-                return (refreshToken)
-            default:
-                return "Que carajeanos"
-        }
     }
     async function getAccessToken() {
         try {
@@ -55,9 +43,8 @@ function AuthContextProvider(props) {
                     }
                 });
                 // console.info(data);
-                setAccessToken(data.accessToken);
                 setATExpire(data.ATExpiresIn)
-                // setRTExpire(data.RTExpiresIn)
+                accessToken = data.accessToken;
                 setLoggedIn(true);
                 setLoading(false);
             } else {
@@ -91,10 +78,10 @@ function AuthContextProvider(props) {
         // eslint-disable-next-line
     }, []);
 
-    return <AuthContext.Provider value={{ loading, loggedIn, saveLocalStorage, clearLocalStorage, set, get, getAccessToken, perfil }}>
+    return <AuthContext.Provider value={{ loading, loggedIn, saveLocalStorage, clearLocalStorage, set, getAccessToken, perfil, accessToken }}>
         {props.children}
     </AuthContext.Provider>
 }
 export default AuthContext;
-export { AuthContextProvider };
+export { AuthContextProvider, accessToken, rToken };
 

@@ -12,14 +12,13 @@ function CambiarContraseña({ perfil, AuthContext }) {
     const [showPassword, setShowPassword] = useState(false);
     const [mensajeError, setMensajeError] = useState('');
     const [show, setShow] = useState(false);
-    const { get, clearLocalStorage } = useContext(AuthContext)
+    const { clearLocalStorage } = useContext(AuthContext)
     const submit = async (e) => {
         e.preventDefault();
         if (disabled || contraseñaNueva !== confirmarContraseña) return;
         setDisabled(true);
         try {
             const { data } = await Api.cambiarContraseña({
-                accessToken: get('at'),
                 password: contraseñaNueva,
                 passwordActual: contraseñaActual
             })

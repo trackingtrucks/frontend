@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Button, Form, Col, Row, Modal, Spinner } from 'react-bootstrap'
 import makeToast from '../Toast';
 
-function ModalUsuario({ Api, get }) {
+function ModalUsuario({ Api }) {
     const [showRegistrar, setShowRegistrar] = useState(false);
     const [disabled, setDisabled] = useState(false);
     const [email, setEmail] = useState('');
@@ -23,7 +23,6 @@ function ModalUsuario({ Api, get }) {
             } else {
                 return makeToast(6000, "error", "No se especificó ningun rol")
             }
-            // await Api.agregarAdmin({ email, accessToken: get('at') });
             setDisabled(false);
             // hideRegistrar();
         } catch (error) {
