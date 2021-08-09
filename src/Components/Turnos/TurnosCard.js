@@ -1,5 +1,5 @@
 import React from 'react'
-import { Col, Card } from 'react-bootstrap';
+import { ListGroup } from 'react-bootstrap';
 
 function TurnosList({ turno, accessToken, api, getCarros }) {
     // codigoDeTurno: "abd5532h45e22s"
@@ -10,14 +10,7 @@ function TurnosList({ turno, accessToken, api, getCarros }) {
     // _id: "60e4aa9690042119508f172f"
     return (
         <div>
-            <Col>
-                <Card>
-                    <Card.Body>
-                        <Card.Title>{turno.codigoDeTurno}</Card.Title>
-                        <Card.Text>{turno.codigoOrdenDeCompra}</Card.Text>
-                    </Card.Body>
-                </Card>
-            </Col>
+            <ListGroup.Item>{turno.nombreVendedor} {turno.fechaYhora}</ListGroup.Item>
         </div>
     )
 }

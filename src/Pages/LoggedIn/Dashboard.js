@@ -37,6 +37,7 @@ function Dashboard() {
     getCompanydata();
     // eslint-disable-next-line
   }, []);
+
   return (
     <>
       <Socketio getCompanydata={getCompanydata}/>
