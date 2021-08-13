@@ -75,11 +75,11 @@ function Dashboard() {
             <ConductoresContainer conductores={data.conductores} />
           </Container>
         </Tab>
-        <Tab eventKey="mapa" title="Mapa">
+        {/* <Tab eventKey="mapa" title="Mapa">
           <Container>
             <Mapa className="map-container"></Mapa>
           </Container>
-        </Tab>
+        </Tab> */}
         <Tab eventKey="settings" title="Configuracion">
           <Container>
             <SettingsContainers AuthContext={AuthContext} />

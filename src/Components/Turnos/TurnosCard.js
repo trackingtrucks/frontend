@@ -1,5 +1,5 @@
 import { React, useState } from 'react'
-import { ListGroup, Button, Modal } from 'react-bootstrap';
+import { ListGroup, Button, Modal, ButtonToolbar } from 'react-bootstrap';
 
 function TurnosList({ turno, accessToken, api, getCarros }) {
     // codigoDeTurno: "abd5532h45e22s"
@@ -17,26 +17,29 @@ function TurnosList({ turno, accessToken, api, getCarros }) {
     return (
         <div>
             <ListGroup.Item>
-                <b>
+                <ButtonToolbar className="justify-content-between">
+                    <b>
+                        {turno.codigoOrdenDeCompra}
+                    </b>
                     {turno.nombreVendedor}
-                </b>
-                { } {turno.codigoOrdenDeCompra} {<Button variant="outline-primary" onClick={handleShow}>
-                    Asignar turno
-                </Button>}
+                    <Button variant="outline-primary" onClick={handleShow}>
+                        Asignar turno
+                    </Button>
+                </ButtonToolbar>
             </ListGroup.Item>
 
 
 
-            <Modal show={show} onHide={handleClose} animation={false}>
+            <Modal show={show} onHide={handleClose} animation={true}>
                 <Modal.Header closeButton>
                     <Modal.Title>Modal heading</Modal.Title>
                 </Modal.Header>
-                <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+                <Modal.Body>con q vos queres asignar el turno ehh. PICARON</Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
                         Close
                     </Button>
-                    <Button variant="primary" onClick={handleClose}>
+                    <Button variant="outline-primary" onClick={handleClose}>
                         Save Changes
                     </Button>
                 </Modal.Footer>
