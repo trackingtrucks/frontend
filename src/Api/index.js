@@ -70,3 +70,31 @@ export const getCompanydata = async () => {
     });
     return response;
 }
+
+export const nuevoUsuario = async ({ email, password, nombre, apellido, codigo }) => {
+    const response = await API.post(`/auth/register/`, {
+        email,
+        password,
+        nombre,
+        apellido,
+        codigo
+    });
+    return response;
+}
+
+export const nuevoVehiculo = async ({ patente, marca, modelo, año, kmactual}) => {
+    const response = await API.post(`/vehiculo`, {
+
+        headers: {
+            "x-access-token": accessToken
+        },
+        data: {
+            patente,
+            marca,
+            modelo,
+            año,
+            kmactual
+        }
+    });
+    return response;
+}

@@ -1,15 +1,28 @@
 import React, { useState } from 'react'
 import { Button, Form, Col, Row, Modal, Spinner } from 'react-bootstrap'
 import makeToast from '../Toast';
+import * as Api from '../../Api/index'
 
-function ModalUsuario({ Api }) {
+function ModalUsuario() {
     const [showRegistrar, setShowRegistrar] = useState(false);
     const [disabled, setDisabled] = useState(false);
     const [email, setEmail] = useState('');
+    const [password] = useState('');
+    const [nombre] = useState('');
+    const [apellido] = useState('');
+    const [codigo] = useState('');
     const [isCond, setIsCond] = useState(true)
 
-    const enviarForm = async (e) => {
+    async function enviarForm (e) {
         e.preventDefault();
+        try {
+            await Api.nuevoUsuario({email, password, nombre, apellido, codigo})
+        }
+        catch(error) {
+            makeToast(6000, 'error', error?.response?.data?.message || error.message)
+            console.error(error?.response?.data?.message || error.message);
+        }
+        
         if (disabled) { return };
         if (email === "") return makeToast(5000, "error", "Se debe especificar un email!");
         try {
@@ -49,7 +62,7 @@ function ModalUsuario({ Api }) {
                             Ingresa un email:
                         </Form.Label>
                         <Col sm="8">
-                            <Form.Control type="text" placeholder="email" onChange={(e) => setEmail(e.target.value)} value={email} />
+                            <Form.Control type="text" placeholder="email" onChange={(e) => setEmail(e.target.value)} value={email} required/>
                         </Col>
                     </Form.Group>
                     <Form.Group as={Row} className="m-3" controlId="email">
