@@ -82,18 +82,16 @@ export const nuevoUsuario = async ({ email, password, nombre, apellido, codigo }
     return response;
 }
 
-export const nuevoVehiculo = async ({ patente, marca, modelo, año, kmactual}) => {
+export const nuevoVehiculo = async ({ patente, marca, modelo, año, kmactual }) => {
     const response = await API.post(`/vehiculo`, {
-
+        patente,
+        marca,
+        modelo, 
+        año,
+        kmactual
+    }, {
         headers: {
             "x-access-token": accessToken
-        },
-        data: {
-            patente,
-            marca,
-            modelo,
-            año,
-            kmactual
         }
     });
     return response;

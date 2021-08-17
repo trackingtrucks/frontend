@@ -30,10 +30,10 @@ function ModalVehiculo() {
     }
     return (
         <>
-            <Button variant="outline-primary" style={{ marginRigth: '10px', marginLeft: '10px', marginBottom: '5px' }} onClick={() => setShowRegistrar(true)}>Nuevo Usuario</Button>
+            <Button variant="outline-primary" style={{ marginRigth: '10px', marginLeft: '10px', marginBottom: '5px' }} onClick={() => setShowRegistrar(true)}>Nuevo vehiculo</Button>
             <Modal show={showRegistrar} onHide={hideRegistrar}>
                 <Modal.Header closeButton closeLabel="">
-                    <Modal.Title>Añadir un usuario a la compañia</Modal.Title>
+                    <Modal.Title>Añadir un vehiculo a la compañia</Modal.Title>
                 </Modal.Header>
                 {/* <Modal.Body>Ingresa un companyId para esta empresa</Modal.Body> */}
                 <Form onSubmit={enviarForm}>
