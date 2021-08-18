@@ -3,7 +3,6 @@ import {ListGroup} from 'react-bootstrap';
 import TurnosCard from './TurnosCard'
 
 function TurnosContainer({turnos}) {
-    console.log(turnos);
     return (
             <ListGroup>
             {turnos && turnos.map((turno) => {

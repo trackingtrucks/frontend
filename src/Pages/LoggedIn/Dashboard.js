@@ -32,7 +32,6 @@ function Dashboard() {
     setData(data);
   }
 
-  console.log(data);
   const guardarKey = (k) => {
     setKey(k);
     if (k === 'settings') { return }
@@ -46,14 +45,17 @@ function Dashboard() {
 
   async function enviarForm(e) {
     e.preventDefault();
-    handleClose();
     try {
-      await Api.eliminarVehiculo({ idvehiculo })
+      await Api.eliminarVehiculo({ idVehiculo: idvehiculo })
+      makeToast(6000, "success", "Vehiculo Eliminado")
+      const { data } = await Api.getCompanydata()
+      setData(data);
     }
     catch (error) {
       makeToast(6000, 'error', error?.response?.data?.message || error.message)
       console.error(error?.response?.data?.message || error.message);
     }
+    handleClose();
   }
 
   useEffect(() => {

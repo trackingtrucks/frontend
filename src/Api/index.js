@@ -99,10 +99,12 @@ export const nuevoVehiculo = async ({ patente, marca, modelo, año, kmactual }) 
     return response;
 }
 
-export const asignarTurno = async ({idConductor, codigoTurno  }) => {
+
+
+export const asignarTurno = async ({idConductor, codigoDeTurno  }) => {
     const response = await API.put(`/user/asignarTurno`, {
         idConductor,
-        codigoTurno
+        codigoDeTurno
     }, {
         headers: {
             "x-access-token": accessToken
@@ -111,8 +113,8 @@ export const asignarTurno = async ({idConductor, codigoTurno  }) => {
     return response;
 }
 
-export const eliminarVehiculo = async ({id}) => {
-    const response = await API.delete(`/vehiculo/611c6bbc390a810016e64828`, {
+export const eliminarVehiculo = async ({idVehiculo}) => {
+    const response = await API.delete(`/vehiculo/${idVehiculo}`, {
         headers: {
             "x-access-token": accessToken,
         }

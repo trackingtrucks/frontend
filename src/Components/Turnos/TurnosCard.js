@@ -13,9 +13,9 @@ function TurnosList({ turno, accessToken, api, getCarros }) {
     // condicion: "Asignado/No asignado"
     const [showRegistrar, setShowRegistrar] = useState(false);
     const [disabled, setDisabled] = useState(false);
-    const [idCond, setIdcond] = useState('');
+    const [idConductor, setIdcond] = useState('');
     const handleClose = () => setShowRegistrar(false);
-    const [codigoTurno] = turno.codigoOrdenDeCompra;
+    const codigoDeTurno = turno.codigoDeTurno;
 
     const hideRegistrar = () => {
         setDisabled(false);
@@ -24,22 +24,23 @@ function TurnosList({ turno, accessToken, api, getCarros }) {
 
     async function enviarForm (e) {
         e.preventDefault();
-        handleClose();
         try {
-            await Api.asignarTurno({idCond, codigoTurno})
+            await Api.asignarTurno({idConductor, codigoDeTurno})
+            makeToast(6000, "success", "Asignado")
         }
         catch(error) {
             makeToast(6000, 'error', error?.response?.data?.message || error.message)
             console.error(error?.response?.data?.message || error.message);
         }
         if (disabled) { return };
+        handleClose();
     }
     return (
         <div>
             <ListGroup.Item>
                 <ButtonToolbar className="justify-content-between">
                     <b>
-                        {turno.codigoOrdenDeCompra}
+                        {turno.codigoDeTurno}
                     </b>
                     {turno.nombreVendedor}
                     <Button variant="outline-primary" onClick={() => setShowRegistrar(true)}>
@@ -61,7 +62,7 @@ function TurnosList({ turno, accessToken, api, getCarros }) {
                             Codigo del Turno:
                         </Form.Label>
                         <Col sm="8">
-                            <Form.Control plaintext readOnly defaultValue={turno.codigoOrdenDeCompra}/>
+                            <Form.Control plaintext readOnly defaultValue={turno.codigoDeTurno}/>
                         </Col>
                     </Form.Group>
                     <Form.Group as={Row} className="m-3" controlId="idconductor">
@@ -69,7 +70,7 @@ function TurnosList({ turno, accessToken, api, getCarros }) {
                             ID del conductor:
                         </Form.Label>
                         <Col sm="8">
-                            <Form.Control type="text" placeholder="ID" onChange={(e) => setIdcond(e.target.value)} value={idCond} required/>
+                            <Form.Control type="text" placeholder="ID" onChange={(e) => setIdcond(e.target.value)} value={idConductor} required/>
                         </Col>
                     </Form.Group>
                 </Form>
