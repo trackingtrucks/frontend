@@ -29,6 +29,7 @@ function Dashboard() {
 
   const getCompanydata = async () => {
     const { data } = await Api.getCompanydata()
+    console.info(data);
     setData(data);
   }
 

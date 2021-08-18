@@ -73,7 +73,7 @@ export const getCompanydata = async () => {
     return response;
 }
 
-export const nuevoUsuario = async ({ email, password, nombre, apellido, codigo }) => {
+export const registrarse = async ({ email, password, nombre, apellido, codigo, set }) => {
     const response = await API.post(`/auth/register/`, {
         email,
         password,
@@ -81,6 +81,18 @@ export const nuevoUsuario = async ({ email, password, nombre, apellido, codigo }
         apellido,
         codigo
     });
+    if (response?.data?.perfil?.rol === "gestor") {
+        set({
+            profile: (response.data.perfil),
+            accessToken: (response.data.accessToken),
+            refreshToken: (response.data.refreshToken),
+            ATExpire: (response.data.ATExpiresIn),
+            LoggedIn: (true)
+        })
+    }
+    if (response?.data?.perfil?.rol === "conductor") {
+        //Reenviar a /descargar
+    }
     return response;
 }
 
@@ -88,7 +100,7 @@ export const nuevoVehiculo = async ({ patente, marca, modelo, año, kmactual }) 
     const response = await API.post(`/vehiculo`, {
         patente,
         marca,
-        modelo, 
+        modelo,
         año,
         kmactual
     }, {
@@ -101,7 +113,7 @@ export const nuevoVehiculo = async ({ patente, marca, modelo, año, kmactual }) 
 
 
 
-export const asignarTurno = async ({idConductor, codigoDeTurno  }) => {
+export const asignarTurno = async ({ idConductor, codigoDeTurno }) => {
     const response = await API.put(`/user/asignarTurno`, {
         idConductor,
         codigoDeTurno
@@ -113,10 +125,38 @@ export const asignarTurno = async ({idConductor, codigoDeTurno  }) => {
     return response;
 }
 
-export const eliminarVehiculo = async ({idVehiculo}) => {
+export const eliminarVehiculo = async ({ idVehiculo }) => {
     const response = await API.delete(`/vehiculo/${idVehiculo}`, {
         headers: {
             "x-access-token": accessToken,
+        }
+    });
+    return response;
+}
+
+export const agregarGestor = async ({ email }) => {
+    console.warn(email);
+
+    const response = await API.post(`/user/codigo/gestor`, {
+        email
+    }, {
+        headers: {
+            "x-access-token": accessToken,
+            "Content-Type": "application/json"
+        }
+    });
+    return response;
+}
+
+export const agregarConductor = async ({ email }) => {
+    console.log(accessToken);
+    console.warn(email);
+    const response = await API.post(`/user/codigo/conductor`, {
+        email
+    }, {
+        headers: {
+            "x-access-token": accessToken,
+            "Content-Type": "application/json"
         }
     });
     return response;

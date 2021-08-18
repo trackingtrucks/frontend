@@ -5,7 +5,7 @@ import AuthContext from './Context/AuthContext'
 import SetToken from './Pages/SetToken';
 //Logged out
 import Login from './Pages/LoggedOut/Login';
-import Contacto from './Pages/LoggedOut/Contacto';
+import Registro from './Pages/LoggedOut/Registro';
 import Home from './Pages/LoggedOut/Home'
 
 //Logged in
@@ -24,7 +24,7 @@ export default function Router() {
                     <>
                         <Route exact path="/" component={Home} />
                         <Route exact path="/login" component={Login} />
-                        <Route exact path="/contacto" component={Contacto} />
+                        <Route exact path="/Registro" component={Registro} />
                         
                         <Redirect to="/" />
 

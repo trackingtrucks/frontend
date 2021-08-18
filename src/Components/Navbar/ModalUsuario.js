@@ -7,32 +7,21 @@ function ModalUsuario() {
     const [showRegistrar, setShowRegistrar] = useState(false);
     const [disabled, setDisabled] = useState(false);
     const [email, setEmail] = useState('');
-    const [password] = useState('');
-    const [nombre] = useState('');
-    const [apellido] = useState('');
-    const [codigo] = useState('');
     const [isCond, setIsCond] = useState(true)
 
     async function enviarForm (e) {
         e.preventDefault();
-        try {
-            await Api.nuevoUsuario({email, password, nombre, apellido, codigo})
-        }
-        catch(error) {
-            makeToast(6000, 'error', error?.response?.data?.message || error.message)
-            console.error(error?.response?.data?.message || error.message);
-        }
         
         if (disabled) { return };
         if (email === "") return makeToast(5000, "error", "Se debe especificar un email!");
         try {
             setDisabled(true);
             if (isCond) {
-                // await Api.agregarConductor
-                makeToast(6000, "info", "Registrando el usuario " + email + " como conductor")
+                const {data} = await Api.agregarConductor({email})
+                makeToast(6000, "info", data.message)
             } else if (!isCond) {
-                // await Api.agregarGestor
-                makeToast(6000, "info", "Registrando el usuario " + email + " como gestor")
+                const {data} = await Api.agregarGestor({email})
+                makeToast(6000, "info", data.message)
             } else {
                 return makeToast(6000, "error", "No se especificó ningun rol")
             }
