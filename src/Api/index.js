@@ -52,6 +52,7 @@ export const cambiarContraseña = async ({ password, passwordActual }) => {
 export const cerrarTodasSesiones = async ({ password }) => {
     const response = await API.delete(`/auth/tokens`, {
         headers: {
+            "Content-type": "application/json",
             "x-access-token": accessToken,
         },
         data: {
@@ -64,6 +65,7 @@ export const cerrarTodasSesiones = async ({ password }) => {
 export const getCompanydata = async () => {
     const response = await API.get('/company', {
         headers: {
+            "Content-type": "application/json",
             "x-access-token": accessToken
         }
 
@@ -92,6 +94,27 @@ export const nuevoVehiculo = async ({ patente, marca, modelo, año, kmactual }) 
     }, {
         headers: {
             "x-access-token": accessToken
+        }
+    });
+    return response;
+}
+
+export const asignarTurno = async ({idConductor, codigoTurno  }) => {
+    const response = await API.put(`/user/asignarTurno`, {
+        idConductor,
+        codigoTurno
+    }, {
+        headers: {
+            "x-access-token": accessToken
+        }
+    });
+    return response;
+}
+
+export const eliminarVehiculo = async ({id}) => {
+    const response = await API.delete(`/vehiculo/611c6bbc390a810016e64828`, {
+        headers: {
+            "x-access-token": accessToken,
         }
     });
     return response;

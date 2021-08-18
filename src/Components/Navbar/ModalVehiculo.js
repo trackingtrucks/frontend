@@ -11,9 +11,11 @@ function ModalVehiculo() {
     const [modelo, setModelo] = useState('');
     const [año, setAño] = useState('');
     const [kmactual, setKmactual] = useState('');
+    const handleClose = () => setShowRegistrar(false);
 
     async function enviarForm (e) {
         e.preventDefault();
+        handleClose();
         try {
             await Api.nuevoVehiculo({ patente, marca, modelo, año, kmactual })
         }

@@ -9,12 +9,15 @@ function VehicleList({ vehiculo, accessToken, api, getCarros }) {
                     <Card.Body>
                         <Card.Title>{vehiculo.patente}</Card.Title>
                         <Card.Text>{vehiculo.alertas.map(element => {
-                            return(
+                            return (
                                 <span key={element._id}>
                                     {element.tipo} {' '}
                                 </span>
                             );
-                        })}</Card.Text>
+                        })} <br/>
+                        Kilometraje: <b>{vehiculo.kmactual}</b> kms
+                        <br /> ID: <b>{vehiculo._id}</b>
+                        </Card.Text>
                         {/* <Card.Text>bla bla bla bla</Card.Text>
                         <ProgressBar>
                             <ProgressBar animated variant="success" now={35} key={1} />
