@@ -19,13 +19,14 @@ export default function Router() {
     return (
         <BrowserRouter>
             <Switch>
+                <Route exact path="/registro" component={Registro} />
                 <Route exact path="/token" component={SetToken} />
                 {loggedIn === false && loading === false && (
                     <>
                         <Route exact path="/" component={Home} />
                         <Route exact path="/login" component={Login} />
-                        <Route exact path="/Registro" component={Registro} />
-                        
+
+
                         <Redirect to="/" />
 
                     </>
