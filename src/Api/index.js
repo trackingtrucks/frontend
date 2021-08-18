@@ -161,3 +161,19 @@ export const agregarConductor = async ({ email }) => {
     });
     return response;
 }
+
+export const crearTurno = async ({ codigoDeTurno, fechaYhora, nombreVendedor, codigoOrdenDeCompra }) => {
+    const response = await API.post(`/user/crearTurno`, {
+        codigoDeTurno,
+        fechaYhora,
+        nombreVendedor,
+        codigoOrdenDeCompra
+    }, {
+        headers: {
+            "Content-Type": "application/json",
+            "x-access-token": accessToken
+        }
+    });
+    return response;
+}
+

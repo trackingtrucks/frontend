@@ -13,8 +13,8 @@ export class Home extends Component {
                     </Link>
                 </p>
                 <p>
-                    <Link to="/contacto">
-                        Contactanos!
+                    <Link to="/registro">
+                        Registrate
                     </Link>
                 </p>
             </div>

@@ -10,6 +10,7 @@ import ConductoresContainer from '../../Components/usuarios/Conductores/Conducto
 import TurnosContainer from '../../Components/Turnos/TurnosContainer';
 import Mapa from '../../Components/Mapa/Mapa';
 import SettingsContainers from '../../Components/Settings/SettingsContainer';
+import CrearTurno from '../../Components/Turnos/CrearTurno';
 
 // -FUNCIONES-
 import { Container, Tabs, Tab, Col, Row, Button, Modal, Form, Spinner } from 'react-bootstrap';
@@ -125,6 +126,8 @@ function Dashboard() {
         <Tab eventKey="turnos" title="Turnos">
           <Container>
             <TurnosContainer turnos={data.turnos} />
+            <br/>
+            <CrearTurno/>
           </Container>
         </Tab>
         <Tab eventKey="usuarios" title="Usuarios">
