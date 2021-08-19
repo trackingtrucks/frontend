@@ -9,7 +9,15 @@ export const login = async ({ email, password, set }) => {
         email,
         password
     });
-    // if (response.data.perfil.rol !== "admin"){cerrarSesion({accessToken: response.data.accessToken, refreshToken: response.data.refreshToken}); return makeToast(6000, 'error', "Aplicacion solo disponible para Administradores!")};
+    if (response.data.perfil.rol === "admin"){
+        cerrarSesion({accessToken: response.data.accessToken, refreshToken: response.data.refreshToken}); 
+        alert("Aplicacion disponible solo para Gestores!")
+        return window.location.replace("https://trackingtrucks-admin.netlify.app");
+    };
+    if (response.data.perfil.rol === "conductor"){
+        cerrarSesion({accessToken: response.data.accessToken, refreshToken: response.data.refreshToken}); 
+        return alert("Para poder iniciar sesion como conductor, por favor dirigase a la aplicacion para moviles")
+    }
     set({
         profile: (response.data.perfil),
         accessToken: (response.data.accessToken),
@@ -92,6 +100,8 @@ export const registrarse = async ({ email, password, nombre, apellido, codigo, s
     }
     if (response?.data?.perfil?.rol === "conductor") {
         //Reenviar a /descargar
+        return alert("Para poder iniciar sesion como conductor, por favor dirigase a la aplicacion para moviles")
+
     }
     return response;
 }
