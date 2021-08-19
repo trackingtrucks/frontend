@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Form, Button, Jumbotron, Container, Row, Col } from 'react-bootstrap'
+import { Form, Button, Container, Row, Col, Card } from 'react-bootstrap'
 import queryString from 'query-string'
 import makeToast from '../../Components/Toast'
 import * as Api from "../../Api/index"
@@ -24,7 +24,7 @@ export class Registro extends Component {
     Submit = async (e) => {
         e.preventDefault();
         try {
-            const res = await Api.registrarse({email: this.state.email, password: this.state.password, nombre: this.state.nombre, apellido: this.state.apellido, codigo: this.state.codigo, set: this.context.set })
+            const res = await Api.registrarse({ email: this.state.email, password: this.state.password, nombre: this.state.nombre, apellido: this.state.apellido, codigo: this.state.codigo, set: this.context.set })
             if (res?.data?.perfil?.rol === 'admin') {
                 return window.location.replace(`https://trackingtrucks-admin.netlify.app/token?token=${res.data.refreshToken}&expires=${res.data.RTExpiresIn}`)
             }
@@ -45,9 +45,9 @@ export class Registro extends Component {
     render() {
         return (
             <>
-
-                <Jumbotron fluid>
-                    <Container>
+                <Container>
+                    <Card className="p-5 ">
+                        <h1>Registrate! </h1>
                         <Form onSubmit={this.Submit} autoComplete='off'>
                             <Form.Group controlId="email">
                                 <Form.Label>Email</Form.Label>
@@ -73,12 +73,13 @@ export class Registro extends Component {
                                 <Form.Label>Codigo de verificación</Form.Label>
                                 <Form.Control required value={this.state.codigo} onChange={this.Change} placeholder="xxxxxxxxxxxxx" />
                             </Form.Group>
+                            <br/>
                             <Button variant="primary" type="submit">
                                 Enviar
                             </Button>
                         </Form>
-                    </Container>
-                </Jumbotron>
+                    </Card>
+                </Container>
             </>
         )
     }

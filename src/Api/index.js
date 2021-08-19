@@ -177,3 +177,25 @@ export const crearTurno = async ({ codigoDeTurno, fechaYhora, nombreVendedor, co
     return response;
 }
 
+export const getUsuario = async ({id}) => {
+    const response = await API.get('/company/vehiculo', {
+        body: {
+            id
+        },
+        headers: {
+            "Content-Type": "application/json",
+            "x-access-token": accessToken
+        }
+    });
+    return response;
+}
+
+export const enviarFormulario = async ({ nombreEmpresa, email, descripcionUso, genteCompania }) => {
+    const response = await API.post(`/company/formulario`, {
+        nombreEmpresa,
+        email,
+        descripcionUso,
+        genteCompania
+    });
+    return response;
+}

@@ -19,6 +19,7 @@ function CrearTurno() {
         try {
             await Api.crearTurno({ codigoDeTurno, fechaYhora, nombreVendedor, codigoOrdenDeCompra })
             makeToast(6000, "success", "Turno Creado")
+            window.location.reload();
         }
         catch (error) {
             makeToast(6000, 'error', error?.response?.data?.message || error.message)

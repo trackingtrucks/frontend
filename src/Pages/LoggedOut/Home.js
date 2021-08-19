@@ -17,6 +17,11 @@ export class Home extends Component {
                         Registrate
                     </Link>
                 </p>
+                <p>
+                    <Link to="/contacto">
+                        Contactanos
+                    </Link>
+                </p>
             </div>
         )
     }

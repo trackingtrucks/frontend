@@ -19,6 +19,7 @@ function ModalVehiculo() {
         try {
             await Api.nuevoVehiculo({ patente, marca, modelo, año, kmactual })
             makeToast(6000, "success", "Vehiculo Creado")
+            window.location.reload();
         }
         catch(error) {
             makeToast(6000, 'error', error?.response?.data?.message || error.message)

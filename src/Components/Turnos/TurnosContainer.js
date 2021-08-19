@@ -1,16 +1,25 @@
 import * as Api from '../../Api';
-import {ListGroup} from 'react-bootstrap';
+import { Table } from 'react-bootstrap';
 import TurnosCard from './TurnosCard'
 
-function TurnosContainer({turnos}) {
+function TurnosContainer({ turnos }) {
     return (
-            <ListGroup>
-            {turnos && turnos.map((turno) => {
-                if(turno.condicion === "Asignado") return null;
-                return (
-                    <TurnosCard turno={turno} key={turno._id} api={Api}/>)
-            })}
-        </ListGroup>
+        <Table striped bordered hover>
+            <thead>
+                <tr>
+                    <th>Codigo de Turno</th>
+                    <th>Nombre de la epmresa</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {turnos && turnos.map((turno) => {
+                    if (turno.condicion === "Asignado") return null;
+                    return (
+                        <TurnosCard turno={turno} key={turno._id} api={Api} />)
+                })}
+            </tbody>
+        </Table>
     )
 }
 export default TurnosContainer

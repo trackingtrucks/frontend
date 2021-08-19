@@ -61,6 +61,7 @@ function Login() {
                             </OverlayTrigger>
                         </InputGroup>
                     </Form.Group>
+                    <br />
                     <Button variant="primary" type="submit" disabled={disabled}>
                         {!disabled && "Entrar" }  
                         {disabled && <Spinner

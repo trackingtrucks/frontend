@@ -7,6 +7,7 @@ import SetToken from './Pages/SetToken';
 import Login from './Pages/LoggedOut/Login';
 import Registro from './Pages/LoggedOut/Registro';
 import Home from './Pages/LoggedOut/Home'
+import Contacto from './Pages/LoggedOut/Contacto'
 
 //Logged in
 import Dashboard from './Pages/LoggedIn/Dashboard';
@@ -25,9 +26,9 @@ export default function Router() {
                     <>
                         <Route exact path="/" component={Home} />
                         <Route exact path="/login" component={Login} />
+                        <Route exact path="/contacto" component={Contacto} />
 
 
-                        <Redirect to="/" />
 
                     </>
                     //En el futuro agregar una pagina de 404
