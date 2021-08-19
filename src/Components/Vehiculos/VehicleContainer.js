@@ -9,6 +9,11 @@ function VehicleContainer({vehiculos}) {
                 return (
                     <VehicleCard vehiculo={vehiculo} key={vehiculo._id} api={Api}/>)
             })}
+            {vehiculos && vehiculos.length === 0 && <div>
+                <br />
+                <h2><b>Todavia no tienes vehiculos!</b></h2>
+                <p>Puedes crear haciendo click en <b style={{color: '#830000'}}>"Nuevo vehiculo"</b> en la parte superior derecha!</p>
+                </div>}
         </Row>
     )
 }

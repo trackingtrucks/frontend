@@ -8,16 +8,23 @@ export default function Contacto() {
     const [email, setEmail] = useState('');
     const [descripcionUso, setDescripcionuso] = useState('');
     const [genteCompania, setGentecompania] = useState('');
+    const [disabled, setDisabled] = useState(false)
 
     async function enviarForm(e) {
         e.preventDefault();
+        setDisabled(true)
         try {
             await Api.enviarFormulario({ nombreEmpresa, email, descripcionUso, genteCompania })
             makeToast(6000, "success", "Formulario enviado")
+            setEmail('');
+            setGentecompania('');
+            setNombreempresa('');
+            setDescripcionuso('');
         } catch (error) {
             makeToast(6000, 'error', error?.response?.data?.message || error.message)
             console.error(error?.response?.data?.message || error.message);
         }
+        setDisabled(false);
     }
 
     return (
@@ -59,7 +66,7 @@ export default function Contacto() {
                             </Col>
                         </Form.Group>
                         <br />
-                        <Button variant="primary" type="submit" onClick={enviarForm}>
+                        <Button variant="primary" type="submit" onClick={enviarForm} disabled={disabled}>
                             Enviar
                         </Button>
                     </Form>

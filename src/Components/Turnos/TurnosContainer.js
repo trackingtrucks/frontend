@@ -8,8 +8,8 @@ function TurnosContainer({ turnos }) {
             <thead>
                 <tr>
                     <th>Codigo de Turno</th>
-                    <th>Nombre de la epmresa</th>
-                    <th></th>
+                    <th>Nombre de la empresa</th>
+                    <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>

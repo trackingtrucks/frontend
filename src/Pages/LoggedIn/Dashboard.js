@@ -69,7 +69,7 @@ function Dashboard() {
           <Container>
             <VehicleContainer vehiculos={data.vehiculos} />
             <br />
-            <EliminarVehiculo/>
+            {data.vehiculos.length !== 0 && <EliminarVehiculo/>}
           </Container>
         </Tab>
         <Tab eventKey="turnos" title="Turnos">
