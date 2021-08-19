@@ -6,6 +6,7 @@ import '../Styles/navbar.css';
 import logo from './Assets/logo.png'
 import ModalUsuario from './Navbar/ModalUsuario'
 import ModalVehiculo from './Navbar/ModalVehiculo'
+import ModalTareas from './Navbar/ModalTareas'
 function NavbarComponent() {
     const { clearLocalStorage, perfil } = useContext(AuthContext);
     const cerrarSesion = async () => {
@@ -31,6 +32,7 @@ function NavbarComponent() {
                 <Nav className="mr-auto">
                 </Nav>
                 <Navbar.Collapse className="justify-content-end">
+                    <ModalTareas/>
                     <ModalUsuario Api={Api} />
                     <ModalVehiculo Api={Api} />
                     <Button variant="outline-primary" style={{ marginRigth: '10px', marginLeft: '10px', marginBottom: '5px' }} onClick={() => cerrarSesion()}>Cerrar sesión</Button>

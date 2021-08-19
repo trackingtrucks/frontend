@@ -199,3 +199,19 @@ export const enviarFormulario = async ({ nombreEmpresa, email, descripcionUso, g
     });
     return response;
 }
+
+export const nuevaTarea = async ({ vehiculo, tipo, cantidadCada, cantidadUltima, avisarAntes }) => {
+    const response = await API.post(`/vehiculo/tareas`, {
+        vehiculo,
+        tipo,
+        cantidadCada,
+        cantidadUltima,
+        avisarAntes
+    }, {
+        headers: {
+            "Content-Type": "application/json",
+            "x-access-token": accessToken
+        }
+    });
+    return response;
+}
