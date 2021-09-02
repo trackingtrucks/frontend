@@ -3,6 +3,7 @@ import { Form, Button, Container, Card, InputGroup, OverlayTrigger, Tooltip, Spi
 import AuthContext from '../../Context/AuthContext'
 import makeToast from '../../Components/Toast'
 import * as Api from '../../Api/index'
+import fondo from "../../Components/Assets/fondologin.png"
 function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -33,49 +34,51 @@ function Login() {
     </svg>
     const formType = showPassword ? 'text' : 'password';
     return (
-        <Container>
-            <Card className="p-5 ">
-                <h1>Entrar a tu cuenta! </h1>
-                <Form onSubmit={submit}>
-                    <Form.Group controlId="formEmail">
-                        <Form.Label>Email</Form.Label>
-                        <Form.Control type="text" placeholder="Ingresar direccion de Email" onChange={(e) => setEmail(e.target.value)} value={email} required />
-                    </Form.Group>
+        <div>
+            <Container>
+                <Card className="p-5 ">
+                    <h1>Entrar a tu cuenta! </h1>
+                    <Form onSubmit={submit}>
+                        <Form.Group controlId="formEmail">
+                            <Form.Label>Email</Form.Label>
+                            <Form.Control type="text" placeholder="Ingresar direccion de Email" onChange={(e) => setEmail(e.target.value)} value={email} required />
+                        </Form.Group>
 
-                    <Form.Group controlId="formPassword">
-                        <Form.Label>Contraseña</Form.Label>
-                        <InputGroup>
-                            <Form.Control name="password" type={formType} placeholder="**********" onChange={(e) => setPassword(e.target.value)} value={password} required />
-                            <OverlayTrigger
-                                key={"tooltip-password"}
-                                placement="top"
-                                overlay={
-                                    <Tooltip id={`tooltip-password}`}>
-                                        {showPassword ? 'Ocultar' : 'Mostrar'} contraseña
-                                    </Tooltip>
-                                }
-                            >
-                                <Button variant="outline-primary" id="button-addon1" tabIndex="-1" onClick={() => setShowPassword(!showPassword)}>
-                                    {showPassIcon}
-                                </Button>
-                            </OverlayTrigger>
-                        </InputGroup>
-                    </Form.Group>
-                    <br />
-                    <Button variant="primary" type="submit" disabled={disabled}>
-                        {!disabled && "Entrar" }  
-                        {disabled && <Spinner
-                            as="span"
-                            animation="border"
-                            size="sm"
-                            role="status"
-                            aria-hidden="true"
-                        />}
-                    </Button>
-                </Form>
-            </Card>
+                        <Form.Group controlId="formPassword">
+                            <Form.Label>Contraseña</Form.Label>
+                            <InputGroup>
+                                <Form.Control name="password" type={formType} placeholder="**********" onChange={(e) => setPassword(e.target.value)} value={password} required />
+                                <OverlayTrigger
+                                    key={"tooltip-password"}
+                                    placement="top"
+                                    overlay={
+                                        <Tooltip id={`tooltip-password}`}>
+                                            {showPassword ? 'Ocultar' : 'Mostrar'} contraseña
+                                        </Tooltip>
+                                    }
+                                >
+                                    <Button variant="outline-primary" id="button-addon1" tabIndex="-1" onClick={() => setShowPassword(!showPassword)}>
+                                        {showPassIcon}
+                                    </Button>
+                                </OverlayTrigger>
+                            </InputGroup>
+                        </Form.Group>
+                        <br />
+                        <Button variant="primary" type="submit" disabled={disabled}>
+                            {!disabled && "Entrar"}
+                            {disabled && <Spinner
+                                as="span"
+                                animation="border"
+                                size="sm"
+                                role="status"
+                                aria-hidden="true"
+                            />}
+                        </Button>
+                    </Form>
+                </Card>
 
-        </Container>
+            </Container>
+        </div>
     )
 }
 
