@@ -3,7 +3,6 @@ import { Form, Button, Container, Card, InputGroup, OverlayTrigger, Tooltip, Spi
 import AuthContext from '../../Context/AuthContext'
 import makeToast from '../../Components/Toast'
 import * as Api from '../../Api/index'
-import fondo from "../../Components/Assets/fondologin.png"
 function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');

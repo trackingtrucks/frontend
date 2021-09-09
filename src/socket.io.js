@@ -46,6 +46,12 @@ function SocketIO({getCompanydata}) {
             //alert("NUEVO MENSAJETE: " + message);
             makeToast(6000, 'warning', alerta.message);
         });
+
+        socket.on('datos', (datos) => {
+            //alert("NUEVO MENSAJETE: " + message);
+            //makeToast(6000, 'warning', datos.message);
+            console.log(datos);
+        });
     }, []);
     return (
         <></>
