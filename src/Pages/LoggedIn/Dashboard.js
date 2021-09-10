@@ -12,7 +12,7 @@ import Mapa from '../../Components/Mapa/Mapa';
 import SettingsContainers from '../../Components/Settings/SettingsContainer';
 import CrearTurno from '../../Components/Turnos/CrearTurno';
 import EliminarVehiculo from '../../Components/Vehiculos/EliminarVehiculo';
-
+import PlayGround from '../../Components/Playground'
 // -FUNCIONES-
 import { Container, Tabs, Tab, Col, Row } from 'react-bootstrap';
 import * as Api from '../../Api/index';
@@ -23,8 +23,8 @@ function Dashboard() {
   const { saveLocalStorage } = useContext(AuthContext);
   const [key, setKey] = useState(localStorage.getItem('tab') || 'main');
   const [data, setData] = useState({})
- 
-  
+
+
 
   const getCompanydata = async () => {
     const { data } = await Api.getCompanydata()
@@ -69,14 +69,14 @@ function Dashboard() {
           <Container>
             <VehicleContainer vehiculos={data.vehiculos} />
             <br />
-            {data.vehiculos && data.vehiculos.length !== 0 && <EliminarVehiculo/>}
+            {data.vehiculos && data.vehiculos.length !== 0 && <EliminarVehiculo />}
           </Container>
         </Tab>
         <Tab eventKey="turnos" title="Turnos">
           <Container>
             <TurnosContainer turnos={data.turnos} />
-            <br/>
-            <CrearTurno/>
+            <br />
+            <CrearTurno />
           </Container>
         </Tab>
         <Tab eventKey="usuarios" title="Usuarios">
@@ -93,6 +93,11 @@ function Dashboard() {
         <Tab eventKey="settings" title="Configuracion">
           <Container>
             <SettingsContainers AuthContext={AuthContext} />
+          </Container>
+        </Tab>
+        <Tab eventKey="playground" title="Pruebas">
+          <Container>
+            <PlayGround />
           </Container>
         </Tab>
       </Tabs>

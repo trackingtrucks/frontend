@@ -3,6 +3,7 @@ import io from 'socket.io-client';
 import makeToast from './Components/Toast';
 import { Config } from './Config';
 import { accessToken } from './Context/AuthContext';
+const datosSocket = React.createContext();
 let socket;
 
 function SocketIO({getCompanydata}) {
@@ -51,6 +52,7 @@ function SocketIO({getCompanydata}) {
             //alert("NUEVO MENSAJETE: " + message);
             //makeToast(6000, 'warning', datos.message);
             console.log(datos);
+            <datosSocket.Provider value={datos}></datosSocket.Provider>
         });
     }, []);
     return (
