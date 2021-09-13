@@ -54,6 +54,12 @@ function SocketIO({getCompanydata}) {
             console.log(datos);
             <datosSocket.Provider value={datos}></datosSocket.Provider>
         });
+        socket.on('entrega', (entrega) => {
+            //alert("NUEVO MENSAJETE: " + message);
+            //makeToast(6000, 'warning', datos.message);
+            console.log(entrega);
+            makeToast(6000, 'info', entrega);
+        });
     }, []);
     return (
         <></>

@@ -33,8 +33,8 @@ function VehicleList({ vehiculo, accessToken, api, getCarros }) {
                             <ProgressBar animated variant="danger" now={10} key={3} />
                         </ProgressBar> */}
                         {/* <Button onClick={handleShow}></Button> */}
-                        <Button className="me-2" onClick={() => handleShow()}>
-                            Full screen
+                        <Button variant="outline-primary" style={{ marginRigth: '10px', marginLeft: '10px', marginBottom: '5px' }} onClick={() => handleShow()}>
+                            Mas datos
                         </Button>
                     </Card.Body>
                 </Card>
