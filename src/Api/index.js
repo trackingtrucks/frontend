@@ -124,7 +124,7 @@ export const nuevoVehiculo = async ({ patente, marca, modelo, año, kmactual }) 
 
 
 export const asignarTurno = async ({ idConductor, codigoDeTurno }) => {
-    const response = await API.put(`/user/asignarTurno`, {
+    const response = await API.put(`/turno/asignar`, {
         idConductor,
         codigoDeTurno
     }, {
@@ -173,7 +173,7 @@ export const agregarConductor = async ({ email }) => {
 }
 
 export const crearTurno = async ({ codigoDeTurno, fechaYhora, nombreVendedor, codigoOrdenDeCompra }) => {
-    const response = await API.post(`/user/crearTurno`, {
+    const response = await API.post(`/turno/crear`, {
         codigoDeTurno,
         fechaYhora,
         nombreVendedor,
