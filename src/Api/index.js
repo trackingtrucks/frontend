@@ -188,7 +188,7 @@ export const crearTurno = async ({ codigoDeTurno, fechaYhora, nombreVendedor, co
 }
 
 export const getUsuario = async ({id}) => {
-    const response = await API.get('/company/vehiculo', {
+    const response = await API.get('/company/usuario', {
         body: {
             id
         },
@@ -225,3 +225,4 @@ export const nuevaTarea = async ({ vehiculo, tipo, cantidadCada, cantidadUltima,
     });
     return response;
 }
+

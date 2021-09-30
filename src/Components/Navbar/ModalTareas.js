@@ -90,7 +90,7 @@ function ModalTareas() {
                     </Form.Group>
                 </Form>
                 <Modal.Footer>
-                    <Button variant="primary" type="submit" onClick={enviarForm} disabled={disabled}>
+                    <Button variant="outline-primary" type="submit" onClick={enviarForm} disabled={disabled}>
                         {!disabled && "Enviar"}
                         {disabled && <Spinner
                             as="span"

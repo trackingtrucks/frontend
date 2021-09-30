@@ -1,15 +1,63 @@
 import { React, useState, useContext } from 'react'
-import { Col, Card, Modal, Container, Tabs, Tab } from 'react-bootstrap';
+import { Col, Card, Modal, Container, Tabs, Tab, Table } from 'react-bootstrap';
 import datosSocket from "./../../socket.io"
+import { Line } from 'react-chartjs-2';
+import ModalTareas from '../Navbar/ModalTareas';
 
 function VehicleList({ vehiculo, accessToken, api, getCarros }) {
     const [show, setShow] = useState(false);
     const datos = useContext(datosSocket);
+    const [key, setKey] = useState(localStorage.getItem('tab') || 'Nivel de nafta');
 
     function handleShow() {
         setShow(true);
     }
 
+    const guardarKey = (k) => {
+        setKey(k);
+        if (k === 'settings') { return }
+        localStorage.setItem('tab', k)
+    }
+
+    const data = {
+        labels: ['1', '2', '3', '4', '5', '6'],
+        datasets: [
+            {
+                label: '# of Votes',
+                data: [],
+                fill: false,
+                backgroundColor: 'rgb(255, 99, 132)',
+                borderColor: 'rgba(255, 99, 132, 0.2)',
+            },
+        ],
+    };
+
+    const options = {
+        scales: {
+            yAxes: [
+                {
+                    ticks: {
+                        beginAtZero: true,
+                    },
+                },
+            ],
+        },
+    };
+
+    const LineChart = () => (
+        <>
+            <div className='header'>
+                <div className='links'>
+                    <a
+                        className='btn btn-gh'
+                        href='https://github.com/reactchartjs/react-chartjs-2/blob/master/example/src/charts/Line.js'
+                    >
+                    </a>
+                </div>
+            </div>
+            <Line data={data} options={options} />
+        </>
+    );
 
     return (
         <div>
@@ -62,21 +110,70 @@ function VehicleList({ vehiculo, accessToken, api, getCarros }) {
                                 return (vehiculo.conductorActual.id)
                             }
                         })()} */}
+                        {JSON.stringify(vehiculo.condutorActual)}
                     </Container>
                     <Container>
                         Informacion:
                         <br />
-                        <Tabs defaultActiveKey="profile" id="uncontrolled-tab-example" className="mb-3">
+                        <Tabs id="tabs" activeKey={key} onSelect={(k) => guardarKey(k)} className="mb-3">
                             <Tab eventKey="Nivel de nafta" title="Nivel de nafta">
-                                {datos}
+                                <LineChart />
                             </Tab>
                             <Tab eventKey="Velocidad" title="Velocidad">
+                                <LineChart />
                             </Tab>
                             <Tab eventKey="Revoluciones por minuto" title="Revoluciones por minuto">
+                                <LineChart />
                             </Tab>
                             <Tab eventKey="Temperatura del liquido refrigerante" title="Temperatura del liquido refrigerante">
+                                <LineChart />
                             </Tab>
                         </Tabs>
+                    </Container>
+                    <br />
+                    <Container>
+                        <Tabs>
+                            <Tab eventKey="Tareas" title="Tareas">
+                                <Table striped bordered hover>
+                                    <thead>
+                                        <tr>
+                                            <th>Tarea</th>
+                                            <th>Fecha limite</th>
+                                            <th>Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {/* {vehiculo.alertas && vehiculo.alertas.map((vehiculo.alertas) => {
+                                            if (vehiculo.alertas.condicion === "Asignado") return null;
+                                            return (
+                                                <TurnosCard turno={turno} key={turno._id} api={Api} />)
+                                        })} */}
+                                    </tbody>
+
+                                </Table>
+                            </Tab>
+                            <Tab eventKey="Historial de conductores" title="Historial de conductores">
+                            <Table striped bordered hover>
+                                    <thead>
+                                        <tr>
+                                            <th>Conductor</th>
+                                            <th>Fecha limite</th>
+                                            <th>Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {/* {vehiculo.alertas && vehiculo.alertas.map((vehiculo.alertas) => {
+                                            if (vehiculo.alertas.condicion === "Asignado") return null;
+                                            return (
+                                                <TurnosCard turno={turno} key={turno._id} api={Api} />)
+                                        })} */}
+                                    </tbody>
+                                        {JSON.stringify(vehiculo.conductoresPasados) }
+                                </Table>
+                            </Tab>
+                        </Tabs>
+                        <br />
+                        <ModalTareas />
                     </Container>
                 </Modal.Body>
             </Modal>
