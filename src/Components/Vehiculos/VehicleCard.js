@@ -7,6 +7,7 @@ import ModalTareas from '../Navbar/ModalTareas';
 function VehicleList({ vehiculo, accessToken, api, getCarros }) {
     const [show, setShow] = useState(false);
     const datos = useContext(datosSocket);
+    console.log(datos)
     const [key, setKey] = useState(localStorage.getItem('tab') || 'Nivel de nafta');
 
     function handleShow() {
