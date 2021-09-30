@@ -1,15 +1,20 @@
 import { React, useState, useContext } from 'react'
 import { Col, Card, Modal, Container, Tabs, Tab, Table } from 'react-bootstrap';
-import datosSocket from "./../../socket.io"
+
 import { Line } from 'react-chartjs-2';
+import SocketContext from '../../Context/SocketContext';
 import ModalTareas from '../Navbar/ModalTareas';
+
 
 function VehicleList({ vehiculo, accessToken, api, getCarros }) {
     const [show, setShow] = useState(false);
-    const datos = useContext(datosSocket);
-    console.log(datos)
+    const [datitos, Setdatitos] = useState(null)
+    const {datos} = useContext(SocketContext);
+    // console.log(vehiculo)
     const [key, setKey] = useState(localStorage.getItem('tab') || 'Nivel de nafta');
-
+    if (datos != undefined){
+        console.log(datos.filter((dato) => dato.vehiculo === vehiculo._id));
+    }
     function handleShow() {
         setShow(true);
     }
@@ -21,11 +26,11 @@ function VehicleList({ vehiculo, accessToken, api, getCarros }) {
     }
 
     const data = {
-        labels: ['1', '2', '3', '4', '5', '6'],
+        labels: ['Inicial', 'Final',],
         datasets: [
             {
                 label: '# of Votes',
-                data: [],
+                data: [1, 33, 4, 3],
                 fill: false,
                 backgroundColor: 'rgb(255, 99, 132)',
                 borderColor: 'rgba(255, 99, 132, 0.2)',
@@ -94,6 +99,7 @@ function VehicleList({ vehiculo, accessToken, api, getCarros }) {
                     <br /><br />
                     <Container className="center">
                         <b>vehiculo {vehiculo.patente}</b>
+                        <b> - {vehiculo._id}</b>
 
                     </Container>
                     <br /><br />
@@ -169,7 +175,7 @@ function VehicleList({ vehiculo, accessToken, api, getCarros }) {
                                                 <TurnosCard turno={turno} key={turno._id} api={Api} />)
                                         })} */}
                                     </tbody>
-                                        {JSON.stringify(vehiculo.conductoresPasados) }
+                                        {JSON.stringify(vehiculo.conductoresPasados[0]) }
                                 </Table>
                             </Tab>
                         </Tabs>

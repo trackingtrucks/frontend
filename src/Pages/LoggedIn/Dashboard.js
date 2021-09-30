@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 // -COMPONENTES-
 import AuthContext from '../../Context/AuthContext';
+import SocketContext from '../../Context/SocketContext';
 import Navbar from '../../Components/Navbar';
 import Socketio from '../../socket.io'
 
@@ -13,6 +14,7 @@ import SettingsContainers from '../../Components/Settings/SettingsContainer';
 import CrearTurno from '../../Components/Turnos/CrearTurno';
 import EliminarVehiculo from '../../Components/Vehiculos/EliminarVehiculo';
 import PlayGround from '../../Components/Playground'
+
 // -FUNCIONES-
 import { Container, Tabs, Tab, Col, Row } from 'react-bootstrap';
 import * as Api from '../../Api/index';
@@ -21,6 +23,7 @@ import GestoresContainer from '../../Components/usuarios/gestores/GestoresContai
 
 function Dashboard() {
   const { saveLocalStorage } = useContext(AuthContext);
+  const { setInfo } = useContext(SocketContext);
   const [key, setKey] = useState(localStorage.getItem('tab') || 'main');
   const [data, setData] = useState({})
 
@@ -30,6 +33,7 @@ function Dashboard() {
     const { data } = await Api.getCompanydata()
     console.info(data);
     setData(data);
+    setInfo(data);
   }
 
   const guardarKey = (k) => {
