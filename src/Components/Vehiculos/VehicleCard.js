@@ -1,4 +1,4 @@
-import { React, useState, useContext } from 'react'
+import { React, useState, useContext, useEffect } from 'react'
 import { Col, Card, Modal, Container, Tabs, Tab, Table } from 'react-bootstrap';
 
 import { Line } from 'react-chartjs-2';
@@ -8,35 +8,50 @@ import ModalTareas from '../Navbar/ModalTareas';
 
 function VehicleList({ vehiculo, accessToken, api, getCarros }) {
     const [show, setShow] = useState(false);
-    const [datitos, Setdatitos] = useState(null)
-    const {datos} = useContext(SocketContext);
+    const [datitos, setDatitos] = useState(null)
+    const { datos } = useContext(SocketContext);
     // console.log(vehiculo)
-    const [key, setKey] = useState(localStorage.getItem('tab') || 'Nivel de nafta');
-    if (datos != undefined){
-        console.log(datos.filter((dato) => dato.vehiculo === vehiculo._id));
-    }
+    const [key, setKey] = useState('Nivel de nafta');
+
+    useEffect(() => {
+        if (datos != undefined) {
+            setDatitos(datos.filter((dato) => dato.vehiculo === vehiculo._id));
+        }
+    }, [datos])
+    useEffect(() => {
+        if (datos != null) {
+            console.log(datitos);
+        }
+    }, [datitos])
+
+
+
+
     function handleShow() {
         setShow(true);
     }
 
-    const guardarKey = (k) => {
-        setKey(k);
-        if (k === 'settings') { return }
-        localStorage.setItem('tab', k)
-    }
 
-    const data = {
-        labels: ['Inicial', 'Final',],
-        datasets: [
-            {
-                label: '# of Votes',
-                data: [1, 33, 4, 3],
-                fill: false,
-                backgroundColor: 'rgb(255, 99, 132)',
-                borderColor: 'rgba(255, 99, 132, 0.2)',
-            },
-        ],
-    };
+
+
+    function buildData(datos, tipo) {
+        console.log(datos.datos)
+        const valores = Object.keys(datos.datos).map(function (i) { return datos.datos[i]; });
+        const keys = Object.keys(datos.datos).map(function (i) { return i; });
+        // console.log(valores);
+        return {
+            labels: keys,
+            datasets: [
+                {
+                    label: tipo,
+                    data: valores,
+                    fill: false,
+                    backgroundColor: 'rgb(255, 99, 132)',
+                    borderColor: 'rgba(255, 99, 132, 0.2)',
+                },
+            ],
+        };
+    }
 
     const options = {
         scales: {
@@ -50,20 +65,22 @@ function VehicleList({ vehiculo, accessToken, api, getCarros }) {
         },
     };
 
-    const LineChart = () => (
-        <>
-            <div className='header'>
-                <div className='links'>
-                    <a
-                        className='btn btn-gh'
-                        href='https://github.com/reactchartjs/react-chartjs-2/blob/master/example/src/charts/Line.js'
-                    >
-                    </a>
+    const LineChart = ({ data, label }) => {
+        return (
+            <>
+                <div className='header'>
+                    <div className='links'>
+                        <a
+                            className='btn btn-gh'
+                            href='https://github.com/reactchartjs/react-chartjs-2/blob/master/example/src/charts/Line.js'
+                        >
+                        </a>
+                    </div>
                 </div>
-            </div>
-            <Line data={data} options={options} />
-        </>
-    );
+                <Line data={buildData(data, label)} options={options} />
+            </>
+        )
+    };
 
     return (
         <div>
@@ -122,18 +139,18 @@ function VehicleList({ vehiculo, accessToken, api, getCarros }) {
                     <Container>
                         Informacion:
                         <br />
-                        <Tabs id="tabs" activeKey={key} onSelect={(k) => guardarKey(k)} className="mb-3">
+                        <Tabs id="tabs" activeKey={key} onSelect={(k) => setKey(k)} className="mb-3">
                             <Tab eventKey="Nivel de nafta" title="Nivel de nafta">
-                                <LineChart />
+                                <LineChart data={datitos && datitos[datitos.length - 1] && datitos[datitos.length - 1].data && datitos[datitos.length - 1].data.fuelLevel} label="%" />
                             </Tab>
                             <Tab eventKey="Velocidad" title="Velocidad">
-                                <LineChart />
+                                <LineChart data={datitos && datitos[datitos.length - 1] && datitos[datitos.length - 1].data && datitos[datitos.length - 1].data.speed} label="km/h" />
                             </Tab>
                             <Tab eventKey="Revoluciones por minuto" title="Revoluciones por minuto">
-                                <LineChart />
+                                <LineChart data={datitos && datitos[datitos.length - 1] && datitos[datitos.length - 1].data && datitos[datitos.length - 1].data.RPM} label="RPM" />
                             </Tab>
                             <Tab eventKey="Temperatura del liquido refrigerante" title="Temperatura del liquido refrigerante">
-                                <LineChart />
+                                <LineChart data={datitos && datitos[datitos.length - 1] && datitos[datitos.length - 1].data && datitos[datitos.length - 1].data.coolantTemperature} label="°C" />
                             </Tab>
                         </Tabs>
                     </Container>
@@ -160,7 +177,7 @@ function VehicleList({ vehiculo, accessToken, api, getCarros }) {
                                 </Table>
                             </Tab>
                             <Tab eventKey="Historial de conductores" title="Historial de conductores">
-                            <Table striped bordered hover>
+                                <Table striped bordered hover>
                                     <thead>
                                         <tr>
                                             <th>Conductor</th>
@@ -175,7 +192,7 @@ function VehicleList({ vehiculo, accessToken, api, getCarros }) {
                                                 <TurnosCard turno={turno} key={turno._id} api={Api} />)
                                         })} */}
                                     </tbody>
-                                        {JSON.stringify(vehiculo.conductoresPasados[0]) }
+                                    {JSON.stringify(vehiculo.conductoresPasados[0])}
                                 </Table>
                             </Tab>
                         </Tabs>
