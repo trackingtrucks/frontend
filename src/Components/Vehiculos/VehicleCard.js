@@ -1,6 +1,5 @@
 import { React, useState, useContext, useEffect } from 'react'
-import { Col, Card, Modal, Container, Tabs, Tab, Table, Button } from 'react-bootstrap';
-import * as Api from '../../Api/index'
+import { Col, Card, Modal, Container, Tabs, Tab, Table } from 'react-bootstrap';
 
 import { Line } from 'react-chartjs-2';
 import SocketContext from '../../Context/SocketContext';
@@ -13,15 +12,16 @@ function VehicleList({ vehiculo, tarea, accessToken, api, getCarros }) {
     const { datos } = useContext(SocketContext);
     // console.log(vehiculo)
     const [key, setKey] = useState('Nivel de nafta');
-
+    
     useEffect(() => {
         if (datos !== undefined) {
             setDatitos(datos.filter((dato) => dato.vehiculo === vehiculo._id));
-        }
+        } 
+        // eslint-disable-next-line
     }, [datos])
     useEffect(() => {
         if (datos != null) {
-        }
+        } // eslint-disable-next-line
     }, [datitos])
 
     function handleShow() {
