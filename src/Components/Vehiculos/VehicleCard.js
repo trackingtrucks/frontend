@@ -1,12 +1,13 @@
 import { React, useState, useContext, useEffect } from 'react'
-import { Col, Card, Modal, Container, Tabs, Tab, Table } from 'react-bootstrap';
+import { Col, Card, Modal, Container, Tabs, Tab, Table, Button } from 'react-bootstrap';
+import * as Api from '../../Api/index'
 
 import { Line } from 'react-chartjs-2';
 import SocketContext from '../../Context/SocketContext';
 import ModalTareas from '../Navbar/ModalTareas';
 
 
-function VehicleList({ vehiculo, accessToken, api, getCarros }) {
+function VehicleList({ vehiculo, tarea, accessToken, api, getCarros }) {
     const [show, setShow] = useState(false);
     const [datitos, setDatitos] = useState(null)
     const { datos } = useContext(SocketContext);
@@ -14,18 +15,14 @@ function VehicleList({ vehiculo, accessToken, api, getCarros }) {
     const [key, setKey] = useState('Nivel de nafta');
 
     useEffect(() => {
-        if (datos != undefined) {
+        if (datos !== undefined) {
             setDatitos(datos.filter((dato) => dato.vehiculo === vehiculo._id));
         }
     }, [datos])
     useEffect(() => {
         if (datos != null) {
-            console.log(datitos);
         }
     }, [datitos])
-
-
-
 
     function handleShow() {
         setShow(true);
@@ -35,22 +32,25 @@ function VehicleList({ vehiculo, accessToken, api, getCarros }) {
 
 
     function buildData(datos, tipo) {
-        console.log(datos.datos)
-        const valores = Object.keys(datos.datos).map(function (i) { return datos.datos[i]; });
-        const keys = Object.keys(datos.datos).map(function (i) { return i; });
-        // console.log(valores);
-        return {
-            labels: keys,
-            datasets: [
-                {
-                    label: tipo,
-                    data: valores,
-                    fill: false,
-                    backgroundColor: 'rgb(255, 99, 132)',
-                    borderColor: 'rgba(255, 99, 132, 0.2)',
-                },
-            ],
-        };
+        try {
+            const valores = Object.keys(datos.datos).map(function (i) { return datos.datos[i]; });
+            const keys = Object.keys(datos.datos).map(function (i) { return i; });
+            // console.log(valores);
+            return {
+                labels: keys,
+                datasets: [
+                    {
+                        label: tipo,
+                        data: valores,
+                        fill: false,
+                        backgroundColor: 'rgb(255, 99, 132)',
+                        borderColor: 'rgba(255, 99, 132, 0.2)',
+                    },
+                ],
+            };
+        } catch (error) {
+            console.log("aun no hay datos")
+        }
     }
 
     const options = {
@@ -162,16 +162,23 @@ function VehicleList({ vehiculo, accessToken, api, getCarros }) {
                                     <thead>
                                         <tr>
                                             <th>Tarea</th>
-                                            <th>Fecha limite</th>
-                                            <th>Acciones</th>
+                                            <th>Nivel</th>
+                                            <th>ID</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {/* {vehiculo.alertas && vehiculo.alertas.map((vehiculo.alertas) => {
-                                            if (vehiculo.alertas.condicion === "Asignado") return null;
+                                        {vehiculo.alertas.map(element => {
                                             return (
-                                                <TurnosCard turno={turno} key={turno._id} api={Api} />)
-                                        })} */}
+                                                // <span key={element._id}>
+                                                //     {element.tipo} {' '}
+                                                // </span>
+                                                <tr>
+                                                    <td>{element.tipo}</td>
+                                                    <td>{element.nivel}</td>
+                                                    <td>{element._id}</td>
+                                                </tr>
+                                            );
+                                        })}
                                     </tbody>
 
                                 </Table>
@@ -180,19 +187,28 @@ function VehicleList({ vehiculo, accessToken, api, getCarros }) {
                                 <Table striped bordered hover>
                                     <thead>
                                         <tr>
-                                            <th>Conductor</th>
-                                            <th>Fecha limite</th>
-                                            <th>Acciones</th>
+                                            <th>ID</th>
+                                            <th>Desde</th>
+                                            <th>Hasta</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {/* {vehiculo.alertas && vehiculo.alertas.map((vehiculo.alertas) => {
-                                            if (vehiculo.alertas.condicion === "Asignado") return null;
+                                        {vehiculo.conductoresPasados.map(element => {
                                             return (
-                                                <TurnosCard turno={turno} key={turno._id} api={Api} />)
-                                        })} */}
+                                                <tr>
+                                                    <td>
+                                                        {element.id}
+                                                    </td>
+                                                    <td>
+                                                        {element.fechaDesde}
+                                                    </td>
+                                                    <td>
+                                                        {element.fechaHasta}
+                                                    </td>
+                                                </tr>
+                                            );
+                                        })}
                                     </tbody>
-                                    {JSON.stringify(vehiculo.conductoresPasados[0])}
                                 </Table>
                             </Tab>
                         </Tabs>

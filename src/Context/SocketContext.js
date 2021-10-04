@@ -1,6 +1,4 @@
 import React, { createContext, useEffect, useState } from 'react'
-import axios from 'axios'
-import { Config } from '../Config'
 const SocketContext = createContext();
 function SocketContextProvider(props) {
     const [info, setInfo] = useState({});

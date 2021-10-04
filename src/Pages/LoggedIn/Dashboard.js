@@ -58,7 +58,7 @@ function Dashboard() {
             <Row>
               <Col>
                 <Container>
-                  <VehicleContainer vehiculos={data.vehiculos} />
+                  <VehicleContainer vehiculos={data.vehiculos} tareas={data.tareas}/>
                 </Container>
               </Col>
               <Col>
