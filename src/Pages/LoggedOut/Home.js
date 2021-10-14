@@ -1,27 +1,47 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import { Navbar, Button, Nav, Row, Col, Container } from 'react-bootstrap'
+import "./../../Styles/landing.css"
+import logo from './../../Components/Assets/logo.png'
 export class Home extends Component {
     render() {
         return (
             <div>
-                <p>
-                    Bienvenido a Tracking Trucks!
-                </p>
-                <p>
-                    <Link to="/login">
-                        Iniciar Sesion!
-                    </Link>
-                </p>
-                <p>
-                    <Link to="/registro">
-                        Registrate
-                    </Link>
-                </p>
-                <p>
-                    <Link to="/contacto">
-                        Contactanos
-                    </Link>
-                </p>
+                <Navbar>
+                    <Navbar.Brand href="/">
+                        <img
+                            src={logo}
+                            width="30"
+                            height="30"
+                            className="d-inline-block align-top"
+                            alt="React Bootstrap logo"
+                        />
+                        <b>TrackingTrucks</b>
+                    </Navbar.Brand>
+                    <Navbar.Collapse className="justify-content-end">
+                        <Button className="contacto" style={{ marginRigth: '10px', marginLeft: '10px', marginBottom: '5px' }} onClick={() => this.props.history.push("/contacto")}>
+                            Contactanos
+                        </Button>
+                        <Button className="login" style={{ marginRigth: '10px', marginLeft: '10px', marginBottom: '5px' }} onClick={() => this.props.history.push("/login")}>
+                            Iniciar Sesion
+                        </Button>
+                        <Nav style={{ marginLeft: '10px', marginRight: '10px' }} />
+                    </Navbar.Collapse>
+                </Navbar>
+                <Container>
+                    <Row>
+                        <Col>
+                        </Col>
+                        <Col>
+                            <Container>
+                                <b>
+                                    La mejor forma de gestionar tu flota
+                                </b>
+                            </Container>
+                        </Col>
+                    </Row>
+                </Container>
+
+
             </div>
         )
     }
