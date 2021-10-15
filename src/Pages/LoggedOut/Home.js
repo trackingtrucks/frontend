@@ -2,10 +2,11 @@ import React, { Component } from 'react'
 import { Navbar, Button, Nav, Row, Col, Container } from 'react-bootstrap'
 import "./../../Styles/landing.css"
 import logo from './../../Components/Assets/logo.png'
+import landing from './../../Components/Assets/landing.png'
 export class Home extends Component {
     render() {
         return (
-            <div>
+            <div >
                 <Navbar>
                     <Navbar.Brand href="/">
                         <img
@@ -27,12 +28,32 @@ export class Home extends Component {
                         <Nav style={{ marginLeft: '10px', marginRight: '10px' }} />
                     </Navbar.Collapse>
                 </Navbar>
-                <Container>
+                <Container className="pagina">
                     <Row>
                         <Col>
+                            <Container>
+                                <img
+                                    src={landing}
+                                    width="700"
+                                    height="700"
+                                    className="responsive-image__image"
+                                    alt="React Bootstrap logo"
+                                    style={{ padding: "10" }}
+                                />
+                            </Container>
                         </Col>
                         <Col>
-                            <Container>
+                            <Container style={{flex: "1"}}>
+                                <b>
+                                    La mejor forma de gestionar tu flota
+                                </b>
+                            </Container>
+                            <Container style={{flex: "1"}}>
+                                <b>
+                                    La mejor forma de gestionar tu flota
+                                </b>
+                            </Container>
+                            <Container style={{flex: "1"}}>
                                 <b>
                                     La mejor forma de gestionar tu flota
                                 </b>

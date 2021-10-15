@@ -10,3 +10,16 @@
     border-color: #830000!important;
     color: white!important; 
 }
+
+.pagina {
+    margin: 2%;
+}
+
+.responsive-image__image {
+    top: 20%;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}

@@ -48,7 +48,7 @@ function Dashboard() {
     // eslint-disable-next-line
   }, []);
   return (
-    <>
+    <div>
       <Socketio getCompanydata={getCompanydata} />
       <Navbar />
       {/* <Container> */}
@@ -106,7 +106,7 @@ function Dashboard() {
         </Tab>
       </Tabs>
       {/* </Container> */}
-    </>
+    </div>
   )
 }
 export default Dashboard
