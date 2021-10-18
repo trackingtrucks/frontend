@@ -11,8 +11,8 @@ export class Home extends Component {
                     <Navbar.Brand href="/">
                         <img
                             src={logo}
-                            width="30"
-                            height="30"
+                            width="70"
+                            height="70"
                             className="d-inline-block align-top"
                             alt="React Bootstrap logo"
                         />
