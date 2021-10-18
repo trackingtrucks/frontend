@@ -3,6 +3,7 @@ import { Navbar, Button, Nav, Row, Col, Container } from 'react-bootstrap'
 import "./../../Styles/landing.css"
 import logo from './../../Components/Assets/logo.png'
 import landing from './../../Components/Assets/landing.png'
+import NavbarCollapse from 'react-bootstrap/esm/NavbarCollapse'
 export class Home extends Component {
     render() {
         return (
@@ -16,8 +17,10 @@ export class Home extends Component {
                             className="d-inline-block align-top"
                             alt="React Bootstrap logo"
                         />
-                        <b>TrackingTrucks</b>
                     </Navbar.Brand>
+                    <NavbarCollapse>
+                        <b className="logo">TrackingTrucks</b>
+                    </NavbarCollapse>
                     <Navbar.Collapse className="justify-content-end">
                         <Button className="contacto" style={{ marginRigth: '10px', marginLeft: '10px', marginBottom: '5px' }} onClick={() => this.props.history.push("/contacto")}>
                             Contactanos
@@ -43,20 +46,22 @@ export class Home extends Component {
                             </Container>
                         </Col>
                         <Col>
-                            <Container style={{flex: "1"}}>
-                                <b>
-                                    La mejor forma de gestionar tu flota
-                                </b>
+                            <Container style={{ flex: "1" }}>
+                                <p>
+                                    <b className="slogan">
+                                        La mejor forma de gestionar su flota de camiones
+                                    </b>
+                                </p>
                             </Container>
-                            <Container style={{flex: "1"}}>
-                                <b>
-                                    La mejor forma de gestionar tu flota
-                                </b>
+                            <Container style={{ flex: "1" }}>
+                                <p className="bajada">
+                                    Para registrarse contactanos y completa el formulario
+                                </p>
                             </Container>
-                            <Container style={{flex: "1"}}>
-                                <b>
-                                    La mejor forma de gestionar tu flota
-                                </b>
+                            <Container style={{ flex: "1" }}>
+                                <Button className="login" style={{ alignItems: "center", marginRigth: '10px', marginLeft: '10px', marginBottom: '5px', marginTop: "50px"}} onClick={() => this.props.history.push("/registro")}>
+                                    Mas información
+                                </Button>
                             </Container>
                         </Col>
                     </Row>
