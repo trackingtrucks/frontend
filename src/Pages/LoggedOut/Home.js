@@ -59,7 +59,7 @@ export class Home extends Component {
                                 </p>
                             </Container>
                             <Container style={{ flex: "1" }}>
-                                <Button className="login" style={{ alignItems: "center", marginRigth: '10px', marginLeft: '10px', marginBottom: '5px', marginTop: "50px"}} onClick={() => this.props.history.push("/registro")}>
+                                <Button className="login" style={{ alignItems: "center", marginRigth: '10px', marginLeft: '10px', marginBottom: '5px', marginTop: "50px"}} onClick={() => this.props.history.push("/contacto")}>
                                     Mas información
                                 </Button>
                             </Container>
