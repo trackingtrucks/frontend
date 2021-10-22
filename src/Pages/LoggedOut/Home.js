@@ -46,23 +46,54 @@ export class Home extends Component {
                             </Container>
                         </Col>
                         <Col>
-                            <Container style={{ flex: "1" }}>
+                            {/* <Container className="center">
                                 <p>
                                     <b className="slogan">
                                         La mejor forma de gestionar su flota de camiones
                                     </b>
                                 </p>
                             </Container>
-                            <Container style={{ flex: "1" }}>
+                            <Container className="center">
                                 <p className="bajada">
                                     Para registrarse contactanos y completa el formulario
                                 </p>
                             </Container>
-                            <Container style={{ flex: "1" }}>
-                                <Button className="login" style={{ alignItems: "center", marginRigth: '10px', marginLeft: '10px', marginBottom: '5px', marginTop: "50px"}} onClick={() => this.props.history.push("/contacto")}>
+                            <Container className="center">
+                                <Button
+                                    className="info"
+                                    style={{ alignItems: "center", marginRigth: '10px', marginLeft: '10px', marginBottom: '5px', marginTop: "50px"}} 
+                                    onClick={() => this.props.history.push("/contacto")}
+                                >
                                     Mas información
                                 </Button>
-                            </Container>
+                            </Container> */}
+                                <Row>
+                                    <Container className="center">
+                                        <p>
+                                            <b className="slogan">
+                                                La mejor forma de gestionar su flota de camiones
+                                            </b>
+                                        </p>
+                                    </Container>
+                                </Row>
+                                <Row>
+                                    <Container className="center">
+                                        <p className="bajada">
+                                            Para registrarse contactanos y completa el formulario
+                                        </p>
+                                    </Container>
+                                </Row>
+                                <Row>
+                                    <Container className="center">
+                                        <Button
+                                            className="info"
+                                            style={{ alignItems: "center", marginRigth: '10px', marginLeft: '10px', marginBottom: '5px', marginTop: "50px" }}
+                                            onClick={() => this.props.history.push("/contacto")}
+                                        >
+                                            Mas información
+                                        </Button>
+                                    </Container>
+                                </Row>
                         </Col>
                     </Row>
                 </Container>

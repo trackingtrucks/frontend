@@ -42,4 +42,11 @@
     color: #989898;
     text-align: center;
     top: 50px;
+    margin: 100;
+}
+
+.info {
+    background-color: #830000!important;
+    border-color: #830000!important;
+    color: white!important; 
 }
