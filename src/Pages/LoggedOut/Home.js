@@ -31,7 +31,6 @@ export class Home extends Component {
                         <Nav style={{ marginLeft: '10px', marginRight: '10px' }} />
                     </Navbar.Collapse>
                 </Navbar>
-                <Container className="pagina">
                     <Row>
                         <Col>
                             <Container>
@@ -67,36 +66,47 @@ export class Home extends Component {
                                     Mas información
                                 </Button>
                             </Container> */}
-                                <Row>
-                                    <Container className="center">
-                                        <p>
-                                            <b className="slogan">
-                                                La mejor forma de gestionar su flota de camiones
-                                            </b>
-                                        </p>
-                                    </Container>
-                                </Row>
-                                <Row>
-                                    <Container className="center">
-                                        <p className="bajada">
-                                            Para registrarse contactanos y completa el formulario
-                                        </p>
-                                    </Container>
-                                </Row>
-                                <Row>
-                                    <Container className="center">
-                                        <Button
-                                            className="info"
-                                            style={{ alignItems: "center", marginRigth: '10px', marginLeft: '10px', marginBottom: '5px', marginTop: "50px" }}
-                                            onClick={() => this.props.history.push("/contacto")}
-                                        >
-                                            Mas información
-                                        </Button>
-                                    </Container>
-                                </Row>
+                            <Row>
+                                <Container className="center"
+                                    style={{marginTop: "14rem"}}
+                                >
+                                    <p>
+                                        <b className="slogan">
+                                            La mejor forma de gestionar su flota de camiones
+                                        </b>
+                                    </p>
+                                </Container>
+                            </Row>
+                            <Row>
+                                <Container className="center"
+                                    style={{marginTop: "2rem"}}
+                                >
+                                    <p className="bajada">
+                                        Para registrarse contactanos y completa el formulario
+                                    </p>
+                                </Container>
+                            </Row>
+                            <Row>
+                                <Container className="center"
+                                    style={{marginTop: "4rem"}}
+                                >
+                                    <Button
+                                        className="info"
+                                        style={{ 
+                                            alignItems: "center",
+                                            marginRigth: '10px', 
+                                            marginLeft: '10px', 
+                                            marginBottom: '5px', 
+                                            marginTop: "50px", 
+                                        }}
+                                        onClick={() => this.props.history.push("/contacto")}
+                                    >
+                                        Mas información
+                                    </Button>
+                                </Container>
+                            </Row>
                         </Col>
                     </Row>
-                </Container>
 
 
             </div>
