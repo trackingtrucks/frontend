@@ -172,7 +172,7 @@ function VehicleList({ vehiculo, tarea, accessToken, api, getCarros }) {
                                                 // <span key={element._id}>
                                                 //     {element.tipo} {' '}
                                                 // </span>
-                                                <tr>
+                                                <tr key={element._id}>
                                                     <td>{element.tipo}</td>
                                                     <td>{element.nivel}</td>
                                                     <td>{element._id}</td>
@@ -195,7 +195,7 @@ function VehicleList({ vehiculo, tarea, accessToken, api, getCarros }) {
                                     <tbody>
                                         {vehiculo.conductoresPasados.map(element => {
                                             return (
-                                                <tr>
+                                                <tr key={element.id}>
                                                     <td>
                                                         {element.id}
                                                     </td>

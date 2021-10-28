@@ -6,7 +6,10 @@ function SocketContextProvider(props) {
     useEffect(() => {
         setDatos(info.datos)
     }, [info])
-    return <SocketContext.Provider value={{ info, setInfo, datos }}>
+    setInterval(() => {
+        console.log(datos);
+    }, 1000);
+    return <SocketContext.Provider value={{ info, setInfo, datos, setDatos }}>
         {props.children}
     </SocketContext.Provider>
 }
