@@ -1,4 +1,6 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect, 
+    useContext 
+} from 'react';
 import io from 'socket.io-client';
 import makeToast from './Components/Toast';
 import { Config } from './Config';
@@ -8,7 +10,7 @@ import SocketContext from './Context/SocketContext';
 let socket;
 
 function SocketIO({getCompanydata}) {
-    const { setDatos } = useContext(SocketContext);
+    const { agregarDatos } = useContext(SocketContext);
     
     const ENDPOINT = Config.API_URL;
     useEffect(() => {
@@ -53,8 +55,7 @@ function SocketIO({getCompanydata}) {
         socket.on('datos', (datos) => {
             //alert("NUEVO MENSAJETE: " + message);
             //makeToast(6000, 'warning', datos.message);
-            console.log(datos);
-            // setDatos(datos);
+            agregarDatos(datos);
         });
         socket.on('entrega', (entrega) => {
             //alert("NUEVO MENSAJETE: " + message);
@@ -62,6 +63,7 @@ function SocketIO({getCompanydata}) {
             console.log(entrega);
             makeToast(6000, 'info', entrega);
         });
+        // eslint-disable-next-line
     }, []);
     return (
         <></>

@@ -23,17 +23,20 @@ import GestoresContainer from '../../Components/usuarios/gestores/GestoresContai
 
 function Dashboard() {
   const { saveLocalStorage } = useContext(AuthContext);
-  const { setInfo } = useContext(SocketContext);
+  const SocketContextFunction = useContext(SocketContext);
   const [key, setKey] = useState(localStorage.getItem('tab') || 'main');
   const [data, setData] = useState({})
 
 
 
   const getCompanydata = async () => {
+    console.log("Getting Company Data");
     const { data } = await Api.getCompanydata()
     console.info(data);
     setData(data);
-    setInfo(data);
+    SocketContextFunction.setInfo(data);
+    console.log(data.datos);
+    SocketContextFunction.setDatos(data.datos)
   }
 
   const guardarKey = (k) => {

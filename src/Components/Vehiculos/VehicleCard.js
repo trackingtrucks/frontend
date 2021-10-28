@@ -18,7 +18,8 @@ function VehicleList({ vehiculo, tarea, accessToken, api, getCarros }) {
             setDatitos(datos.filter((dato) => dato.vehiculo === vehiculo._id));
         } 
         // eslint-disable-next-line
-    }, [datos])
+    }, [datos]);
+    
     useEffect(() => {
         if (datos != null) {
         } // eslint-disable-next-line
