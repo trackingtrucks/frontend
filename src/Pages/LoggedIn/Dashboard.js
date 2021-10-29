@@ -21,12 +21,17 @@ import '../../Styles/mapa.css';
 import GestoresContainer from '../../Components/usuarios/gestores/GestoresContainer';
 
 function Dashboard() {
+  const [a, setA] = useState(0)
   const { saveLocalStorage } = useContext(AuthContext);
   const SocketContextFunction = useContext(SocketContext);
   const [key, setKey] = useState(localStorage.getItem('tab') || 'main');
   const data = SocketContextFunction.getInfo();
-
-
+  useEffect(() => {
+    setInterval(() => {
+      setA(a + 1) //no me maten, es la unica manera
+    }, 200);
+    // eslint-disable-next-line
+  }, [])
   const getCompanydata = async () => {
     SocketContextFunction.getCompanyData();
   }

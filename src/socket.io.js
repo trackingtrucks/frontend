@@ -1,5 +1,6 @@
-import React, { useEffect, 
-    useContext 
+import React, {
+    useEffect,
+    useContext
 } from 'react';
 import io from 'socket.io-client';
 import makeToast from './Components/Toast';
@@ -10,9 +11,11 @@ import SocketContext from './Context/SocketContext';
 let socket;
 
 function SocketIO() {
-    const { agregarDatos } = useContext(SocketContext);
-    
+    const SocketContextFunction = useContext(SocketContext);
+    // const Datos = SocketContextFunction.getDatos();
+    // const Info = SocketContextFunction.getInfo();
     const ENDPOINT = Config.API_URL;
+    // const [a, setA] = useState(1)
     useEffect(() => {
         var connectionOptions = {
             "force new connection": true,
@@ -55,7 +58,10 @@ function SocketIO() {
         socket.on('datos', (datos) => {
             //alert("NUEVO MENSAJETE: " + message);
             //makeToast(6000, 'warning', datos.message);
-            agregarDatos(datos);
+            // agregarDatos(datos);
+            // setA(a + 1)
+            SocketContextFunction.agregarDatos(datos);
+            // setA(a + 1)
         });
         socket.on('entrega', (entrega) => {
             //alert("NUEVO MENSAJETE: " + message);
