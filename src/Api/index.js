@@ -9,13 +9,13 @@ export const login = async ({ email, password, set }) => {
         email,
         password
     });
-    if (response.data.perfil.rol === "admin"){
-        cerrarSesion({accessToken: response.data.accessToken, refreshToken: response.data.refreshToken}); 
+    if (response.data.perfil.rol === "admin") {
+        cerrarSesion({ accessToken: response.data.accessToken, refreshToken: response.data.refreshToken });
         alert("Aplicacion disponible solo para Gestores!")
         return window.location.replace("https://trackingtrucks-admin.netlify.app");
     };
-    if (response.data.perfil.rol === "conductor"){
-        cerrarSesion({accessToken: response.data.accessToken, refreshToken: response.data.refreshToken}); 
+    if (response.data.perfil.rol === "conductor") {
+        cerrarSesion({ accessToken: response.data.accessToken, refreshToken: response.data.refreshToken });
         return alert("Para poder iniciar sesion como conductor, por favor dirigase a la aplicacion para moviles")
     }
     set({
@@ -187,7 +187,7 @@ export const crearTurno = async ({ codigoDeTurno, fechaYhora, nombreVendedor, co
     return response;
 }
 
-export const getUsuario = async ({id}) => {
+export const getUsuario = async ({ id }) => {
     const response = await API.get('/company/usuario', {
         body: {
             id

@@ -17,7 +17,6 @@ import PlayGround from '../../Components/Playground'
 
 // -FUNCIONES-
 import { Container, Tabs, Tab, Col, Row } from 'react-bootstrap';
-import * as Api from '../../Api/index';
 import '../../Styles/mapa.css';
 import GestoresContainer from '../../Components/usuarios/gestores/GestoresContainer';
 
@@ -25,18 +24,11 @@ function Dashboard() {
   const { saveLocalStorage } = useContext(AuthContext);
   const SocketContextFunction = useContext(SocketContext);
   const [key, setKey] = useState(localStorage.getItem('tab') || 'main');
-  const [data, setData] = useState({})
-
+  const data = SocketContextFunction.getInfo();
 
 
   const getCompanydata = async () => {
-    console.log("Getting Company Data");
-    const { data } = await Api.getCompanydata()
-    console.info(data);
-    setData(data);
-    SocketContextFunction.setInfo(data);
-    console.log(data.datos);
-    SocketContextFunction.setDatos(data.datos)
+    SocketContextFunction.getCompanyData();
   }
 
   const guardarKey = (k) => {
@@ -52,7 +44,7 @@ function Dashboard() {
   }, []);
   return (
     <div>
-      <Socketio getCompanydata={getCompanydata} />
+      <Socketio />
       <Navbar />
       {/* <Container> */}
       <Tabs id="tabs" activeKey={key} onSelect={(k) => guardarKey(k)} className="mb-3">
@@ -61,7 +53,7 @@ function Dashboard() {
             <Row>
               <Col>
                 <Container>
-                  <VehicleContainer vehiculos={data.vehiculos} tareas={data.tareas}/>
+                  <VehicleContainer vehiculos={data.vehiculos} tareas={data.tareas} />
                 </Container>
               </Col>
               <Col>

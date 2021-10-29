@@ -9,7 +9,7 @@ import SocketContext from './Context/SocketContext';
 
 let socket;
 
-function SocketIO({getCompanydata}) {
+function SocketIO() {
     const { agregarDatos } = useContext(SocketContext);
     
     const ENDPOINT = Config.API_URL;

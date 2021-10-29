@@ -1,19 +1,42 @@
-import React, { createContext, useEffect, useState } from 'react'
+import React, { createContext, useState } from 'react'
+import * as Api from '../Api'
 const SocketContext = createContext();
-
 function SocketContextProvider(props) {
     const [info, setInfo] = useState({});
     const [datos, setDatos] = useState([])
-    // useEffect(() => {
-    //     setDatos(info.datos)
-    // }, [info])
+
     const agregarDatos = (newData) => {
         console.log(newData.datos);
-        console.log(datos);
+        console.log(getDatos());
         // setDatos(newData.datos)
     }
 
-    return <SocketContext.Provider value={{ info, setInfo, datos, agregarDatos, setDatos }}>
+    function setDatos2(datosnuevos) {
+        if (datosnuevos) { setDatos(datosnuevos) };
+    }
+    function setInfo2(infonueva) {
+        if (infonueva) { setInfo(infonueva) }
+    }
+    function getDatos() {
+        return datos;
+    }
+    function getInfo() {
+        return info;
+    }
+
+    async function getCompanyData() {
+        console.log("Getting Company Data");
+        const { data } = await Api.getCompanydata()
+        const datitos = data.datos;
+        console.warn(data);
+        setInfo2(data);
+        console.log(getInfo());
+        console.warn(datitos);
+        setDatos2(datitos)
+        console.log(getDatos());
+    }
+
+    return <SocketContext.Provider value={{ getInfo, setInfo, getDatos, agregarDatos, getCompanyData }}>
         {props.children}
     </SocketContext.Provider>
 }
