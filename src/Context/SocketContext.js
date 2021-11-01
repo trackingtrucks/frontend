@@ -13,9 +13,10 @@ function SocketContextProvider(props) {
     }
 
     function addDatos2(datosnuevos) {
-        console.log(datos);
-        datos.push(datosnuevos)
-        console.log(datos);
+        // console.log(datos);
+        // datos.push(datosnuevos)
+        // console.log(datos);
+        getCompanyData();
     }
     function setInfo2(infonueva) {
         info = infonueva;

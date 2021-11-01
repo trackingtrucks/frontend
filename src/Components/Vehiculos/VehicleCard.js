@@ -1,3 +1,4 @@
+// import { render } from '@testing-library/react';
 import { React, useState, useContext, useEffect } from 'react'
 import { Col, Card, Modal, Container, Tabs, Tab, Table } from 'react-bootstrap';
 
@@ -9,17 +10,17 @@ import ModalTareas from '../Navbar/ModalTareas';
 function VehicleList({ vehiculo, tarea, accessToken, api, getCarros }) {
     const [show, setShow] = useState(false);
     const [datitos, setDatitos] = useState(null)
-    const { datos } = useContext(SocketContext);
+    const { datos, getDatos } = useContext(SocketContext);
     // console.log(vehiculo)
     const [key, setKey] = useState('Nivel de nafta');
-    
+
     useEffect(() => {
         if (datos !== undefined) {
-            setDatitos(datos.filter((dato) => dato.vehiculo === vehiculo._id));
-        } 
+            setDatitos(getDatos().filter((dato) => dato.vehiculo === vehiculo._id));
+        }
         // eslint-disable-next-line
     }, [datos]);
-    
+
     useEffect(() => {
         if (datos != null) {
         } // eslint-disable-next-line
@@ -28,6 +29,7 @@ function VehicleList({ vehiculo, tarea, accessToken, api, getCarros }) {
     function handleShow() {
         setShow(true);
     }
+
 
 
 
