@@ -55,13 +55,15 @@ function Dashboard() {
             <Row>
               <Col>
                 <Container>
-                  <VehicleContainer vehiculos={data.vehiculos} tareas={data.tareas}  datos={data.datos}/>
+                  <VehicleContainer vehiculos={data.vehiculos} tareas={data.tareas} datos={data.datos} />
                 </Container>
               </Col>
               <Col>
                 <Container>
 
-                  <TurnosContainer turnos={data.turnos}/>
+                  <TurnosContainer turnos={data.turnos} />
+                  <br />
+                  <CrearTurno />
                 </Container>
               </Col>
             </Row>
@@ -69,7 +71,7 @@ function Dashboard() {
         </Tab>
         <Tab eventKey="vehiculos" title="Vehiculos">
           <Container>
-            <VehicleContainer vehiculos={data.vehiculos} tareas={data.tareas} datos={data.datos}/>
+            <VehicleContainer vehiculos={data.vehiculos} tareas={data.tareas} datos={data.datos} />
             <br />
             {data.vehiculos && data.vehiculos.length !== 0 && <EliminarVehiculo />}
           </Container>

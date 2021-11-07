@@ -226,3 +226,18 @@ export const nuevaTarea = async ({ vehiculo, tipo, cantidadCada, cantidadUltima,
     return response;
 }
 
+export const restablecerContra = async ({ email }) => {
+    const response = await API.post(`/user/restablecer`, {
+        email
+    });
+    return response;
+}
+
+
+export const cambiarContraseñaConToken = async ({ password, token }) => {
+    const response = await API.patch(`/user/cambiar/contrasena/token`, {
+        password,
+        token
+    })
+    return response;
+}

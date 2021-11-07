@@ -23,7 +23,25 @@ function Login() {
             console.error(error?.response?.data?.message || error.message);
         }
 
+
+
     }
+
+    async function pedircontra({email}) {
+        
+        try {
+            const response = await Api.restablecerContra({ email })
+            console.log(response);
+            makeToast(6000, 'success', "mail enviado")
+            
+        } catch (error) {
+            makeToast(6000, 'error', error?.response?.data?.message || error.message)
+            console.error(error?.response?.data?.message || error.message);
+        }
+    }
+
+
+    
     const showPassIcon = !showPassword ? <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-eye-fill" viewBox="0 0 16 16">
         <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z" />
         <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z" />
@@ -62,6 +80,8 @@ function Login() {
                                 </OverlayTrigger>
                             </InputGroup>
                         </Form.Group>
+                        <br />
+                        <Button variant="link" onClick={()=> pedircontra({email})}>¿Olvidaste tu contraseña?</Button>
                         <br />
                         <Button variant="primary" type="submit" disabled={disabled}>
                             {!disabled && "Entrar"}

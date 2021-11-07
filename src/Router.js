@@ -8,6 +8,7 @@ import Login from './Pages/LoggedOut/Login';
 import Registro from './Pages/LoggedOut/Registro';
 import Home from './Pages/LoggedOut/Home'
 import Contacto from './Pages/LoggedOut/Contacto'
+import Restablecer from './Pages/LoggedOut/Restablecer';
 
 //Logged in
 import Dashboard from './Pages/LoggedIn/Dashboard';
@@ -22,6 +23,7 @@ export default function Router() {
             <Switch>
                 <Route exact path="/registro" component={Registro} />
                 <Route exact path="/token" component={SetToken} />
+                <Route exact path="/restablecer" component={Restablecer} />
                 {loggedIn === false && loading === false && (
                     <>
                         <Route exact path="/" component={Home} />
