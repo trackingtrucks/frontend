@@ -9,11 +9,8 @@ import Socketio from '../../socket.io'
 import VehicleContainer from '../../Components/Vehiculos/VehicleContainer';
 import ConductoresContainer from '../../Components/usuarios/Conductores/ConductoresContainer';
 import TurnosContainer from '../../Components/Turnos/TurnosContainer';
-import Mapa from '../../Components/Mapa/Mapa';
-import SettingsContainers from '../../Components/Settings/SettingsContainer';
 import CrearTurno from '../../Components/Turnos/CrearTurno';
 import EliminarVehiculo from '../../Components/Vehiculos/EliminarVehiculo';
-import PlayGround from '../../Components/Playground'
 
 // -FUNCIONES-
 import { Container, Tabs, Tab, Col, Row } from 'react-bootstrap';
@@ -63,7 +60,8 @@ function Dashboard() {
               </Col>
               <Col>
                 <Container>
-                  <Mapa></Mapa>
+
+                  <TurnosContainer turnos={data.turnos}/>
                 </Container>
               </Col>
             </Row>
@@ -94,16 +92,6 @@ function Dashboard() {
             <Mapa className="map-container"></Mapa>
           </Container>
         </Tab> */}
-        <Tab eventKey="settings" title="Configuracion">
-          <Container>
-            <SettingsContainers AuthContext={AuthContext} />
-          </Container>
-        </Tab>
-        <Tab eventKey="playground" title="Pruebas">
-          <Container>
-            <PlayGround />
-          </Container>
-        </Tab>
       </Tabs>
       {/* </Container> */}
     </div>

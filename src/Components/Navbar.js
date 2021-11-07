@@ -1,5 +1,5 @@
-import React, { useContext } from 'react'
-import { Nav, Navbar, Button, OverlayTrigger, Tooltip } from 'react-bootstrap'
+import React, { useContext, useState } from 'react'
+import { Nav, Navbar, NavDropdown, Modal } from 'react-bootstrap'
 import AuthContext from '../Context/AuthContext';
 import * as Api from '../Api/index';
 import '../Styles/navbar.css';
@@ -7,13 +7,20 @@ import logo from './Assets/logo.png'
 import ModalUsuario from './Navbar/ModalUsuario'
 import ModalVehiculo from './Navbar/ModalVehiculo'
 import ModalTareas from './Navbar/ModalTareas'
+import SettingsContainers from './Settings/SettingsContainer';
+import { Button } from 'bootstrap';
 function NavbarComponent() {
     const { clearLocalStorage, perfil } = useContext(AuthContext);
+    const [show, setShow] = useState(false);
     const cerrarSesion = async () => {
         await Api.cerrarSesion()
         clearLocalStorage();
         window.location.reload();
     }
+    function handleShow() {
+        setShow(true);
+    }
+
 
     return (
         <>
@@ -32,11 +39,10 @@ function NavbarComponent() {
                 <Nav className="mr-auto">
                 </Nav>
                 <Navbar.Collapse className="justify-content-end">
-                    <ModalTareas/>
+                    <ModalTareas />
                     <ModalUsuario Api={Api} />
                     <ModalVehiculo Api={Api} />
-                    <Button variant="outline-primary" style={{ marginRigth: '10px', marginLeft: '10px', marginBottom: '5px' }} onClick={() => cerrarSesion()}>Cerrar sesión</Button>
-                    <Navbar.Text style={{ marginLeft: '10px', marginRight: '10px' }}>
+                    {/* <Navbar.Text style={{ marginLeft: '10px', marginRight: '10px' }}>
                         {perfil && <OverlayTrigger
                             key={perfil._id}
                             placement="bottom"
@@ -48,9 +54,23 @@ function NavbarComponent() {
                         >
                             <strong>{perfil.nombre} {perfil?.apellido}</strong>
                         </OverlayTrigger>}
-                    </Navbar.Text>
+                        <NavDropdown id="nav-dropdown">
+
+                        </NavDropdown>
+                    </Navbar.Text> */}
+                    <NavDropdown title={perfil.email} id="nav-dropdown">
+                        <NavDropdown.Item onClick={() => handleShow()}>Configuracion</NavDropdown.Item>
+                        <NavDropdown.Item onClick={() => cerrarSesion()}>Cerrar Sesion</NavDropdown.Item>
+                    </NavDropdown>
                 </Navbar.Collapse>
             </Navbar>
+
+            <Modal show={show} onHide={() => setShow(false)}>
+                <SettingsContainers AuthContext={AuthContext} />
+                <Modal.Footer>
+                    <Button onClick={() => setShow(false)} />
+                </Modal.Footer>
+            </Modal>
         </>
     )
 }
