@@ -21,6 +21,7 @@ export class Restablecer extends Component {
         try {
             const res = await Api.cambiarContraseñaConToken({password:this.state.password, token:this.state.token})
             console.log(res)
+            this.props.history.push("/login");
         } catch (error) {
             //usar sweetalert2
             makeToast('error', error.response.data.message || error.message)
@@ -37,7 +38,7 @@ export class Restablecer extends Component {
                         <Form onSubmit={this.Submit} autoComplete='off'>
                             
                             <Form.Group controlId="password">
-                                <Form.Label>Password</Form.Label>
+                                <Form.Label>Contraseña nueva</Form.Label>
                                 <Form.Control required value={this.state.password} onChange={this.Change} type="password" placeholder="**********" />
                             </Form.Group>
                             
