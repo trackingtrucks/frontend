@@ -10,16 +10,15 @@ import ModalTareas from '../Navbar/ModalTareas';
 function VehicleList({ vehiculo, datos }) {
     const [show, setShow] = useState(false);
     const [datitos, setDatitos] = useState([])
-    if (datitos === null) {
-        console.log("wawa " + vehiculo._id);
-    }
     // const { getDatos } = useContext(SocketContext);
     // console.log(vehiculo)
     const [key, setKey] = useState('Nivel de nafta');
 
     useEffect(() => {
-        // console.log(datos);
-        setDatitos(datos.filter((dato) => dato.vehiculo === vehiculo._id));
+        console.log(datos);
+        if(datos !== undefined) {
+            setDatitos(datos.filter((dato) => dato.vehiculo === vehiculo._id));
+        }
         // eslint-disable-next-line
     }, [datos]);
 

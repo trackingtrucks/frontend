@@ -5,32 +5,24 @@ function SocketContextProvider(props) {
     const [info, setInfo] = useState({});
     const [datos, setDatos] = useState([])
 
-    function setDatos2(datosnuevos) {
-        if (datosnuevos) { setDatos(datosnuevos) };
-    }
-    function setInfo2(infonueva) {
-        if (infonueva) { setInfo(infonueva) }
-    }
     function getDatos() {
         return datos;
     }
     function getInfo() {
         return info;
     }
-
+     const agregarDatos = () => {
+        getCompanyData()
+    }
     async function getCompanyData() {
         console.log("Getting Company Data");
         const { data } = await Api.getCompanydata()
         const datitos = data.datos;
-        // console.info(data);
-        setInfo2(data);
-        // console.log(getInfo());
-        // console.info(datitos);
-        setDatos2(datitos)
-        // console.log(getDatos());
+        setInfo(data);
+        setDatos(datitos)
     }
 
-    return <SocketContext.Provider value={{ getInfo, setInfo, getDatos, getCompanyData }}>        {props.children}
+    return <SocketContext.Provider value={{ agregarDatos, getInfo, setInfo, getDatos, getCompanyData, datos, setDatos }}>        {props.children}
     </SocketContext.Provider>
 }
 export default SocketContext;

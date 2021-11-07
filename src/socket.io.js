@@ -1,17 +1,17 @@
 import React, {
     useEffect,
-    // useContext
+    useContext
 } from 'react';
 import io from 'socket.io-client';
 import makeToast from './Components/Toast';
 import { Config } from './Config';
 import { accessToken } from './Context/AuthContext';
-// import SocketContext from './Context/SocketContext';
+import SocketContext from './Context/SocketContext';
 
 let socket;
 
 function SocketIO() {
-    // const SocketContextFunction = useContext(SocketContext);
+    const {agregarDatos} = useContext(SocketContext);
     // const Datos = SocketContextFunction.getDatos();
     // const Info = SocketContextFunction.getInfo();
     const ENDPOINT = Config.API_URL;
@@ -55,13 +55,11 @@ function SocketIO() {
             makeToast(6000, 'warning', alerta.message);
         });
 
-        socket.on('datos', (datos) => {
+        socket.on('datos', (nuevosDatos) => {
             //alert("NUEVO MENSAJETE: " + message);
-            makeToast(12000, 'info', "Nuevos datos del vehiculo " + datos.patente + " para consultarlos, refresca la pagina!");
-            console.log(datos);
-            // agregarDatos(datos);
-            // setA(a + 1)
-            // setA(a + 1)
+            makeToast(12000, 'info', "Nuevos datos del vehiculo " + nuevosDatos.patente + "! \nVe a la pestana Vehiculos para consultarlos");
+            console.log(nuevosDatos.datos);
+            agregarDatos();
         });
         socket.on('entrega', (entrega) => {
             //alert("NUEVO MENSAJETE: " + message);
