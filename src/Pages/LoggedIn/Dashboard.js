@@ -18,17 +18,17 @@ import '../../Styles/mapa.css';
 import GestoresContainer from '../../Components/usuarios/gestores/GestoresContainer';
 
 function Dashboard() {
-  const [a, setA] = useState(0)
+  // const [a, setA] = useState(0)
   const { saveLocalStorage } = useContext(AuthContext);
   const SocketContextFunction = useContext(SocketContext);
   const [key, setKey] = useState(localStorage.getItem('tab') || 'main');
   const data = SocketContextFunction.getInfo();
-  useEffect(() => {
-    setInterval(() => {
-      setA(a + 1) //no me maten, es la unica manera
-    }, 200);
-    // eslint-disable-next-line
-  }, [])
+  // useEffect(() => {
+  //   setInterval(() => {
+  //     setA(a + 1) //no me maten, es la unica manera
+  //   }, 200);
+  //   // eslint-disable-next-line
+  // }, [])
   const getCompanydata = async () => {
     SocketContextFunction.getCompanyData();
   }
@@ -55,7 +55,7 @@ function Dashboard() {
             <Row>
               <Col>
                 <Container>
-                  <VehicleContainer vehiculos={data.vehiculos} tareas={data.tareas} />
+                  <VehicleContainer vehiculos={data.vehiculos} tareas={data.tareas}  datos={data.datos}/>
                 </Container>
               </Col>
               <Col>
@@ -69,7 +69,7 @@ function Dashboard() {
         </Tab>
         <Tab eventKey="vehiculos" title="Vehiculos">
           <Container>
-            <VehicleContainer vehiculos={data.vehiculos} />
+            <VehicleContainer vehiculos={data.vehiculos} tareas={data.tareas} datos={data.datos}/>
             <br />
             {data.vehiculos && data.vehiculos.length !== 0 && <EliminarVehiculo />}
           </Container>

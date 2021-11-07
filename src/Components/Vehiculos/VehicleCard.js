@@ -1,23 +1,25 @@
 // import { render } from '@testing-library/react';
-import { React, useState, useContext, useEffect } from 'react'
+import { React, useState, useEffect } from 'react'
 import { Col, Card, Modal, Container, Tabs, Tab, Table } from 'react-bootstrap';
 
 import { Line } from 'react-chartjs-2';
-import SocketContext from '../../Context/SocketContext';
+// import SocketContext from '../../Context/SocketContext';
 import ModalTareas from '../Navbar/ModalTareas';
 
 
-function VehicleList({ vehiculo, tarea, accessToken, api, getCarros }) {
+function VehicleList({ vehiculo, datos }) {
     const [show, setShow] = useState(false);
-    const [datitos, setDatitos] = useState(null)
-    const { datos, getDatos } = useContext(SocketContext);
+    const [datitos, setDatitos] = useState([])
+    if (datitos === null) {
+        console.log("wawa " + vehiculo._id);
+    }
+    // const { getDatos } = useContext(SocketContext);
     // console.log(vehiculo)
     const [key, setKey] = useState('Nivel de nafta');
 
     useEffect(() => {
-        if (datos !== undefined) {
-            setDatitos(getDatos().filter((dato) => dato.vehiculo === vehiculo._id));
-        }
+        // console.log(datos);
+        setDatitos(datos.filter((dato) => dato.vehiculo === vehiculo._id));
         // eslint-disable-next-line
     }, [datos]);
 
@@ -52,7 +54,7 @@ function VehicleList({ vehiculo, tarea, accessToken, api, getCarros }) {
                 ],
             };
         } catch (error) {
-            console.log("aun no hay datos")
+            // console.log("aun no hay datos")
         }
     }
 
@@ -140,22 +142,26 @@ function VehicleList({ vehiculo, tarea, accessToken, api, getCarros }) {
                         {JSON.stringify(vehiculo.condutorActual)}
                     </Container>
                     <Container>
-                        Informacion:
+                        {datitos.length !== 0 ? <>
+                            Informacion:
+                            <Tabs id="tabs" activeKey={key} onSelect={(k) => setKey(k)} className="mb-3">
+                                <Tab eventKey="Nivel de nafta" title="Nivel de nafta">
+                                    <LineChart data={datitos && datitos[datitos.length - 1] && datitos[datitos.length - 1].data && datitos[datitos.length - 1].data.fuelLevel} label="%" />
+                                </Tab>
+                                <Tab eventKey="Velocidad" title="Velocidad">
+                                    <LineChart data={datitos && datitos[datitos.length - 1] && datitos[datitos.length - 1].data && datitos[datitos.length - 1].data.speed} label="km/h" />
+                                </Tab>
+                                <Tab eventKey="Revoluciones por minuto" title="Revoluciones por minuto">
+                                    <LineChart data={datitos && datitos[datitos.length - 1] && datitos[datitos.length - 1].data && datitos[datitos.length - 1].data.RPM} label="RPM" />
+                                </Tab>
+                                <Tab eventKey="Temperatura del liquido refrigerante" title="Temperatura del liquido refrigerante">
+                                    <LineChart data={datitos && datitos[datitos.length - 1] && datitos[datitos.length - 1].data && datitos[datitos.length - 1].data.coolantTemperature} label="°C" />
+                                </Tab>
+                            </Tabs>
+                        </> : <> <br /><br /> <h3>No hay datos para este vehiculo</h3> <h5>Asigna a un conductor y conectate para subir la informacion!</h5></>}
+                        
                         <br />
-                        <Tabs id="tabs" activeKey={key} onSelect={(k) => setKey(k)} className="mb-3">
-                            <Tab eventKey="Nivel de nafta" title="Nivel de nafta">
-                                <LineChart data={datitos && datitos[datitos.length - 1] && datitos[datitos.length - 1].data && datitos[datitos.length - 1].data.fuelLevel} label="%" />
-                            </Tab>
-                            <Tab eventKey="Velocidad" title="Velocidad">
-                                <LineChart data={datitos && datitos[datitos.length - 1] && datitos[datitos.length - 1].data && datitos[datitos.length - 1].data.speed} label="km/h" />
-                            </Tab>
-                            <Tab eventKey="Revoluciones por minuto" title="Revoluciones por minuto">
-                                <LineChart data={datitos && datitos[datitos.length - 1] && datitos[datitos.length - 1].data && datitos[datitos.length - 1].data.RPM} label="RPM" />
-                            </Tab>
-                            <Tab eventKey="Temperatura del liquido refrigerante" title="Temperatura del liquido refrigerante">
-                                <LineChart data={datitos && datitos[datitos.length - 1] && datitos[datitos.length - 1].data && datitos[datitos.length - 1].data.coolantTemperature} label="°C" />
-                            </Tab>
-                        </Tabs>
+
                     </Container>
                     <br />
                     <Container>

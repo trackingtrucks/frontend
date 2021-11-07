@@ -1,17 +1,17 @@
 import React, {
     useEffect,
-    useContext
+    // useContext
 } from 'react';
 import io from 'socket.io-client';
 import makeToast from './Components/Toast';
 import { Config } from './Config';
 import { accessToken } from './Context/AuthContext';
-import SocketContext from './Context/SocketContext';
+// import SocketContext from './Context/SocketContext';
 
 let socket;
 
 function SocketIO() {
-    const SocketContextFunction = useContext(SocketContext);
+    // const SocketContextFunction = useContext(SocketContext);
     // const Datos = SocketContextFunction.getDatos();
     // const Info = SocketContextFunction.getInfo();
     const ENDPOINT = Config.API_URL;
@@ -39,11 +39,11 @@ function SocketIO() {
         });
 
         socket.on("disconnect", () => {
-            console.log('%c Desonexion!! ', 'color: #ff0000; font-weight: bold;');
+            console.log('%cDesonexion!! ', 'color: #ff0000; font-weight: bold;');
         });
 
         socket.on('connect', () => {
-            console.log('%c Conexion!! ', 'color: #00ff00; font-weight: bold;');
+            console.log('%cConexion!! ', 'color: #00ff00; font-weight: bold;');
         });
 
         socket.on('notificacion', (message) => {
@@ -57,10 +57,10 @@ function SocketIO() {
 
         socket.on('datos', (datos) => {
             //alert("NUEVO MENSAJETE: " + message);
-            //makeToast(6000, 'warning', datos.message);
+            makeToast(12000, 'info', "Nuevos datos del vehiculo " + datos.patente + " para consultarlos, refresca la pagina!");
+            console.log(datos);
             // agregarDatos(datos);
             // setA(a + 1)
-            SocketContextFunction.agregarDatos(datos);
             // setA(a + 1)
         });
         socket.on('entrega', (entrega) => {

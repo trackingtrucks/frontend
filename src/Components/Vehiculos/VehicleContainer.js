@@ -2,12 +2,12 @@ import * as Api from '../../Api';
 import {Row} from 'react-bootstrap';
 import VehicleCard from './VehicleCard'
 
-function VehicleContainer({vehiculos, tareas}) {
+function VehicleContainer({vehiculos, tareas, datos}) {
     return (
             <Row xs={1} md={2} className="g-4">
             {vehiculos && vehiculos.map((vehiculo) => {
                 return (
-                    <VehicleCard vehiculo={vehiculo} tarea={tareas} key={vehiculo._id} api={Api}/>)
+                    <VehicleCard vehiculo={vehiculo} tarea={tareas} key={vehiculo._id} api={Api} datos={datos}/>)
             })}
             {vehiculos && vehiculos.length === 0 && <div>
                 <br />

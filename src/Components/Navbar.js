@@ -8,7 +8,6 @@ import ModalUsuario from './Navbar/ModalUsuario'
 import ModalVehiculo from './Navbar/ModalVehiculo'
 import ModalTareas from './Navbar/ModalTareas'
 import SettingsContainers from './Settings/SettingsContainer';
-import { Button } from 'bootstrap';
 function NavbarComponent() {
     const { clearLocalStorage, perfil } = useContext(AuthContext);
     const [show, setShow] = useState(false);
@@ -65,11 +64,14 @@ function NavbarComponent() {
                 </Navbar.Collapse>
             </Navbar>
 
-            <Modal show={show} onHide={() => setShow(false)}>
+            <Modal show={show} onHide={() => setShow(false)} size="xl">
+                <Modal.Header closeButton closeLabel="">
+                    <Modal.Title>Configuracion de la cuenta</Modal.Title>
+                </Modal.Header>
                 <SettingsContainers AuthContext={AuthContext} />
-                <Modal.Footer>
+                {/* <Modal.Footer>
                     <Button onClick={() => setShow(false)} />
-                </Modal.Footer>
+                </Modal.Footer> */}
             </Modal>
         </>
     )
