@@ -22,6 +22,7 @@ function Dashboard() {
   const { saveLocalStorage } = useContext(AuthContext);
   const SocketContextFunction = useContext(SocketContext);
   const [key, setKey] = useState(localStorage.getItem('tab') || 'main');
+  const [key2, setKey2] = useState("gestores");
   const data = SocketContextFunction.getInfo();
   // useEffect(() => {
   //   setInterval(() => {
@@ -85,8 +86,20 @@ function Dashboard() {
         </Tab>
         <Tab eventKey="usuarios" title="Usuarios">
           <Container>
-            <ConductoresContainer conductores={data.conductores} />
-            <GestoresContainer gestores={data.gestores} />
+            {/* <ConductoresContainer conductores={data.conductores} />
+            <GestoresContainer gestores={data.gestores} /> */}
+            <Tabs id="tabs" activeKey={key2} onSelect={(k) => setKey2(k)} className="center" style={{ fontSize: '25px' }}>
+              <Tab eventKey="gestores" title="Gestores">
+                <br />
+                <GestoresContainer gestores={data.gestores} />
+              </Tab>
+              <Tab eventKey="conductores" title="Conductores">
+                <br />
+                <ConductoresContainer conductores={data.conductores} />
+              </Tab>
+            </Tabs>
+
+
           </Container>
         </Tab>
         {/* <Tab eventKey="mapa" title="Mapa">

@@ -74,7 +74,7 @@ export class Registro extends Component {
                                 <Form.Control required value={this.state.codigo} onChange={this.Change} placeholder="xxxxxxxxxxxxx" />
                             </Form.Group>
                             <br/>
-                            <Button variant="primary" type="submit">
+                            <Button variant="outline-primary" style={{ marginRigth: '10px', marginLeft: '10px', marginBottom: '5px' }} type="submit">
                                 Enviar
                             </Button>
                         </Form>

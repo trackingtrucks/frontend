@@ -2,6 +2,9 @@
 import { React, useState, useEffect } from 'react'
 import { Col, Card, Modal, Container, Tabs, Tab, Table } from 'react-bootstrap';
 
+//assets
+import camionGrande from "../Assets/camionGrande.png";
+
 import { Line } from 'react-chartjs-2';
 // import SocketContext from '../../Context/SocketContext';
 import ModalTareas from '../Navbar/ModalTareas';
@@ -13,10 +16,11 @@ function VehicleList({ vehiculo, datos }) {
     // const { getDatos } = useContext(SocketContext);
     // console.log(vehiculo)
     const [key, setKey] = useState('Nivel de nafta');
+    const [key2, setKey2] = useState('Historial de conductores');
 
     useEffect(() => {
         console.log(datos);
-        if(datos !== undefined) {
+        if (datos !== undefined) {
             setDatitos(datos.filter((dato) => dato.vehiculo === vehiculo._id));
         }
         // eslint-disable-next-line
@@ -91,7 +95,14 @@ function VehicleList({ vehiculo, datos }) {
             <Col>
                 <Card border='secondary' onClick={() => handleShow()}>
                     <Card.Body>
-                        <Card.Title>{vehiculo.patente}</Card.Title>
+                        <Card.Title>
+                            <img
+                                src={camionGrande}
+                                className="d-inline-block align-top"
+                                alt="React Bootstrap logo"
+                            />
+                            {"ㅤㅤ" + vehiculo.patente}
+                        </Card.Title>
                         <Card.Text>{vehiculo.alertas.map(element => {
                             return (
                                 <span key={element._id}>
@@ -102,12 +113,6 @@ function VehicleList({ vehiculo, datos }) {
                             Kilometraje: <b>{vehiculo.kmactual}</b> kms
                             <br /> ID: <b>{vehiculo._id}</b>
                         </Card.Text>
-                        {/* <Card.Text>bla bla bla bla</Card.Text>
-                        <ProgressBar>
-                            <ProgressBar animated variant="success" now={35} key={1} />
-                            <ProgressBar animated variant="warning" now={20} key={2} />
-                            <ProgressBar animated variant="danger" now={10} key={3} />
-                        </ProgressBar> */}
                         {/* <Button onClick={handleShow}></Button> */}
                         {/* <Button variant="outline-primary" style={{ marginRigth: '10px', marginLeft: '10px', marginBottom: '5px' }} onClick={() => handleShow()}>
                             Mas datos
@@ -154,13 +159,13 @@ function VehicleList({ vehiculo, datos }) {
                                 </Tab>
                             </Tabs>
                         </> : <> <br /><br /> <h3>No hay datos para este vehiculo</h3> <h5>Asigna a un conductor y conectate para subir la informacion!</h5></>}
-                        
+
                         <br />
 
                     </Container>
                     <br />
                     <Container>
-                        <Tabs>
+                        <Tabs activeKey={key2} onSelect={(k) => setKey2(k)} className="mb-3">
                             <Tab eventKey="Tareas" title="Tareas">
                                 <Table striped bordered hover>
                                     <thead>

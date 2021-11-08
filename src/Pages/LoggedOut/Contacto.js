@@ -66,7 +66,7 @@ export default function Contacto() {
                             </Col>
                         </Form.Group>
                         <br />
-                        <Button variant="primary" type="submit" onClick={enviarForm} disabled={disabled}>
+                        <Button variant="outline-primary" style={{ marginRigth: '10px', marginLeft: '10px', marginBottom: '5px' }} type="submit" onClick={enviarForm} disabled={disabled}>
                             Enviar
                         </Button>
                     </Form>

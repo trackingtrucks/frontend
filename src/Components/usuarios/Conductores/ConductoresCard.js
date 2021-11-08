@@ -3,7 +3,7 @@ import { Col, Card } from 'react-bootstrap';
 
 function ConductoresList({ conductor }) {
     return (
-        <div className="gestor">
+        <div>
             <Col>
                 <Card>
                     <Card.Body>

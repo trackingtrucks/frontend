@@ -241,3 +241,20 @@ export const cambiarContraseñaConToken = async ({ password, token }) => {
     })
     return response;
 }
+
+export const crearTramite = async ({ vehiculo, titulo, descripcion, date, ultimaVez, urgencia }) => {
+    const response = await API.post(`/vehiculo/tramite`, {
+        vehiculo,
+        titulo,
+        descripcion,
+        date,
+        ultimaVez,
+        urgencia
+    }, {
+        headers: {
+            "Content-Type": "application/json",
+            "x-access-token": accessToken
+        }
+    });
+    return response;
+}

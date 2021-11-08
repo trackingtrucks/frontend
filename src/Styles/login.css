@@ -26,6 +26,8 @@ body, html, .App, #root, .auth-wrapper {
 }
 
 .p-5 {
+
+  margin-top: "50px";
   opacity: .9;
 }
 

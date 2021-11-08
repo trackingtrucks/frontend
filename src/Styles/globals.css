@@ -56,3 +56,8 @@
 html, body, .Login-component {
     height: 100%;
 }
+
+.cerrar-sesion {
+    background-color: #A40000!important;
+    color: white!important;
+}

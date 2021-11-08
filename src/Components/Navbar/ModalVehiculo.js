@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
-import { Modal, Button, Row, Col, Form ,Spinner } from 'react-bootstrap'
+import { Modal, Button, Row, Col, Form, Spinner } from 'react-bootstrap'
 import makeToast from '../Toast';
+import camion from '../Assets/camion.png'
 import * as Api from '../../Api/index'
 
 function ModalVehiculo() {
@@ -13,7 +14,7 @@ function ModalVehiculo() {
     const [kmactual, setKmactual] = useState('');
     const handleClose = () => setShowRegistrar(false);
 
-    async function enviarForm (e) {
+    async function enviarForm(e) {
         e.preventDefault();
         handleClose();
         try {
@@ -21,11 +22,11 @@ function ModalVehiculo() {
             makeToast(6000, "success", "Vehiculo Creado")
             window.location.reload();
         }
-        catch(error) {
+        catch (error) {
             makeToast(6000, 'error', error?.response?.data?.message || error.message)
             console.error(error?.response?.data?.message || error.message);
         }
-        
+
         if (disabled) { return };
     }
     const hideRegistrar = () => {
@@ -34,7 +35,14 @@ function ModalVehiculo() {
     }
     return (
         <>
-            <Button variant="outline-primary" style={{ marginRigth: '10px', marginLeft: '10px', marginBottom: '5px' }} onClick={() => setShowRegistrar(true)}>Nuevo vehiculo</Button>
+            <Button variant="outline-primary" style={{ marginRigth: '10px', marginLeft: '10px', marginBottom: '5px' }} onClick={() => setShowRegistrar(true)}>
+                <img
+                    src={camion}
+                    className="d-inline-block align-top"
+                    alt="React Bootstrap logo"
+                />
+                {" "} Nuevo vehiculo
+            </Button>
             <Modal show={showRegistrar} onHide={hideRegistrar}>
                 <Modal.Header closeButton closeLabel="">
                     <Modal.Title>Añadir un vehiculo a la compañia</Modal.Title>
@@ -46,45 +54,45 @@ function ModalVehiculo() {
                             Patente:
                         </Form.Label>
                         <Col sm="8">
-                            <Form.Control type="text" placeholder="Patente" onChange={(e) => setPatente(e.target.value)} value={patente} required/>
+                            <Form.Control type="text" placeholder="Patente" onChange={(e) => setPatente(e.target.value)} value={patente} required />
                         </Col>
                     </Form.Group>
                     <Form.Group as={Row} className="m-3" controlId="marca">
                         <Form.Label column sm="4">
-                            Marca: 
+                            Marca:
                         </Form.Label>
                         <Col sm="8">
-                            <Form.Control type="text" placeholder="Marca" onChange={(e) => setMarca(e.target.value)} value={marca} required/>
+                            <Form.Control type="text" placeholder="Marca" onChange={(e) => setMarca(e.target.value)} value={marca} required />
                         </Col>
                     </Form.Group>
                     <Form.Group as={Row} className="m-3" controlId="modelo">
                         <Form.Label column sm="4">
-                            Modelo: 
+                            Modelo:
                         </Form.Label>
                         <Col sm="8">
-                            <Form.Control type="text" placeholder="Modelo" onChange={(e) => setModelo(e.target.value)} value={modelo} required/>
+                            <Form.Control type="text" placeholder="Modelo" onChange={(e) => setModelo(e.target.value)} value={modelo} required />
                         </Col>
                     </Form.Group>
                     <Form.Group as={Row} className="m-3" controlId="año">
                         <Form.Label column sm="4">
-                            Año: 
+                            Año:
                         </Form.Label>
                         <Col sm="8">
-                            <Form.Control type="text" placeholder="Año" onChange={(e) => setAño(e.target.value)} value={año} required/>
+                            <Form.Control type="text" placeholder="Año" onChange={(e) => setAño(e.target.value)} value={año} required />
                         </Col>
                     </Form.Group>
                     <Form.Group as={Row} className="m-3" controlId="km">
                         <Form.Label column sm="4">
-                            Kilometraje actual: 
+                            Kilometraje actual:
                         </Form.Label>
                         <Col sm="8">
-                            <Form.Control type="text" placeholder="Kilometros" onChange={(e) => setKmactual(e.target.value)} value={kmactual} required/>
+                            <Form.Control type="text" placeholder="Kilometros" onChange={(e) => setKmactual(e.target.value)} value={kmactual} required />
                         </Col>
                     </Form.Group>
                 </Form>
                 <Modal.Footer>
                     <Button variant="primary" type="submit" onClick={enviarForm} disabled={disabled}>
-                    {!disabled && "Enviar" }  
+                        {!disabled && "Enviar"}
                         {disabled && <Spinner
                             as="span"
                             animation="border"

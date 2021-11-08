@@ -37,8 +37,8 @@ function NavbarComponent() {
                 <Nav className="mr-auto">
                 </Nav>
                 <Navbar.Collapse className="justify-content-end">
-                    <ModalUsuario Api={Api} />
                     <ModalVehiculo Api={Api} />
+                    <ModalUsuario Api={Api} />
                     {/* <Navbar.Text style={{ marginLeft: '10px', marginRight: '10px' }}>
                         {perfil && <OverlayTrigger
                             key={perfil._id}
@@ -57,7 +57,7 @@ function NavbarComponent() {
                     </Navbar.Text> */}
                     <NavDropdown title={perfil.email} id="nav-dropdown">
                         <NavDropdown.Item onClick={() => handleShow()}>Configuracion</NavDropdown.Item>
-                        <NavDropdown.Item onClick={() => cerrarSesion()}>Cerrar Sesion</NavDropdown.Item>
+                        <NavDropdown.Item className="cerrar-sesion" onClick={() => cerrarSesion()}>Cerrar Sesion</NavDropdown.Item>
                     </NavDropdown>
                 </Navbar.Collapse>
             </Navbar>

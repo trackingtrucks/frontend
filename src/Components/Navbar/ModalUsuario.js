@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Button, Form, Col, Row, Modal, Spinner } from 'react-bootstrap'
 import makeToast from '../Toast';
+import usuario from "../Assets/usuario.png";
 import * as Api from '../../Api/index'
 
 function ModalUsuario() {
@@ -9,18 +10,18 @@ function ModalUsuario() {
     const [email, setEmail] = useState('');
     const [isCond, setIsCond] = useState(true)
 
-    async function enviarForm (e) {
+    async function enviarForm(e) {
         e.preventDefault();
-        
+
         if (disabled) { return };
         if (email === "") return makeToast(5000, "error", "Se debe especificar un email!");
         try {
             setDisabled(true);
             if (isCond) {
-                const {data} = await Api.agregarConductor({email})
+                const { data } = await Api.agregarConductor({ email })
                 makeToast(6000, "info", data.message)
             } else if (!isCond) {
-                const {data} = await Api.agregarGestor({email})
+                const { data } = await Api.agregarGestor({ email })
                 makeToast(6000, "info", data.message)
             } else {
                 return makeToast(6000, "error", "No se especificó ningun rol")
@@ -39,7 +40,14 @@ function ModalUsuario() {
     }
     return (
         <>
-            <Button variant="outline-primary" style={{ marginRigth: '10px', marginLeft: '10px', marginBottom: '5px' }} onClick={() => setShowRegistrar(true)}>Nuevo Usuario</Button>
+            <Button variant="outline-primary" style={{ marginRigth: '10px', marginLeft: '10px', marginBottom: '5px' }} onClick={() => setShowRegistrar(true)}>
+                <img
+                    src={usuario}
+                    className="d-inline-block align-top"
+                    alt="React Bootstrap logo"
+                />
+                 {" "} Nuevo Usuario
+            </Button>
             <Modal show={showRegistrar} onHide={hideRegistrar}>
                 <Modal.Header closeButton closeLabel="">
                     <Modal.Title>Añadir un usuario a la compañia</Modal.Title>
@@ -51,7 +59,7 @@ function ModalUsuario() {
                             Ingresa un email:
                         </Form.Label>
                         <Col sm="8">
-                            <Form.Control type="text" placeholder="email" onChange={(e) => setEmail(e.target.value)} value={email} required/>
+                            <Form.Control type="text" placeholder="email" onChange={(e) => setEmail(e.target.value)} value={email} required />
                         </Col>
                     </Form.Group>
                     <Form.Group as={Row} className="m-3" controlId="email">
@@ -85,7 +93,7 @@ function ModalUsuario() {
                 </Form>
                 <Modal.Footer>
                     <Button variant="primary" type="submit" onClick={enviarForm} disabled={disabled}>
-                    {!disabled && "Enviar" }  
+                        {!disabled && "Enviar"}
                         {disabled && <Spinner
                             as="span"
                             animation="border"

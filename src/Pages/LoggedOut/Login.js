@@ -27,13 +27,13 @@ function Login() {
 
     }
 
-    async function pedircontra({email}) {
-        
+    async function pedircontra({ email }) {
+
         try {
             const response = await Api.restablecerContra({ email })
             console.log(response);
             makeToast(6000, 'success', "mail enviado")
-            
+
         } catch (error) {
             makeToast(6000, 'error', error?.response?.data?.message || error.message)
             console.error(error?.response?.data?.message || error.message);
@@ -41,7 +41,7 @@ function Login() {
     }
 
 
-    
+
     const showPassIcon = !showPassword ? <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-eye-fill" viewBox="0 0 16 16">
         <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z" />
         <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z" />
@@ -54,7 +54,9 @@ function Login() {
         <div className='Login-component'>
             <Container className="formulario">
                 <Card className="p-5 ">
-                    <h1>Entrar a tu cuenta! </h1>
+                    <Container className="center">
+                        <h1>Entrar a tu cuenta! </h1>
+                    </Container>
                     <Form onSubmit={submit}>
                         <Form.Group controlId="formEmail">
                             <Form.Label>Email</Form.Label>
@@ -81,19 +83,22 @@ function Login() {
                             </InputGroup>
                         </Form.Group>
                         <br />
-                        <Button variant="link" onClick={()=> pedircontra({email})}>¿Olvidaste tu contraseña?</Button>
-                        <br />
-                        <br />
-                        <Button variant="primary" type="submit" disabled={disabled}>
-                            {!disabled && "Iniciar sesión"}
-                            {disabled && <Spinner
-                                as="span"
-                                animation="border"
-                                size="sm"
-                                role="status"
-                                aria-hidden="true"
-                            />}
-                        </Button>
+                        <Container className="center">
+                            <Button variant="link" onClick={() => pedircontra({ email })}>¿Olvidaste tu contraseña?</Button>
+                        </Container>
+                        <br /><br />
+                        <Container className="center">
+                            <Button variant="outline-primary" style={{ marginRigth: '10px', marginLeft: '10px', marginBottom: '5px' }} type="submit" disabled={disabled}>
+                                {!disabled && "Iniciar sesión"}
+                                {disabled && <Spinner
+                                    as="span"
+                                    animation="border"
+                                    size="sm"
+                                    role="status"
+                                    aria-hidden="true"
+                                />}
+                            </Button>
+                        </Container>
                     </Form>
                 </Card>
 
