@@ -6,7 +6,6 @@ import '../Styles/navbar.css';
 import logo from './Assets/logo.png'
 import ModalUsuario from './Navbar/ModalUsuario'
 import ModalVehiculo from './Navbar/ModalVehiculo'
-import ModalTareas from './Navbar/ModalTareas'
 import SettingsContainers from './Settings/SettingsContainer';
 function NavbarComponent() {
     const { clearLocalStorage, perfil } = useContext(AuthContext);
@@ -38,7 +37,6 @@ function NavbarComponent() {
                 <Nav className="mr-auto">
                 </Nav>
                 <Navbar.Collapse className="justify-content-end">
-                    <ModalTareas />
                     <ModalUsuario Api={Api} />
                     <ModalVehiculo Api={Api} />
                     {/* <Navbar.Text style={{ marginLeft: '10px', marginRight: '10px' }}>
