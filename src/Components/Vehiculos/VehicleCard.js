@@ -124,10 +124,6 @@ function VehicleList({ vehiculo, datos }) {
 
                     </Container>
                     <br /><br />
-                    <Container className="center">
-                        Conductor actual
-
-                    </Container>
                     <br /><br />
                     <Container className="center">
                         {/* {(()=> {

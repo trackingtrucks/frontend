@@ -52,7 +52,7 @@ function Login() {
     const formType = showPassword ? 'text' : 'password';
     return (
         <div className='Login-component'>
-            <Container>
+            <Container className="formulario">
                 <Card className="p-5 ">
                     <h1>Entrar a tu cuenta! </h1>
                     <Form onSubmit={submit}>
