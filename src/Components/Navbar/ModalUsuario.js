@@ -46,7 +46,7 @@ function ModalUsuario() {
                     className="d-inline-block align-top"
                     alt="React Bootstrap logo"
                 />
-                 {" "} Nuevo Usuario
+                {" "} Nuevo Usuario
             </Button>
             <Modal show={showRegistrar} onHide={hideRegistrar}>
                 <Modal.Header closeButton closeLabel="">
@@ -92,7 +92,7 @@ function ModalUsuario() {
                     </Form.Group>
                 </Form>
                 <Modal.Footer>
-                    <Button variant="primary" type="submit" onClick={enviarForm} disabled={disabled}>
+                    <Button variant="outline-primary" style={{ marginRigth: '10px', marginLeft: '10px', marginBottom: '5px' }} type="submit" onClick={enviarForm} disabled={disabled}>
                         {!disabled && "Enviar"}
                         {disabled && <Spinner
                             as="span"

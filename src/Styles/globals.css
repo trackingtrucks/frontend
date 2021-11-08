@@ -61,3 +61,9 @@ html, body, .Login-component {
     background-color: #A40000!important;
     color: white!important;
 }
+
+
+.form-check-input:checked {
+    background-color: #830000!important;
+    border-color: #A40000!important;
+}

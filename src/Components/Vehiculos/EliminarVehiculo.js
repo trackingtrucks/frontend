@@ -49,7 +49,7 @@ export default function EliminarVehiculo() {
                     </Form>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="primary" type="submit" onClick={enviarForm} disabled={disabled}>
+                    <Button variant="outline-primary" style={{ marginRigth: '10px', marginLeft: '10px', marginBottom: '5px' }} type="submit" onClick={enviarForm} disabled={disabled}>
                         {!disabled && "Enviar"}
                         {disabled && <Spinner
                             as="span"
