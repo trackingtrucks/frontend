@@ -51,7 +51,7 @@ function Login() {
     </svg>
     const formType = showPassword ? 'text' : 'password';
     return (
-        <div>
+        <div className='Login-component'>
             <Container>
                 <Card className="p-5 ">
                     <h1>Entrar a tu cuenta! </h1>
@@ -83,8 +83,9 @@ function Login() {
                         <br />
                         <Button variant="link" onClick={()=> pedircontra({email})}>¿Olvidaste tu contraseña?</Button>
                         <br />
+                        <br />
                         <Button variant="primary" type="submit" disabled={disabled}>
-                            {!disabled && "Entrar"}
+                            {!disabled && "Iniciar sesión"}
                             {disabled && <Spinner
                                 as="span"
                                 animation="border"

@@ -52,3 +52,7 @@
     font-size: xx-large;
 
 }
+
+html, body, .Login-component {
+    height: 100%;
+}

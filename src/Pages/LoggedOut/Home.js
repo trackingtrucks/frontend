@@ -7,7 +7,7 @@ import NavbarCollapse from 'react-bootstrap/esm/NavbarCollapse'
 export class Home extends Component {
     render() {
         return (
-            <div style={{overflowX: 'hidden'}}>
+            <div style={{ overflowX: 'hidden' }}>
                 <Navbar>
                     <Navbar.Brand href="/">
                         <img
@@ -26,7 +26,7 @@ export class Home extends Component {
                             Contactanos
                         </Button>
                         <Button className="login" style={{ marginRigth: '10px', marginLeft: '10px', marginBottom: '5px' }} onClick={() => this.props.history.push("/login")}>
-                            Iniciar Sesion
+                            Iniciar sesión
                         </Button>
                         <Nav style={{ marginLeft: '10px', marginRight: '10px' }} />
                     </Navbar.Collapse>

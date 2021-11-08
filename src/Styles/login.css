@@ -28,3 +28,9 @@ body, html, .App, #root, .auth-wrapper {
 .p-5 {
   opacity: .9;
 }
+
+
+.Login-component {
+  background: url(../Components/Assets/fondologin.png) no-repeat center center fixed;
+background-size: cover;
+}

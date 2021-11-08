@@ -16,7 +16,7 @@ export const login = async ({ email, password, set }) => {
     };
     if (response.data.perfil.rol === "conductor") {
         cerrarSesion({ accessToken: response.data.accessToken, refreshToken: response.data.refreshToken });
-        return alert("Para poder iniciar sesion como conductor, por favor dirigase a la aplicacion para moviles")
+        return alert("Para poder Iniciar sesión como conductor, por favor dirigase a la aplicacion para moviles")
     }
     set({
         profile: (response.data.perfil),
@@ -100,7 +100,7 @@ export const registrarse = async ({ email, password, nombre, apellido, codigo, s
     }
     if (response?.data?.perfil?.rol === "conductor") {
         //Reenviar a /descargar
-        return alert("Para poder iniciar sesion como conductor, por favor dirigase a la aplicacion para moviles")
+        return alert("Para poder Iniciar sesión como conductor, por favor dirigase a la aplicacion para moviles")
 
     }
     return response;

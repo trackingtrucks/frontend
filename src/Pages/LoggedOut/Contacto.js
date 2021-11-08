@@ -28,7 +28,7 @@ export default function Contacto() {
     }
 
     return (
-        <div>
+        <div className='Login-component'>
             <Container>
                 <Card className="p-5 ">
                     <h1>Contactanos! </h1>

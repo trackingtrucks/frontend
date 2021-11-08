@@ -22,6 +22,7 @@ export class Restablecer extends Component {
             const res = await Api.cambiarContraseñaConToken({password:this.state.password, token:this.state.token})
             console.log(res)
             this.props.history.push("/login");
+            makeToast(6000, 'success', "Contraseña cambiada!")
         } catch (error) {
             //usar sweetalert2
             makeToast('error', error.response.data.message || error.message)
@@ -31,7 +32,7 @@ export class Restablecer extends Component {
     }
     render() {
         return (
-            <>
+            <div className='Login-component'>
                 <Container>
                     <Card className="p-5 ">
                         <h1>Restablecer contraseña </h1>
@@ -53,7 +54,7 @@ export class Restablecer extends Component {
                         </Form>
                     </Card>
                 </Container>
-            </>
+            </div>
         )
     }
 }

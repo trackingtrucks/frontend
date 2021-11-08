@@ -44,7 +44,7 @@ export class Registro extends Component {
     }
     render() {
         return (
-            <>
+            <div className='Login-component'>
                 <Container>
                     <Card className="p-5 ">
                         <h1>Registrate! </h1>
@@ -80,7 +80,7 @@ export class Registro extends Component {
                         </Form>
                     </Card>
                 </Container>
-            </>
+            </div>
         )
     }
 }
