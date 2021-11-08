@@ -14,7 +14,8 @@ function TurnosContainer({ turnos }) {
             </thead>
             <tbody>
                 {turnos && turnos.map((turno) => {
-                    if (turno.condicion !== "No Asignado") return null;
+                    if (turno.condicion === "Asignado") return null;
+                    if (turno.condicion === "Terminado") return null;
                     return (
                         <TurnosCard turno={turno} key={turno._id} api={Api} />)
                 })}
